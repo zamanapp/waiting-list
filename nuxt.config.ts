@@ -1,8 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@vueuse/nuxt", "@nuxtjs/tailwindcss"],
+  ssr: false,
+  modules: ["@vueuse/nuxt", "@nuxtjs/tailwindcss", "@nuxt/devtools"],
+
   imports: {
     dirs: ["composables/**"],
   },
+
   components: [{ path: "~/components", pathPrefix: false }],
+
+  $development: {
+    devtools: {
+      enabled: true,
+    },
+  },
 });

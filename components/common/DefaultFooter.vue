@@ -1,5 +1,7 @@
 <template>
-  <footer class="fixed bottom-0 w-full text-center p-3">
+  <footer
+    class="fixed bottom-0 right-0 p-3 text-xs text-white bg-black shadow-md rounded-tl-xl shadow-gray-400"
+  >
     <!-- add copyrights -->
     <div>
       Copyright &copy; {{ new Date().getFullYear() }} {{ appConfig.appName }}

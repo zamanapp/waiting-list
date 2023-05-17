@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex justify-between mx-6 items-center">
+  <nav class="fixed flex items-center justify-between w-full px-6">
     <NuxtLink class="text-5xl" to="/">*</NuxtLink>
     <div class="flex gap-3">
       <button class="capitalize">{{ mode }}</button>
