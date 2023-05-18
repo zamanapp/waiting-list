@@ -8,70 +8,26 @@
     :viewBox="`0 0 ${maxDimension} ${maxDimension}`"
   >
     <defs>
-      <circle
-        id="moon"
-        :cx="maxDimension / 2"
-        :cy="maxDimension / 2"
-        :r="outerSize"
-      />
-      <circle
-        id="crescent"
-        :cx="maxDimension / 2"
-        :cy="maxDimension / 2"
-        :r="moonSize"
-      />
+      <circle id="moon" :cx="centerX" :cy="centerY" :r="outerSize" />
+      <circle id="crescent" :cx="centerX" :cy="centerY" :r="moonSize" />
       <clipPath id="clip-moon">
         <use xlink:href="#crescent" />
       </clipPath>
-      <path
-        id="months"
-        :d="
-          circleToPath(
-            maxDimension / 2,
-            maxDimension / 2,
-            moonSize + moonSize / MONTHS_R_CONST
-          )
-        "
-      />
-      <path
-        id="days"
-        :d="
-          circleToPath(
-            maxDimension / 2,
-            maxDimension / 2,
-            moonSize + moonSize / DAYS_R_CONST
-          )
-        "
-      />
-      <path
-        id="hours"
-        :d="
-          circleToPath(
-            maxDimension / 2,
-            maxDimension / 2,
-            moonSize + moonSize / HOURS_R_CONST
-          )
-        "
-      />
-      <path
-        id="seconds"
-        :d="
-          circleToPath(
-            maxDimension / 2,
-            maxDimension / 2,
-            moonSize + moonSize / SECONDS_R_CONST
-          )
-        "
-      />
+      <path id="months" :d="circleToPath(moonSize + MONTHS_R_CONST)" />
+      <path id="days" :d="circleToPath(moonSize + DAYS_R_CONST)" />
+      <path id="hours" :d="circleToPath(moonSize + HOURS_R_CONST)" />
+      <path id="minutes" :d="circleToPath(moonSize + MINUTES_R_CONST)" />
+      <path id="seconds" :d="circleToPath(moonSize + SECONDS_R_CONST)" />
     </defs>
 
     <text
       v-if="showGuide"
-      class="origin-center"
+      class="transition-transform duration-500 ease-in-out origin-center"
       :transform="`rotate(${-monthsRotation})`"
     >
       <textPath
-        class="font-mono text-7xl fill-gray-300"
+        class="font-mono fill-gray-300"
+        :style="`font-size: ${monthsFontSize}px;`"
         :textLength="monthsTextLength"
         href="#months"
       >
@@ -82,11 +38,12 @@
     </text>
     <text
       v-if="showGuide"
-      class="origin-center"
+      class="transition-transform duration-500 ease-in-out origin-center"
       :transform="`rotate(${-daysRotation})`"
     >
       <textPath
-        class="font-mono text-9xl fill-gray-300"
+        class="font-mono fill-gray-300"
+        :style="`font-size: ${daysFontSize}px;`"
         side="right"
         :textLength="daysTextLength"
         href="#days"
@@ -98,12 +55,13 @@
     </text>
     <text
       v-if="showGuide"
-      class="origin-center"
+      class="transition-transform duration-500 ease-in-out origin-center"
       :transform="`rotate(${-hoursRotation})`"
     >
       <textPath
-        class="font-mono text-9xl fill-gray-300"
+        class="font-mono fill-gray-300"
         side="right"
+        :style="`font-size: ${hoursFontSize}px;`"
         :textLength="hoursTextLength"
         href="#hours"
       >
@@ -114,23 +72,38 @@
     </text>
     <text
       v-if="showGuide"
-      class="origin-center"
+      class="transition-transform duration-500 ease-in-out origin-center"
+      :transform="`rotate(${-minutesRotation})`"
+    >
+      <textPath
+        class="font-mono fill-gray-300"
+        side="right"
+        :style="`font-size: ${minutesFontSize}px;`"
+        :textLength="minutesTextLength"
+        href="#minutes"
+      >
+        {{ minutes.split(String(minute))[0] }}
+        <tspan class="font-semibold fill-black" dy="0">{{ minute }}</tspan>
+        {{ minutes.split(String(minute))[1] }}
+      </textPath>
+    </text>
+    <text
+      v-if="showGuide"
+      class="transition-transform duration-500 ease-in-out origin-center"
       :transform="`rotate(${-secondsRotation})`"
     >
       <textPath
-        class="font-mono transition-all ease-in-out text-9xl fill-gray-300"
+        class="font-mono fill-gray-300"
         side="right"
+        :style="`font-size: ${secondsFontSize}px;`"
         :textLength="secondsTextLength"
         href="#seconds"
       >
-        {{ seconds.split(String(second))[0] }}
-        <tspan
-          class="font-semibold transition-all ease-in-out fill-black"
-          dy="0"
-        >
+        {{ seconds.split(String(second))[0].trim() }}
+        <tspan class="font-semibold fill-black" dy="0">
           {{ second }}
         </tspan>
-        {{ seconds.split(String(second))[1] }}
+        {{ seconds.split(String(second))[1].trim() }}
       </textPath>
     </text>
 
@@ -151,8 +124,8 @@
       :stroke-width="lineWeight"
     ></use>
     <use :fill="fill" href="#crescent" class="disc" />
-    <rect width="3px" height="100%" :x="maxDimension / 2" fill="red" />
-    <rect width="100%" height="3px" :y="maxDimension / 2" fill="red" />
+    <!-- <rect width="3px" height="100%" :x="centerX" fill="red" />
+    <rect width="100%" height="3px" :y="centerY" fill="red" /> -->
   </svg>
 </template>
 
@@ -212,14 +185,56 @@ import { useNow } from "@vueuse/core";
 // https://css-tricks.com/set-text-on-a-circle/
 // http://jsfiddle.net/alnitak/ah1k1mo3/
 const props = defineProps(propsConfig);
-const MONTHS_R_CONST = 1.4;
-const DAYS_R_CONST = 2.1;
-const HOURS_R_CONST = 3.5;
-const SECONDS_R_CONST = 8;
+
+const monthsFontSize = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface);
+  const size =
+    circumference / (months.value.length + (months.value.length - 1));
+  return size * 3;
+});
+const daysFontSize = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface * (4 / 5));
+  const size = circumference / (days.value.length + (days.value.length - 1));
+  return size * 3;
+});
+const hoursFontSize = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface * (3 / 5));
+  const size = circumference / (hours.value.length + (hours.value.length - 1));
+  return size * 3;
+});
+const minutesFontSize = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface * (2 / 5));
+  const size = circumference / (minutes.length + (minutes.length - 1));
+  return size * 4;
+});
+const secondsFontSize = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface * (1 / 5));
+  const size = circumference / (seconds.length + (seconds.length - 1));
+  return size * 4;
+});
+
+const orbsSurface = props.moonSize * 0.8; // we take 63% of the remaining space to allow it to be used by the orbits
+// we calculate the orbits radius additional constant by by dividing that space equally then we minus the font size used on the orb to shift the radius
+const MONTHS_R_CONST = computed(() => orbsSurface); // the last orbit uses all the available space
+const DAYS_R_CONST = computed(
+  () => orbsSurface * (4 / 5) - daysFontSize.value / 3
+);
+const HOURS_R_CONST = computed(
+  () => orbsSurface * (3 / 5) - hoursFontSize.value / 2
+);
+const MINUTES_R_CONST = computed(
+  () => orbsSurface * (2 / 5) - minutesFontSize.value
+);
+const SECONDS_R_CONST = computed(
+  () => orbsSurface * (1 / 5) - secondsFontSize.value
+);
 
 const sizePx = computed(() => `${props.moonSize}px`);
 const outerSize = computed(() => props.moonSize + props.lineWeight / 2 - 1);
 const maxDimension = computed(() => props.moonSize * 4);
+const centerX = computed(() => maxDimension.value / 2);
+const centerY = computed(() => maxDimension.value / 2);
+
 const now = useNow();
 const cal = ref(
   Temporal.Calendar.from(
@@ -234,6 +249,11 @@ let temporalDate = unref(now.value).toTemporalInstant().toZonedDateTime({
 let rotation = ref(props.moonDegree ? props.moonDegree : 0);
 let moonDeg = ref(`${rotation.value}deg`);
 const seconds = Array.from({ length: 60 }, (_: number, i: number) =>
+  i <= 9 ? `0${i}` : String(i)
+)
+  .join(" ")
+  .trim();
+const minutes = Array.from({ length: 60 }, (_: number, i: number) =>
   i <= 9 ? `0${i}` : String(i)
 )
   .join(" ")
@@ -292,6 +312,12 @@ let hour = computed(() => {
   }
 });
 
+let minute = ref(
+  temporalDate.minute <= 9
+    ? `0${temporalDate.minute}`
+    : String(temporalDate.minute)
+);
+
 let second = ref(
   temporalDate.second <= 9
     ? `0${temporalDate.second}`
@@ -325,6 +351,15 @@ let hoursRotation = computed(() => {
   );
 });
 
+let minutesRotation = computed(() => {
+  const unit = 360 / minutes.length;
+  const index = minutes.search(minute.value);
+  return (
+    unit * (index - minutes.length / 4 + minute.value.length / 2) -
+    minute.value.length / 2
+  );
+});
+
 let secondsRotation = computed(() => {
   const unit = 360 / seconds.length;
   const index = seconds.search(second.value);
@@ -335,31 +370,33 @@ let secondsRotation = computed(() => {
 });
 
 let monthsTextLength = computed(() => {
-  const circumference =
-    2 * Math.PI * (props.moonSize + props.moonSize / MONTHS_R_CONST);
+  const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
   const unit = circumference / months.value.length;
   return circumference - unit;
 });
 
 let daysTextLength = computed(() => {
-  const circumference =
-    2 * Math.PI * (props.moonSize + props.moonSize / DAYS_R_CONST);
+  const circumference = 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value);
   const unit = circumference / days.value.length;
   return circumference - unit;
 });
 
 let hoursTextLength = computed(() => {
-  const circumference =
-    2 * Math.PI * (props.moonSize + props.moonSize / HOURS_R_CONST);
+  const circumference = 2 * Math.PI * (props.moonSize + HOURS_R_CONST.value);
   const unit = circumference / hours.value.length;
   return circumference - unit;
 });
 
+let minutesTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value);
+  const unit = circumference / minutes.length;
+  return circumference - unit / 2;
+});
+
 let secondsTextLength = computed(() => {
-  const circumference =
-    2 * Math.PI * (props.moonSize + props.moonSize / SECONDS_R_CONST);
-  const unit = circumference / hours.value.length;
-  return circumference - unit;
+  const circumference = 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value);
+  const unit = circumference / seconds.length;
+  return circumference - unit / 2;
 });
 
 const flipValue = computed(() => {
@@ -435,6 +472,11 @@ watch(now, () => {
     }
   });
 
+  minute.value =
+    temporalDate.minute <= 9
+      ? `0${temporalDate.minute}`
+      : String(temporalDate.minute);
+
   second.value =
     temporalDate.second <= 9
       ? `0${temporalDate.second}`
@@ -467,6 +509,15 @@ watch(now, () => {
     );
   });
 
+  minutesRotation = computed(() => {
+    const unit = 360 / minutes.length;
+    const index = minutes.search(minute.value);
+    return (
+      unit * (index - minutes.length / 4 + minute.value.length / 2) -
+      minute.value.length / 2
+    );
+  });
+
   secondsRotation = computed(() => {
     const unit = 360 / seconds.length;
     const index = seconds.search(second.value);
@@ -477,31 +528,35 @@ watch(now, () => {
   });
 
   monthsTextLength = computed(() => {
-    const circumference =
-      2 * Math.PI * (props.moonSize + props.moonSize / MONTHS_R_CONST);
+    const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
     const unit = circumference / months.value.length;
     return circumference - unit;
   });
 
   daysTextLength = computed(() => {
-    const circumference =
-      2 * Math.PI * (props.moonSize + props.moonSize / DAYS_R_CONST);
+    const circumference = 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value);
     const unit = circumference / days.value.length;
     return circumference - unit;
   });
 
   hoursTextLength = computed(() => {
-    const circumference =
-      2 * Math.PI * (props.moonSize + props.moonSize / HOURS_R_CONST);
+    const circumference = 2 * Math.PI * (props.moonSize + HOURS_R_CONST.value);
     const unit = circumference / hours.value.length;
     return circumference - unit;
   });
 
+  minutesTextLength = computed(() => {
+    const circumference =
+      2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value);
+    const unit = circumference / minutes.length;
+    return circumference - unit / 2;
+  });
+
   secondsTextLength = computed(() => {
     const circumference =
-      2 * Math.PI * (props.moonSize + props.moonSize / SECONDS_R_CONST);
+      2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value);
     const unit = circumference / hours.value.length;
-    return circumference - unit;
+    return circumference - unit / 2;
   });
 
   rotation.value =
@@ -512,7 +567,11 @@ watch(now, () => {
   moonDeg.value = `${rotation.value}deg`;
 });
 
-function circleToPath(cx: number, cy: number, r: number) {
+function circleToPath(
+  r: number,
+  cx: number = centerX.value,
+  cy: number = centerY.value
+) {
   // https://stackoverflow.com/questions/5737975/circle-drawing-with-svgs-arc-path/10477334#10477334
   return `M ${cx} ${cy}
       m -${r}, 0

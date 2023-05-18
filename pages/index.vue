@@ -1,8 +1,8 @@
 <template>
-  <p class="absolute max-w-md ml-6 font-medium text-center mt-36">
+  <p class="absolute inset-x-0 max-w-xs mx-auto font-medium text-center lg:mr-12 lg:inset-x-auto lg:right-0 mt-36">
     "Oh child of Adam. You are but a number of days. If your day goes by. A
     piece of you goes as well."
-    <span class="font-mono text-gray-400">-Al-Hasan Al-Basri</span>
+    <div class="mt-2 font-mono text-gray-400">-Al-Hasan Al-Basri</div>
   </p>
   <Moon
     :moon-size="moonSize"
