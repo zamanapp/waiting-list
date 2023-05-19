@@ -1,7 +1,4 @@
 <template>
-  <div>{{ seconds.length }}</div>
-  <div>{{ sUnit }}</div>
-  <div>{{ sIndex }}</div>
   <svg
     id="moon-symbol"
     xmlns="http://www.w3.org/2000/svg"
@@ -320,8 +317,9 @@ let month = new Intl.DateTimeFormat("en-US", {
   calendar: cal.value,
 }).format(temporalDate);
 
-let day =
-  temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day);
+let day = ref(
+  temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day)
+);
 
 let hour = computed(() => {
   if (temporalDate.hour === 0) {
@@ -358,22 +356,12 @@ let monthsRotation = computed(() => {
   );
 });
 
-let daysRotation = computed(() => {
-  const unit = 360 / days.value.length;
-  const index = days.value.search(day);
-  return (
-    unit * (index - days.value.length / 4 + day.length / 2) - day.length / 2
-  );
-});
-
-// let hoursRotation = computed(() => {
-//   const unit = 360 / hours.value.length;
-//   const index = hours.value.search(hour.value);
-//   return (
-//     unit * (index - hours.value.length / 4 + hour.value.length / 2) -
-//     hour.value.length / 2
-//   );
-// });
+const dSpace = dCircumference.value / days.value.length;
+const dUnit = (dSpace * 360) / dCircumference.value;
+const dIndex = days.value.search(day.value);
+const daysRotation = ref(
+  dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit
+);
 
 const hSpace = hCircumference.value / hours.value.length;
 const hUnit = (hSpace * 360) / hCircumference.value;
@@ -489,7 +477,7 @@ watch(now, (_, oldNow) => {
     calendar: cal.value,
   }).format(temporalDate);
 
-  day =
+  day.value =
     temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day);
 
   hour = computed(() => {
@@ -522,22 +510,18 @@ watch(now, (_, oldNow) => {
     );
   });
 
-  daysRotation = computed(() => {
-    const unit = 360 / days.value.length;
-    const index = days.value.search(day);
-    return (
-      unit * (index - days.value.length / 4 + day.length / 2) - day.length / 2
-    );
-  });
-
-  // hoursRotation = computed(() => {
-  //   const unit = 360 / hours.value.length;
-  //   const index = hours.value.search(hour.value);
+  // daysRotation = computed(() => {
+  //   const unit = 360 / days.value.length;
+  //   const index = days.value.search(day);
   //   return (
-  //     unit * (index - hours.value.length / 4 + hour.value.length / 2) -
-  //     hour.value.length / 2
+  //     unit * (index - days.value.length / 4 + day.length / 2) - day.length / 2
   //   );
   // });
+
+  if (oldNow.getDay() !== now.value.getDay()) {
+    daysRotation.value =
+      daysRotation.value + (dUnit * day.value.length + dUnit);
+  }
 
   if (oldNow.getHours() !== now.value.getHours()) {
     hoursRotation.value =
