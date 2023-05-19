@@ -124,8 +124,8 @@
       :stroke-width="lineWeight"
     ></use>
     <use :fill="fill" href="#crescent" class="disc" />
-    <rect width="3px" height="100%" :x="centerX" fill="red" />
-    <rect width="100%" height="3px" :y="centerY" fill="red" />
+    <!-- <rect width="3px" height="100%" :x="centerX" fill="red" />
+    <rect width="100%" height="3px" :y="centerY" fill="red" /> -->
   </svg>
 </template>
 
@@ -312,10 +312,12 @@ let months = ref(
     .concat(" ")
 );
 
-let month = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  calendar: cal.value,
-}).format(temporalDate);
+let month = ref(
+  new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    calendar: cal.value,
+  }).format(temporalDate)
+);
 
 let day = ref(
   temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day)
@@ -343,18 +345,14 @@ let second = ref(
     : String(temporalDate.second)
 );
 
-let monthsRotation = computed(() => {
-  // circumference -> 360
-  // one space -> ?
-  // one space * 360 / circumference
-  const unit = 360 / months.value.length;
-  const index = months.value.search(month);
-  return (
-    unit * (index - months.value.length / 4 + month.length / 2) -
-    month.length / 2 -
-    1 // the one represent the dot attached to each month we want to subtract so that the centring ignore it
-  );
-});
+const moSpace = moCircumference.value / months.value.length;
+const moUnit = (moSpace * 360) / moCircumference.value;
+const moIndex = months.value.search(month.value);
+const monthsRotation = ref(
+  moUnit * moIndex -
+    (months.value.length / 4) * moUnit +
+    (moUnit * (month.value.length - 1)) / 2
+);
 
 const dSpace = dCircumference.value / days.value.length;
 const dUnit = (dSpace * 360) / dCircumference.value;
@@ -472,7 +470,7 @@ watch(now, (_, oldNow) => {
     .join("")
     .concat(" ");
 
-  month = new Intl.DateTimeFormat("en-US", {
+  month.value = new Intl.DateTimeFormat("en-US", {
     month: "short",
     calendar: cal.value,
   }).format(temporalDate);
@@ -500,23 +498,10 @@ watch(now, (_, oldNow) => {
       ? `0${temporalDate.second}`
       : String(temporalDate.second);
 
-  monthsRotation = computed(() => {
-    const unit = 360 / months.value.length;
-    const index = months.value.search(month);
-    return (
-      unit * (index - months.value.length / 4 + month.length / 2) -
-      month.length / 2 -
-      1 // the one represent the dot attached to each month we want to subtract so that the centring ignore it
-    );
-  });
-
-  // daysRotation = computed(() => {
-  //   const unit = 360 / days.value.length;
-  //   const index = days.value.search(day);
-  //   return (
-  //     unit * (index - days.value.length / 4 + day.length / 2) - day.length / 2
-  //   );
-  // });
+  if (oldNow.getMonth() !== now.value.getMonth()) {
+    monthsRotation.value =
+      monthsRotation.value + (moUnit * month.value.length + moUnit);
+  }
 
   if (oldNow.getDay() !== now.value.getDay()) {
     daysRotation.value =
