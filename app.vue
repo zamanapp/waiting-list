@@ -9,8 +9,7 @@
 html,
 body,
 #__nuxt {
-  @apply h-full;
-  /* background-color: v-bind("theme.getBackgroundColor"); */
+  @apply h-full dark:bg-slate-800 dark:text-slate-400;
 }
 body {
   overflow: hidden;

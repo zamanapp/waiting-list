@@ -26,13 +26,15 @@
       :transform="`rotate(${-monthsRotation})`"
     >
       <textPath
-        class="font-mono fill-gray-300"
+        class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${monthsFontSize}px;`"
         :textLength="monthsTextLength"
         href="#months"
       >
         {{ months.split(month)[0] }}
-        <tspan class="font-semibold fill-black" dy="0">{{ month }}</tspan>
+        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+          {{ month }}
+        </tspan>
         {{ months.split(month)[1] }}
       </textPath>
     </text>
@@ -42,14 +44,16 @@
       :transform="`rotate(${-daysRotation})`"
     >
       <textPath
-        class="font-mono fill-gray-300"
+        class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${daysFontSize}px;`"
         side="right"
         :textLength="daysTextLength"
         href="#days"
       >
         {{ days.split(String(day))[0] }}
-        <tspan class="font-semibold fill-black" dy="0">{{ day }}</tspan>
+        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+          {{ day }}
+        </tspan>
         {{ days.split(String(day))[1] }}
       </textPath>
     </text>
@@ -59,14 +63,16 @@
       :transform="`rotate(${-hoursRotation})`"
     >
       <textPath
-        class="font-mono fill-gray-300"
+        class="font-mono fill-slate-300 dark:fill-slate-500"
         side="right"
         :style="`font-size: ${hoursFontSize}px;`"
         :textLength="hoursTextLength"
         href="#hours"
       >
         {{ hours.split(String(hour))[0] }}
-        <tspan class="font-semibold fill-black" dy="0">{{ hour }}</tspan>
+        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+          {{ hour }}
+        </tspan>
         {{ hours.split(String(hour))[1] }}
       </textPath>
     </text>
@@ -76,14 +82,16 @@
       :transform="`rotate(${-minutesRotation})`"
     >
       <textPath
-        class="font-mono fill-gray-300"
+        class="font-mono fill-slate-300 dark:fill-slate-500"
         side="right"
         :style="`font-size: ${minutesFontSize}px;`"
         :textLength="minutesTextLength"
         href="#minutes"
       >
         {{ minutes.split(String(minute))[0] }}
-        <tspan class="font-semibold fill-black" dy="0">{{ minute }}</tspan>
+        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+          {{ minute }}
+        </tspan>
         {{ minutes.split(String(minute))[1] }}
       </textPath>
     </text>
@@ -93,14 +101,14 @@
       :transform="`rotate(${-secondsRotation})`"
     >
       <textPath
-        class="font-mono fill-gray-300"
+        class="font-mono fill-slate-300 dark:fill-slate-500"
         side="right"
         :style="`font-size: ${secondsFontSize}px;`"
         :textLength="secondsTextLength"
         href="#seconds"
       >
         {{ seconds.split(String(second))[0].trim() }}
-        <tspan class="font-semibold fill-black" dy="0">
+        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
           {{ second }}
         </tspan>
         {{ seconds.split(String(second))[1].trim() }}
@@ -108,22 +116,20 @@
     </text>
 
     <rect
-      class="illusion"
+      class="illusion fill-slate-950"
       clip-path="url(#clip-moon)"
       width="50%"
       height="100%"
       :x="flipValue"
-      fill="black"
     />
 
     <use
-      fill="white"
       fill-opacity="0"
-      stroke="black"
+      class="stroke-slate-950 fill-white dark:fill-slate-300"
       href="#moon"
       :stroke-width="lineWeight"
     ></use>
-    <use :fill="fill" href="#crescent" class="disc" />
+    <use href="#crescent" :class="`disc ${fill}`" />
     <!-- <rect width="3px" height="100%" :x="centerX" fill="red" />
     <rect width="100%" height="3px" :y="centerY" fill="red" /> -->
   </svg>
@@ -439,7 +445,9 @@ const flipValue = computed(() => {
 });
 
 const fill = computed(() =>
-  rotation.value >= 90 && rotation.value <= 270 ? "white" : "black"
+  rotation.value >= 90 && rotation.value <= 270
+    ? "fill-white"
+    : "fill-slate-950"
 );
 
 watch(now, (_, oldNow) => {

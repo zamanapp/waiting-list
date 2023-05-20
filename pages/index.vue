@@ -4,7 +4,9 @@
   >
     "Oh child of Adam. You are nothing more than a collection of days. If your
     day goes by. A piece of you goes as well."
-    <span class="block mt-2 font-mono text-gray-400">-Al-Hasan Al-Basri</span>
+    <span class="block mt-2 font-mono text-slate-400 dark:text-slate-200"
+      >-Al-Hasan Al-Basri</span
+    >
   </p>
   <Moon
     :moon-size="moonSize"

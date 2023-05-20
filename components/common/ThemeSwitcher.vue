@@ -20,7 +20,7 @@
           :cx="colorMode === 'light' ? 24 : 17"
           cy="10"
           r="6"
-          fill="currentColor"
+          fill="black"
         />
       </mask>
       <circle
