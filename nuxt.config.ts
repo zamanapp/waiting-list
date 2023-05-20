@@ -1,13 +1,27 @@
+import { resolve, dirname } from "node:path";
+import { fileURLToPath } from "url";
+import VueI18nVitePlugin from "@intlify/unplugin-vue-i18n/vite";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["@vueuse/nuxt", "@nuxtjs/tailwindcss", "@nuxt/devtools"],
+  modules: ["@vueuse/nuxt", "@nuxt/devtools", "@nuxthq/ui"],
 
   imports: {
     dirs: ["composables/**"],
   },
 
   components: [{ path: "~/components", pathPrefix: false }],
+
+  vite: {
+    plugins: [
+      VueI18nVitePlugin({
+        include: [
+          resolve(dirname(fileURLToPath(import.meta.url)), "./locales/*.json"),
+        ],
+      }),
+    ],
+  },
 
   $development: {
     devtools: {

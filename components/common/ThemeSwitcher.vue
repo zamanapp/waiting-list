@@ -17,7 +17,7 @@
         <rect x="0" y="0" width="100%" height="100%" fill="white" />
         <circle
           class="translate-x-2 dark:translate-x-0 delay-[0.25s] duration-500"
-          :cx="colorMode === 'light' ? 24 : 17"
+          :cx="$colorMode.value === 'light' ? 24 : 17"
           cy="10"
           r="6"
           fill="black"
@@ -29,7 +29,7 @@
         cy="12"
         r="6"
         :style="
-          colorMode === 'dark'
+          $colorMode.value === 'dark'
             ? {
                 ...sunStyle.default,
                 ...sunStyle.dark,
@@ -42,7 +42,7 @@
         class="stroke-2 sun-beams duration-[0.25s]"
         stroke="currentColor"
         :style="
-          colorMode === 'dark'
+          $colorMode.value === 'dark'
             ? { transformOrigin: 'center center', ...beamStyle }
             : { transformOrigin: 'center center' }
         "
@@ -81,7 +81,7 @@ const beamStyle = {
 };
 
 const toggle = () => {
-  colorMode.value = colorMode.value === "light" ? "dark" : "light";
+  colorMode.preference = colorMode.preference === "light" ? "dark" : "light";
 };
 </script>
 

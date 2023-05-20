@@ -9,8 +9,9 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "^0.10.0",
     "@nuxt/devtools": "^0.4.6",
-    "@nuxtjs/tailwindcss": "^6.7.0",
+    "@nuxthq/ui": "^2.1.0",
     "@types/node": "^18",
     "@vueuse/core": "^10.1.2",
     "@vueuse/nuxt": "^10.1.2",

@@ -406,6 +406,24 @@ const secondsRotation = ref(
   sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit
 );
 
+// const focused = useWindowFocus();
+
+// whenever(focused, () => {
+//   monthsRotation.value =
+//     moUnit * moIndex -
+//     (months.value.length / 4) * moUnit +
+//     (moUnit * (month.value.length - 1)) / 2;
+
+//   daysRotation.value = dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit;
+
+//   hoursRotation.value =
+//     hUnit * hIndex + hUnit - (hours.value.length / 4) * hUnit;
+
+//   minutesRotation.value = mUnit * mIndex + mUnit - (minutes.length / 4) * mUnit;
+
+//   secondsRotation.value = sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit;
+// });
+
 let monthsTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
   const unit = circumference / months.value.length;
