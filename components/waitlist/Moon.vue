@@ -1,6 +1,6 @@
 <template>
   <svg
-    id="moon-symbol"
+    id="moon"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     :width="sizePx"
@@ -89,7 +89,7 @@
     </text>
     <text
       v-if="showGuide"
-      class="transition-transform duration-500 ease-in-out origin-center"
+      class="transition-all duration-500 ease-in-out origin-center"
       :transform="`rotate(${-secondsRotation})`"
     >
       <textPath
@@ -178,28 +178,39 @@ const propsConfig = {
 <script setup lang="ts">
 import { Temporal, Intl, toTemporalInstant } from "@js-temporal/polyfill";
 import { computed, ref, unref } from "vue";
-import { useNow } from "@vueuse/core";
+import { useNow, breakpointsTailwind } from "@vueuse/core";
+
 // https://tc39.es/proposal-temporal/docs/calendar.html#writing-cross-calendar-code
 // todo: customize https://github.com/GriffinJohnston/uiball-loaders
 // realtime: https://dev.to/thormeier/use-your-i-moon-gination-lets-build-a-moon-phase-visualizer-with-css-and-js-aih
 // https://css-tricks.com/set-text-on-a-circle/
 // http://jsfiddle.net/alnitak/ah1k1mo3/
 const props = defineProps(propsConfig);
+const breakpoints = useBreakpoints(breakpointsTailwind);
 
-const orbsSurface = props.moonSize * 0.8; // we take 63% of the remaining space to allow it to be used by the orbits
+const tablets = breakpoints.between("md", "lg");
+const mobile = breakpoints.smaller("md");
+
+let orbsSurface = ref(props.moonSize * 0.73); // we take 63% of the remaining space to allow it to be used by the orbits
+if (mobile.value) {
+  orbsSurface.value = props.moonSize * 1.75;
+} else if (tablets.value) {
+  orbsSurface.value = props.moonSize * 1.5;
+}
+
 // we calculate the orbits radius additional constant by by dividing that space equally then we minus the font size used on the orb to shift the radius
-const MONTHS_R_CONST = computed(() => orbsSurface); // the last orbit uses all the available space
+const MONTHS_R_CONST = computed(() => orbsSurface.value); // the last orbit uses all the available space
 const DAYS_R_CONST = computed(
-  () => orbsSurface * (4 / 5) - daysFontSize.value / 3
+  () => orbsSurface.value * (4 / 5) - daysFontSize.value / 3
 );
 const HOURS_R_CONST = computed(
-  () => orbsSurface * (3 / 5) - hoursFontSize.value / 2
+  () => orbsSurface.value * (3 / 5) - hoursFontSize.value / 2
 );
 const MINUTES_R_CONST = computed(
-  () => orbsSurface * (2 / 5) - minutesFontSize.value
+  () => orbsSurface.value * (2 / 5) - minutesFontSize.value
 );
 const SECONDS_R_CONST = computed(
-  () => orbsSurface * (1 / 5) - secondsFontSize.value
+  () => orbsSurface.value * (1 / 5) - secondsFontSize.value
 );
 
 const moCircumference = computed(
@@ -219,28 +230,32 @@ const sCircumference = computed(
 );
 
 const monthsFontSize = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface);
+  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface.value);
   const size =
     circumference / (months.value.length + (months.value.length - 1));
   return size * 3;
 });
 const daysFontSize = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface * (4 / 5));
+  const circumference =
+    2 * Math.PI * (props.moonSize + orbsSurface.value * (4 / 5));
   const size = circumference / (days.value.length + (days.value.length - 1));
   return size * 3;
 });
 const hoursFontSize = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface * (3 / 5));
+  const circumference =
+    2 * Math.PI * (props.moonSize + orbsSurface.value * (3 / 5));
   const size = circumference / (hours.value.length + (hours.value.length - 1));
   return size * 3;
 });
 const minutesFontSize = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface * (2 / 5));
+  const circumference =
+    2 * Math.PI * (props.moonSize + orbsSurface.value * (2 / 5));
   const size = circumference / (minutes.length + (minutes.length - 1));
   return size * 4;
 });
 const secondsFontSize = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + orbsSurface * (1 / 5));
+  const circumference =
+    2 * Math.PI * (props.moonSize + orbsSurface.value * (1 / 5));
   const size = circumference / (seconds.length + (seconds.length - 1));
   return size * 4;
 });
