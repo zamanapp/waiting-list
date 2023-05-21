@@ -6,6 +6,7 @@ specifiers:
   '@nuxt/devtools': ^0.4.6
   '@nuxthq/ui': ^2.1.0
   '@types/node': ^18
+  '@vueuse/components': ^10.1.2
   '@vueuse/core': ^10.1.2
   '@vueuse/nuxt': ^10.1.2
   autoprefixer: ^10.4.14
@@ -21,6 +22,7 @@ devDependencies:
   '@nuxt/devtools': 0.4.6_nuxt@3.5.0
   '@nuxthq/ui': 2.1.0
   '@types/node': 18.16.8
+  '@vueuse/components': 10.1.2
   '@vueuse/core': 10.1.2
   '@vueuse/nuxt': 10.1.2_nuxt@3.5.0
   autoprefixer: 10.4.14
@@ -2059,6 +2061,17 @@ packages:
 
   /@vue/shared/3.3.2:
     resolution: {integrity: sha512-0rFu3h8JbclbnvvKrs7Fe5FNGV9/5X2rPD7KmOzhLSUAiQH5//Hq437Gv0fR5Mev3u/nbtvmLl8XgwCU20/ZfQ==}
+    dev: true
+
+  /@vueuse/components/10.1.2:
+    resolution: {integrity: sha512-HlYFYCg3twMhnQgPS4/muz8XIYKViFVKnpL0Xtw5+9ib2gtWvu1Qu7hj6kDMDtOIw1CnNRsUbMLiNI+LXkxSSQ==}
+    dependencies:
+      '@vueuse/core': 10.1.2
+      '@vueuse/shared': 10.1.2
+      vue-demi: 0.14.1
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
     dev: true
 
   /@vueuse/core/10.1.2:

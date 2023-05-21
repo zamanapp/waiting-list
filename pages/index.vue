@@ -1,13 +1,30 @@
 <template>
   <p
-    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center lg:text-xl lg:mr-12 lg:inset-x-auto lg:right-0 mt-36"
+    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center pointer-events-none lg:text-xl lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
   >
-    "Oh child of Adam. You are nothing more than a collection of days. If your
-    day goes by. A piece of you goes as well."
+    "{{ $t("waiting.body") }}"
     <span class="block mt-2 font-mono text-slate-400 dark:text-slate-200"
-      >-Al-Hasan Al-Basri</span
+      >-{{ $t("waiting.author") }}</span
     >
   </p>
+  <div
+    class="absolute inset-x-0 max-w-xs mx-auto font-medium text-center lg:ms-12 lg:inset-x-auto lg:start-0 mt-36"
+  >
+    <UButton
+      ref="expandableElement"
+      class="w-32 rounded-md min-w-max ring-2 dark:ring-slate-300 ring-black group"
+      color="gray"
+      variant="solid"
+    >
+      <TextExpander
+        class="text-2xl lg:text-xl"
+        :text="$t('header.waiting')"
+        :expanded-text="$t('header.waitingExpand')"
+        :expand="expand"
+      />
+    </UButton>
+  </div>
+
   <Moon
     :moon-size="moonSize"
     :line-weight="lineWeight"
@@ -21,6 +38,13 @@ import { breakpointsTailwind } from "@vueuse/core";
 
 const { height, width } = useWindowSize();
 const breakpoints = useBreakpoints(breakpointsTailwind);
+const expandableElement = ref();
+const isHovered = useElementHover(expandableElement);
+const expand = ref(false);
+
+watch(isHovered, () => {
+  expand.value = isHovered.value;
+});
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");

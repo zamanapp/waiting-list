@@ -1,11 +1,11 @@
 <template>
-  <nav class="fixed flex items-center justify-between w-full px-6">
-    <NuxtLink class="text-5xl" to="/">*</NuxtLink>
-    <div>
-      <button>Waitlist</button>
-    </div>
-    <div class="flex gap-3">
-      <button>English</button>
+  <nav
+    class="fixed flex items-center justify-between w-full px-12 py-3 backdrop-blur-xl"
+  >
+    <NuxtLink class="h-12 text-7xl" to="/">*</NuxtLink>
+
+    <div class="flex items-center gap-3">
+      <LangSwitcher />
       <ThemeSwitcher />
     </div>
   </nav>

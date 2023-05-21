@@ -125,11 +125,12 @@
 
     <use
       fill-opacity="0"
-      class="stroke-slate-950 fill-white dark:fill-slate-300"
+      fill="white"
+      stroke="black"
       href="#moon"
       :stroke-width="lineWeight"
     ></use>
-    <use href="#crescent" :class="`disc ${fill}`" />
+    <use :fill="fill" href="#crescent" class="disc" />
     <!-- <rect width="3px" height="100%" :x="centerX" fill="red" />
     <rect width="100%" height="3px" :y="centerY" fill="red" /> -->
   </svg>
@@ -463,9 +464,7 @@ const flipValue = computed(() => {
 });
 
 const fill = computed(() =>
-  rotation.value >= 90 && rotation.value <= 270
-    ? "fill-white"
-    : "fill-slate-950"
+  rotation.value >= 90 && rotation.value <= 270 ? "white" : "black"
 );
 
 watch(now, (_, oldNow) => {

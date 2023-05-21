@@ -1,4 +1,11 @@
 {
-  "hello": "Hello, {name}!",
-  "language": "Language"
+  "header": {
+    "waitingExpand": "إنضم لقائمة الإنتظار",
+    "waiting": "قائمة الإنتظار",
+    "language": "اللغة"
+  },
+  "waiting": {
+    "body": "يا ابن آدم إنما أنت أيام إذا ذهب يومك ذهب بعضك",
+    "author": "الحسن البصري"
+  }
 }

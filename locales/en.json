@@ -1,4 +1,11 @@
 {
-  "hello": "Hello, {name}!",
-  "language": "Language"
+  "header": {
+    "waitingExpand": "Join the waitlist",
+    "waiting": "Waitlist",
+    "language": "Language"
+  },
+  "waiting": {
+    "body": "Oh child of Adam. You are nothing more than a collection of days. If your day goes by. A piece of you goes as well.",
+    "author": "Al-Hasan Al-Basri"
+  }
 }

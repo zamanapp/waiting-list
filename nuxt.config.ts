@@ -14,6 +14,11 @@ export default defineNuxtConfig({
   components: [{ path: "~/components", pathPrefix: false }],
 
   vite: {
+    vue: {
+      script: {
+        propsDestructure: true,
+      },
+    },
     plugins: [
       VueI18nVitePlugin({
         include: [
