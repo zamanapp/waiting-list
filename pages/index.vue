@@ -18,8 +18,8 @@
     >
       <TextExpander
         class="text-2xl lg:text-xl"
-        :text="$t('header.waiting')"
-        :expanded-text="$t('header.waitingExpand')"
+        :text="$t('waiting.waiting')"
+        :expanded-text="$t('waiting.waitingExpand')"
         :expand="expand"
       />
     </UButton>

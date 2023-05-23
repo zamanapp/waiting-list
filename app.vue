@@ -1,6 +1,6 @@
 <template>
-  <NuxtLoadingIndicator />
   <NuxtLayout>
+    <NuxtLoadingIndicator />
     <NuxtPage />
   </NuxtLayout>
 </template>
@@ -12,7 +12,7 @@ body,
   @apply h-full dark:bg-slate-800 dark:text-slate-400;
 }
 html[dir="rtl"] {
-  font-size: 20px;
+  font-size: 18px;
 }
 body {
   overflow: hidden;

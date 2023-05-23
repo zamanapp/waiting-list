@@ -1,18 +1,21 @@
 <template>
-  <USelectMenu v-model="$i18n.locale" :options="$i18n.availableLocales" />
+  <USelectMenu v-model="selected" :options="locales">
+    <template #label>
+      {{ selected.name }}
+    </template>
+    <template #option="{ option }">
+      {{ option.name }}
+    </template>
+  </USelectMenu>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
+import { LocaleObject } from "vue-i18n-routing";
 
-const { locale } = useI18n({ useScope: "global" });
+const { locales, setLocale } = useI18n();
+const selected = ref(locales.value[0] as LocaleObject);
 
-onMounted(setLocale);
-watch(locale, setLocale);
-
-function setLocale() {
-  const html = document.querySelector("html");
-  html?.setAttribute("lang", String(locale.value));
-  html?.setAttribute("dir", locale.value === "en" ? "ltr" : "rtl");
-}
+watch(selected, () => {
+  setLocale(selected.value.code);
+});
 </script>

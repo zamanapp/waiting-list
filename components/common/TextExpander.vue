@@ -32,6 +32,7 @@ const props = defineProps(propsConfig);
 const firstInterval: Ref<NodeJS.Timer | null> = ref(null);
 const secondInterval: Ref<NodeJS.Timer | null> = ref(null);
 const speed = ref(30);
+const { locale } = useI18n();
 
 function clearIntervals() {
   if (secondInterval.value) {
@@ -93,10 +94,18 @@ function doExpand(state: boolean) {
   }
 }
 
-const fullContent = computed(() => props.expandedText);
-const retractedContent = computed(() => props.text);
+const fullContent = toRef(props, "expandedText");
+const retractedContent = toRef(props, "text");
 
 const content = ref(retractedContent.value);
+
+watch(
+  locale,
+  () => {
+    content.value = props.expand ? fullContent.value : retractedContent.value;
+  },
+  { flush: "post" }
+);
 watch(
   () => props.expand,
   (v) => {
