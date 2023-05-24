@@ -6,6 +6,7 @@
     :width="sizePx"
     :height="sizePx"
     :viewBox="`0 0 ${maxDimension} ${maxDimension}`"
+    dir="ltr"
   >
     <defs>
       <circle id="moon" :cx="centerX" :cy="centerY" :r="outerSize" />

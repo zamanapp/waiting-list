@@ -1,7 +1,7 @@
 <template>
   <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir">
     <Head>
-      <!-- <Title>{{ title }}</Title> -->
+      <Title>{{ title }}</Title>
       <Title>Title</Title>
       <template v-for="link in head.link" :key="link.id">
         <Link
@@ -24,12 +24,18 @@
 </template>
 
 <script setup>
-// const route = useRoute();
+const route = useRoute();
+const appConfig = useAppConfig();
 // const { t } = useI18n();
 const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: "id",
   addSeoAttributes: true,
 });
+
+const title = computed(
+  () => route.meta.title ?? `${appConfig.appName} - Coming soon`
+);
+
 // const title = computed(() => t('layouts.title', { title: t(route.meta.title ?? 'TBD') }))
 </script>
