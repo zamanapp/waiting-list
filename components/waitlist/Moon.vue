@@ -1,6 +1,6 @@
 <template>
   <svg
-    id="moon"
+    id="moonSymbol"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     :width="sizePx"
@@ -33,7 +33,7 @@
         href="#months"
       >
         {{ months.split(month)[0] }}
-        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
           {{ month }}
         </tspan>
         {{ months.split(month)[1] }}
@@ -52,7 +52,7 @@
         href="#days"
       >
         {{ days.split(String(day))[0] }}
-        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
           {{ day }}
         </tspan>
         {{ days.split(String(day))[1] }}
@@ -71,7 +71,7 @@
         href="#hours"
       >
         {{ hours.split(String(hour))[0] }}
-        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
           {{ hour }}
         </tspan>
         {{ hours.split(String(hour))[1] }}
@@ -90,7 +90,7 @@
         href="#minutes"
       >
         {{ minutes.split(String(minute))[0] }}
-        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
           {{ minute }}
         </tspan>
         {{ minutes.split(String(minute))[1] }}
@@ -109,7 +109,7 @@
         href="#seconds"
       >
         {{ seconds.split(String(second))[0].trim() }}
-        <tspan class="font-semibold fill-slate-900 dark:fill-slate-200" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
           {{ second }}
         </tspan>
         {{ seconds.split(String(second))[1].trim() }}
@@ -117,21 +117,28 @@
     </text>
 
     <rect
-      class="illusion fill-slate-950"
+      class="illusion fill-black dark:fill-slate-950"
       clip-path="url(#clip-moon)"
       width="50%"
       height="100%"
       :x="flipValue"
     />
+    <rect
+      class="illusion fill-white dark:fill-slate-300"
+      clip-path="url(#clip-moon)"
+      width="50%"
+      height="100%"
+      :x="flipValue === 0 ? maxDimension / 2 : 0"
+    />
 
     <use
       fill-opacity="0"
       fill="white"
-      stroke="black"
+      class="stroke-black dark:stroke-slate-300"
       href="#moon"
       :stroke-width="lineWeight"
     ></use>
-    <use :fill="fill" href="#crescent" class="disc" />
+    <use href="#crescent" :class="`disc ${fill}`" />
     <!-- <rect width="3px" height="100%" :x="centerX" fill="red" />
     <rect width="100%" height="3px" :y="centerY" fill="red" /> -->
   </svg>
@@ -465,7 +472,9 @@ const flipValue = computed(() => {
 });
 
 const fill = computed(() =>
-  rotation.value >= 90 && rotation.value <= 270 ? "white" : "black"
+  rotation.value >= 90 && rotation.value <= 270
+    ? "fill-white dark:fill-slate-300"
+    : "fill-black dark:fill-slate-950"
 );
 
 watch(now, (_, oldNow) => {

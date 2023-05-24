@@ -1,6 +1,6 @@
 <template>
   <p
-    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center pointer-events-none lg:text-xl lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
+    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center pointer-events-none lg:text-xl lg:ms-12 lg:inset-x-auto lg:start-0 mt-36"
   >
     "{{ $t("waiting.body") }}"
     <span class="block mt-2 font-mono text-slate-400 dark:text-slate-200"
@@ -8,7 +8,7 @@
     >
   </p>
   <div
-    class="absolute inset-x-0 max-w-xs mx-auto font-medium text-center lg:ms-12 lg:inset-x-auto lg:start-0 mt-36"
+    class="absolute inset-x-0 max-w-xs mx-auto font-medium text-center pointer-events-none lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
   >
     <UButton
       ref="expandableElement"
@@ -56,7 +56,7 @@ const rotation = ref(0);
 let moon = ref<SVGSVGElement | null>(null);
 
 onMounted(() => {
-  moon.value = document.querySelector("svg#moon");
+  moon.value = document.querySelector("svg#moonSymbol");
   handleResize();
   watch(width, handleResize);
   watch(height, handleResize);

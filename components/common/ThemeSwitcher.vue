@@ -7,7 +7,7 @@
     class="theme-toggle"
   >
     <svg
-      class="sun-and-moon dark:stroke-gray-300 hover:stroke-gray-500 stroke-black fill-black dark:fill-gray-300 hover:fill-gray-500 dark:hover:hover:fill-gray-500 dark:hover:stroke-gray-500"
+      class="sun-and-moon dark:stroke-slate-300 hover:stroke-slate-500 stroke-black fill-black dark:fill-slate-300 hover:fill-slate-500 dark:hover:hover:fill-slate-500 dark:hover:stroke-slate-500"
       aria-hidden="true"
       width="24"
       height="24"
