@@ -1,14 +1,15 @@
 <template>
   <p
-    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center pointer-events-none lg:text-xl lg:ms-12 lg:inset-x-auto lg:start-0 mt-36"
+    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center lg:text-xl lg:ms-12 lg:inset-x-auto lg:start-0 mt-36"
   >
     "{{ $t("waiting.body") }}"
-    <span class="block mt-2 font-mono text-slate-400 dark:text-slate-200"
+    <span
+      class="block mt-2 font-mono text-base text-slate-400 dark:text-slate-200"
       >-{{ $t("waiting.author") }}</span
     >
   </p>
   <div
-    class="absolute inset-x-0 max-w-xs mx-auto font-medium text-center pointer-events-none lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
+    class="absolute inset-x-0 max-w-xs mx-auto font-medium text-center lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
   >
     <UButton
       ref="expandableElement"
