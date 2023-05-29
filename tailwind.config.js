@@ -1,5 +1,5 @@
 const colors = require("tailwindcss/colors");
-// const defaultTheme = require("tailwindcss/defaultTheme");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -19,9 +19,10 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
-      //   fontFamily: {
-      //     main: ["'Satoshi'", ...defaultTheme.fontFamily.sans],
-      //   },
+      fontFamily: {
+        main: ["'Satoshi'", ...defaultTheme.fontFamily.sans],
+        monoArabic: ["'Kawkab Mono", ...defaultTheme.fontFamily.mono],
+      },
       colors: {
         primary: colors.cyan,
       },
@@ -29,7 +30,7 @@ module.exports = {
   },
   plugins: [
     // require("@tailwindcss/typography"),
-    // require("@tailwindcss/forms"),
-    // require("@formkit/themes/tailwindcss"),
+    require("@tailwindcss/forms"),
+    require("@formkit/themes/tailwindcss"),
   ],
 };

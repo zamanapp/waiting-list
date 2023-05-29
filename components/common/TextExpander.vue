@@ -1,8 +1,8 @@
 <template>
   <div class="inline-flex items-center justify-center px-1">
-    <span class="p-2">&nbsp;</span>
+    <span class="px-2">&nbsp;</span>
     <span class="transition-all ease-linear">{{ content }}</span>
-    <span class="p-2">&nbsp;</span>
+    <span class="px-2">&nbsp;</span>
   </div>
 </template>
 

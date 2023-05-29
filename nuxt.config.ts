@@ -4,7 +4,13 @@ import { fileURLToPath } from "url";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["@vueuse/nuxt", "@nuxtjs/i18n", "@nuxt/devtools", "@nuxthq/ui"],
+  modules: [
+    "@vueuse/nuxt",
+    "@nuxtjs/i18n",
+    "@nuxt/devtools",
+    "@nuxthq/ui",
+    "@formkit/nuxt",
+  ],
 
   imports: {
     dirs: ["composables/**"],
@@ -31,6 +37,7 @@ export default defineNuxtConfig({
     langDir: "locales",
     defaultLocale: "en",
     strategy: "prefix_except_default",
+    precompile: { strictMessage: false },
   },
 
   components: [{ path: "~/components", pathPrefix: false }],

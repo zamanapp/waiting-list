@@ -27,7 +27,9 @@
       :transform="`rotate(${-monthsRotation})`"
     >
       <textPath
-        class="font-mono fill-slate-300 dark:fill-slate-500"
+        :class="`${
+          $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
+        } fill-slate-300 dark:fill-slate-500`"
         :style="`font-size: ${monthsFontSize}px;`"
         :textLength="monthsTextLength"
         href="#months"
@@ -205,6 +207,7 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
+const { locale } = useI18n();
 
 let orbsSurface = ref(props.moonSize * 0.73); // we take 63% of the remaining space to allow it to be used by the orbits
 if (mobile.value) {
@@ -332,7 +335,7 @@ let months = ref(
       timeZone: temporalDate.timeZone,
     });
     return " ".concat(
-      new Intl.DateTimeFormat("en-US", {
+      new Intl.DateTimeFormat(locale.value, {
         month: "short",
         calendar: cal.value,
       }).format(date)
@@ -343,7 +346,7 @@ let months = ref(
 );
 
 let month = ref(
-  new Intl.DateTimeFormat("en-US", {
+  new Intl.DateTimeFormat(locale.value, {
     month: "short",
     calendar: cal.value,
   }).format(temporalDate)
@@ -417,21 +420,56 @@ const secondsRotation = ref(
 
 // const focused = useWindowFocus();
 
-// whenever(focused, () => {
-//   monthsRotation.value =
-//     moUnit * moIndex -
-//     (months.value.length / 4) * moUnit +
-//     (moUnit * (month.value.length - 1)) / 2;
+watch(
+  locale,
+  () => {
+    months.value = Array.from(
+      { length: temporalDate.monthsInYear },
+      (_: number, i: number) => {
+        const date = Temporal.ZonedDateTime.from({
+          day: 1,
+          month: i + 1,
+          year: temporalDate.year,
+          calendar: cal.value,
+          timeZone: temporalDate.timeZone,
+        });
+        return " ".concat(
+          new Intl.DateTimeFormat(locale.value, {
+            month: "short",
+            calendar: cal.value,
+          }).format(date)
+        );
+      }
+    )
+      .join("")
+      .concat(" ");
 
-//   daysRotation.value = dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit;
+    month.value = new Intl.DateTimeFormat(locale.value, {
+      month: "short",
+      calendar: cal.value,
+    }).format(temporalDate);
 
-//   hoursRotation.value =
-//     hUnit * hIndex + hUnit - (hours.value.length / 4) * hUnit;
+    console.log("we are here");
+    console.log("we are here", month.value);
+    console.log("we are here", months.value);
+    console.log("we are here", monthsRotation.value);
+    monthsRotation.value = 0;
+    // monthsRotation.value =
+    //   moUnit * moIndex -
+    //   (months.value.length / 4) * moUnit +
+    //   (moUnit * (month.value.length - 1)) / 2;
 
-//   minutesRotation.value = mUnit * mIndex + mUnit - (minutes.length / 4) * mUnit;
+    // daysRotation.value = dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit;
 
-//   secondsRotation.value = sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit;
-// });
+    // hoursRotation.value =
+    //   hUnit * hIndex + hUnit - (hours.value.length / 4) * hUnit;
+
+    // minutesRotation.value = mUnit * mIndex + mUnit - (minutes.length / 4) * mUnit;
+
+    // secondsRotation.value = sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit;
+  },
+  { flush: "post" }
+);
 
 let monthsTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
@@ -510,7 +548,7 @@ watch(now, (_, oldNow) => {
         timeZone: temporalDate.timeZone,
       });
       return " ".concat(
-        new Intl.DateTimeFormat("en-US", {
+        new Intl.DateTimeFormat(locale.value, {
           month: "short",
           calendar: cal.value,
         }).format(date)
@@ -520,7 +558,7 @@ watch(now, (_, oldNow) => {
     .join("")
     .concat(" ");
 
-  month.value = new Intl.DateTimeFormat("en-US", {
+  month.value = new Intl.DateTimeFormat(locale.value, {
     month: "short",
     calendar: cal.value,
   }).format(temporalDate);

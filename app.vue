@@ -14,7 +14,7 @@ body,
 html[dir="rtl"] {
   font-size: 18px;
 }
-body {
+/* body {
   overflow: hidden;
-}
+} */
 </style>
