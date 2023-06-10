@@ -21,7 +21,7 @@ module.exports = {
     extend: {
       fontFamily: {
         main: ["'Satoshi'", ...defaultTheme.fontFamily.sans],
-        monoArabic: ["'Kawkab Mono", ...defaultTheme.fontFamily.mono],
+        monoArabic: ["'Kawkab Mono'", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         primary: colors.cyan,

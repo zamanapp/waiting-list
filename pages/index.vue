@@ -6,19 +6,9 @@
       class="mb-6 text-5xl font-semibold rtl:text-7xl text-start font-main dark:text-slate-200"
       v-html="$t('waiting.manage')"
     ></h2>
-    <button
-      ref="expandableElement"
-      class="px-6 py-3 text-xl font-normal text-white bg-black rounded-md dark:text-slate-200 w-fit disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-gray-700"
-      @click="isOpen = true"
-    >
-      <TextExpander
-        class="text-2xl lg:text-xl"
-        :text="$t('waiting.waiting')"
-        :expanded-text="$t('waiting.waitingExpand')"
-        :expand="expand"
-      />
-    </button>
+    <JoinModal />
   </div>
+
   <p
     class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center lg:text-lg lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
   >
@@ -37,9 +27,6 @@
       show-guide
     />
   </div>
-  <UModal v-model="isOpen">
-    <div>content?</div>
-  </UModal>
 </template>
 
 <script setup lang="ts">
@@ -56,16 +43,6 @@ const padding = ref(48); // p-12 = 48px
 const moonSize = ref(widthSurface.value - padding.value * 2);
 const lineWeight = ref(32);
 const rotation = ref(0);
-
-const expand = ref(false);
-const isOpen = ref(false);
-
-const expandableElement = ref();
-const isHovered = useElementHover(expandableElement);
-
-watch(isHovered, () => {
-  expand.value = isHovered.value;
-});
 
 let moon = ref<SVGSVGElement | null>(null);
 

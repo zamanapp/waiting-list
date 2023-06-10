@@ -13,6 +13,7 @@ specifiers:
   '@vueuse/core': ^10.1.2
   '@vueuse/nuxt': ^10.1.2
   autoprefixer: ^10.4.14
+  mitt: ^3.0.0
   nuxt: ^3.5.0
   sass: ^1.62.1
 
@@ -20,6 +21,7 @@ dependencies:
   '@formkit/nuxt': 0.17.2
   '@formkit/themes': 0.17.2
   '@js-temporal/polyfill': 0.4.3
+  mitt: 3.0.0
 
 devDependencies:
   '@nuxt/devtools': 0.4.6_nuxt@3.5.0
@@ -1020,6 +1022,11 @@ packages:
   /@intlify/shared/9.3.0-beta.17:
     resolution: {integrity: sha512-mscf7RQsUTOil35jTij4KGW1RC9SWQjYScwLxP53Ns6g24iEd5HN7ksbt9O6FvTmlQuX77u+MXpBdfJsGqizLQ==}
     engines: {node: '>= 14'}
+    dev: true
+
+  /@intlify/shared/9.3.0-beta.19:
+    resolution: {integrity: sha512-+lhQggrLvlQ/O5OmIYAc9gadcYXMoaDi0Doef+X/f6TLZFr9PTMjOpBWmpwNNHi026e54jckntUn6GzqDtIN4w==}
+    engines: {node: '>= 16'}
     dev: true
 
   /@intlify/unplugin-vue-i18n/0.10.0_vue-i18n@9.3.0-beta.17:
@@ -5191,6 +5198,10 @@ packages:
       minipass: 3.3.6
       yallist: 4.0.0
 
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
+
   /mkdirp/0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
@@ -7811,7 +7822,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.17
+      '@intlify/shared': 9.3.0-beta.19
       '@intlify/vue-i18n-bridge': 0.8.0_vue-i18n@9.3.0-beta.17
       '@intlify/vue-router-bridge': 0.8.0
       ufo: 1.1.2

@@ -2,7 +2,10 @@
   <nav
     class="fixed flex items-center justify-between w-full px-12 py-3 backdrop-blur-xl"
   >
-    <NuxtLink class="h-12 text-7xl" to="/">*</NuxtLink>
+    <NuxtLink class="w-28" to="/">
+      <!-- <TextLogo /> -->
+      <div class="h-12 text-7xl">*</div>
+    </NuxtLink>
 
     <div class="flex items-center gap-3">
       <LangSwitcher />

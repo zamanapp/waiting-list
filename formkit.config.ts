@@ -5,7 +5,7 @@ import { DefaultConfigOptions } from "@formkit/vue";
 const textClassification = {
   label: "block",
   inner:
-    "max-w-5xl overflow-hidden rounded-md border-0 focus-within:border-2 focus-within:border-black relative",
+    "max-w-5xl overflow-hidden rounded-md border-0 focus-within:border-2 focus-within:border-black invalid:border invalid:border-pink-500 invalid:focus-within:border-pink-500 relative",
   input: "bg-gray-200/50 w-full p-3 border-none text-base",
   suffixIcon: "w-7 absolute flex inset-y-0 right-3 cursor-pointer items-center",
 };

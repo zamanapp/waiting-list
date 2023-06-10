@@ -38,6 +38,13 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     strategy: "prefix_except_default",
     precompile: { strictMessage: false },
+    baseUrl:
+      process.env.NODE_ENV === "production"
+        ? process.env.BASE_URL
+        : "http://localhost:3000",
+    detectBrowserLanguage: {
+      useCookie: true,
+    },
   },
 
   components: [{ path: "~/components", pathPrefix: false }],

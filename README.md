@@ -40,3 +40,11 @@ npm run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+# TODO:
+
+[] - persist the language switching
+[] - Fix rotation of arabic months
+[] - add join logic
+[] - privacy and policy
+[] - manifesto?

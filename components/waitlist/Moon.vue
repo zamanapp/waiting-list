@@ -136,7 +136,7 @@
     <use
       fill-opacity="0"
       fill="white"
-      class="stroke-black dark:stroke-slate-300"
+      class="stroke-black dark:stroke-slate-300 dark:shadow-xl shadow-slate-200"
       href="#moon"
       :stroke-width="lineWeight"
     ></use>

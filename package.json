@@ -24,6 +24,7 @@
   "dependencies": {
     "@formkit/nuxt": "^0.17.2",
     "@formkit/themes": "^0.17.2",
-    "@js-temporal/polyfill": "^0.4.3"
+    "@js-temporal/polyfill": "^0.4.3",
+    "mitt": "^3.0.0"
   }
 }
