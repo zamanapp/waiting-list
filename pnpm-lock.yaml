@@ -14,6 +14,7 @@ specifiers:
   '@vueuse/nuxt': ^10.1.2
   autoprefixer: ^10.4.14
   mitt: ^3.0.0
+  notiwind: ^2.0.1
   nuxt: ^3.5.0
   sass: ^1.62.1
 
@@ -22,6 +23,7 @@ dependencies:
   '@formkit/themes': 0.17.2
   '@js-temporal/polyfill': 0.4.3
   mitt: 3.0.0
+  notiwind: 2.0.1
 
 devDependencies:
   '@nuxt/devtools': 0.4.6_nuxt@3.5.0
@@ -1024,8 +1026,8 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /@intlify/shared/9.3.0-beta.19:
-    resolution: {integrity: sha512-+lhQggrLvlQ/O5OmIYAc9gadcYXMoaDi0Doef+X/f6TLZFr9PTMjOpBWmpwNNHi026e54jckntUn6GzqDtIN4w==}
+  /@intlify/shared/9.3.0-beta.20:
+    resolution: {integrity: sha512-RucSPqh8O9FFxlYUysQTerSw0b9HIRpyoN1Zjogpm0qLiHK+lBNSa5sh1nCJ4wSsNcjphzgpLQCyR60GZlRV8g==}
     engines: {node: '>= 16'}
     dev: true
 
@@ -5449,6 +5451,14 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /notiwind/2.0.1:
+    resolution: {integrity: sha512-8xNwQUoga7MqrFaqIi5Y9hsq4hFq24KvM5h8w0goZ4O36YFCn5A3p5+Fdl4JV1/z3AtVLdU2GCwvrYt/ThCzoA==}
+    peerDependencies:
+      vue: ^3.2.47
+    dependencies:
+      mitt: 3.0.0
+    dev: false
+
   /npm-bundled/3.0.0:
     resolution: {integrity: sha512-Vq0eyEQy+elFpzsKjMss9kxqb9tG3YHg4dsyWuUENuzvSUWe1TCnW/vV9FkhvBk/brEDoDiVd+M1Btosa6ImdQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -7822,7 +7832,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.19
+      '@intlify/shared': 9.3.0-beta.20
       '@intlify/vue-i18n-bridge': 0.8.0_vue-i18n@9.3.0-beta.17
       '@intlify/vue-router-bridge': 0.8.0
       ufo: 1.1.2

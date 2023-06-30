@@ -60,6 +60,9 @@
 </template>
 
 <script setup lang="ts">
+import { useApiFetch } from "~/composables/useApiFetch";
+
+const emitter = useEmitter();
 const isOpen = ref(false);
 
 const expand = ref(false);
@@ -78,6 +81,16 @@ const identity = ref({
 let loading = ref(false);
 
 const submitHandler = async () => {
-  loading.value = true;
+  const { error, pending } = await useApiFetch("waitlist", {
+    method: "POST",
+    body: JSON.stringify(identity.value),
+  });
+
+  loading = pending;
+
+  if (!error.value) {
+    emitter.emit("success", "Successfully joined the waiting list");
+    isOpen.value = false;
+  }
 };
 </script>

@@ -249,8 +249,7 @@ const sCircumference = computed(
 
 const monthsFontSize = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + orbsSurface.value);
-  const size =
-    circumference / (months.value.length + (months.value.length - 1));
+  const size = circumference / (moLength.value + (moLength.value - 1));
   return size * 3;
 });
 const daysFontSize = computed(() => {
@@ -352,6 +351,14 @@ let month = ref(
   }).format(temporalDate)
 );
 
+// some ligatures in arabic combine two letters in one glyph
+const DUAL_GLYPH_LIGATURES = 4;
+const moLength = computed(() =>
+  locale.value === "ar"
+    ? months.value.length - DUAL_GLYPH_LIGATURES
+    : months.value.length
+);
+
 let day = ref(
   temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day)
 );
@@ -378,14 +385,22 @@ let second = ref(
     : String(temporalDate.second)
 );
 
-const moSpace = moCircumference.value / months.value.length;
+const moSpace = moCircumference.value / moLength.value;
 const moUnit = (moSpace * 360) / moCircumference.value;
-const moIndex = months.value.search(month.value);
+const moIndex = computed(() =>
+  locale.value === "ar"
+    ? months.value.length -
+      (months.value.search(month.value) + month.value.length)
+    : months.value.search(month.value)
+);
 const monthsRotation = ref(
-  moUnit * moIndex -
-    (months.value.length / 4) * moUnit +
+  moUnit * moIndex.value -
+    (moLength.value / 4) * moUnit +
     (moUnit * (month.value.length - 1)) / 2
 );
+console.log("length", moLength.value);
+console.log("index", moIndex.value);
+console.log("rotation", monthsRotation.value);
 
 const dSpace = dCircumference.value / days.value.length;
 const dUnit = (dSpace * 360) / dCircumference.value;
@@ -449,15 +464,16 @@ watch(
       calendar: cal.value,
     }).format(temporalDate);
 
-    console.log("we are here");
-    console.log("we are here", month.value);
-    console.log("we are here", months.value);
-    console.log("we are here", monthsRotation.value);
+    // arabic text combines some letters into one ligature
     monthsRotation.value = 0;
-    // monthsRotation.value =
-    //   moUnit * moIndex -
-    //   (months.value.length / 4) * moUnit +
-    //   (moUnit * (month.value.length - 1)) / 2;
+    monthsRotation.value =
+      moUnit * moIndex.value -
+      (moLength.value / 4) * moUnit +
+      (moUnit * (month.value.length - 1)) / 2;
+
+    console.log("local length", moLength.value);
+    console.log("locale index", moIndex.value);
+    console.log("locale rotation", monthsRotation.value);
 
     // daysRotation.value = dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit;
 
@@ -473,7 +489,7 @@ watch(
 
 let monthsTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
-  const unit = circumference / months.value.length;
+  const unit = circumference / moLength.value;
   return circumference - unit;
 });
 
@@ -613,7 +629,7 @@ watch(now, (_, oldNow) => {
 
   monthsTextLength = computed(() => {
     const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
-    const unit = circumference / months.value.length;
+    const unit = circumference / moLength.value;
     return circumference - unit;
   });
 

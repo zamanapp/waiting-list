@@ -47,6 +47,16 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    // Keys within public are also exposed client-side
+    public: {
+      backEndpoint:
+        process.env.NODE_ENV === "production"
+          ? process.env.BACK_ENDPOINT
+          : "http://localhost:3333",
+    },
+  },
+
   components: [{ path: "~/components", pathPrefix: false }],
 
   vite: {

@@ -43,8 +43,10 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 # TODO:
 
-[] - persist the language switching
-[] - Fix rotation of arabic months
-[] - add join logic
-[] - privacy and policy
-[] - manifesto?
+[ ] - Persist the language switching
+[x] - Fix rotation of arabic months
+[ ] - Responsiveness for mobil
+[x] - Add join logic
+[ ] - Add notification
+[ ] - Privacy and policy
+[ ] - Manifesto?
