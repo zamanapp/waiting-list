@@ -1,6 +1,7 @@
 // import { ar } from "@formkit/i18n";
 import { generateClasses } from "@formkit/themes";
 import { DefaultConfigOptions } from "@formkit/vue";
+import { en, ar } from "@formkit/i18n";
 
 const textClassification = {
   label: "block",
@@ -27,6 +28,8 @@ const buttonClassification = {
 };
 
 const config: DefaultConfigOptions = {
+  locales: { en, ar },
+  locale: "en",
   icons: {
     solidEye: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
     <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
