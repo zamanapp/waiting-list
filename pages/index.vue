@@ -3,14 +3,14 @@
     class="absolute inset-x-0 flex flex-col max-w-md mx-auto font-medium text-center lg:ms-12 lg:inset-x-auto lg:start-0 mt-36"
   >
     <h2
-      class="mb-6 text-5xl font-semibold rtl:text-7xl text-start font-main dark:text-slate-200"
+      class="mb-6 text-5xl font-semibold text-start font-main dark:text-slate-200"
       v-html="$t('waiting.manage')"
     ></h2>
     <JoinModal />
   </div>
 
   <p
-    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center lg:text-lg lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
+    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center rtl:text-3xl lg:text-lg lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
   >
     "{{ $t("waiting.body") }}"
     <span

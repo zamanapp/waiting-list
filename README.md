@@ -47,6 +47,6 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 [x] - Fix rotation of arabic months
 [ ] - Responsiveness for mobil
 [x] - Add join logic
-[ ] - Add notification
+[x] - Add notification
 [ ] - Privacy and policy
 [ ] - Manifesto?
