@@ -12,10 +12,6 @@
     />
   </button>
   <UModal v-model="isOpen">
-    <template #header>
-      <div>Hello?</div>
-      <UIcon name="i-heroicons-x-mark" />
-    </template>
     <UCard>
       <FormKit
         type="form"
@@ -29,7 +25,11 @@
           <FormKit
             type="email"
             name="email"
-            placeholder="Email"
+            :sectionsSchema="{
+              label: { $el: null, children: [] },
+            }"
+            :placeholder="$t('modal.email')"
+            :label="$t('modal.email')"
             validation="required|email"
             :classes="{
               outer: 'w-2/3 mx-2 my-0',
@@ -44,16 +44,16 @@
           >
             <div class="flex justify-center align-top">
               <MoonLoading v-if="loading" />
-              <div v-else>Join</div>
+              <div v-else>{{ $t("modal.join") }}</div>
             </div>
           </FormKit>
         </div>
       </FormKit>
       <p>
-        We care about your data privacy. Read our
-        <RouterLink to="/login" class="underline cursor-pointer"
-          >Privacy policy</RouterLink
-        >
+        {{ $t("modal.privacy") }}
+        <RouterLink to="/privacy" class="underline cursor-pointer">{{
+          $t("modal.policy")
+        }}</RouterLink>
       </p>
     </UCard>
   </UModal>
