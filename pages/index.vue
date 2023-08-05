@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute inset-x-0 flex flex-col max-w-md mx-auto font-medium text-center lg:ms-12 lg:inset-x-auto lg:start-0 mt-36"
+    class="absolute inset-x-0 flex flex-col mx-8 mt-20 font-medium md:mx-14 lg:max-w-md md:text-center lg:mx-12 lg:inset-x-auto lg:start-0 lg:mt-36"
   >
     <h2
       class="mb-6 text-5xl font-semibold text-start font-main dark:text-slate-200"
@@ -10,7 +10,7 @@
   </div>
 
   <p
-    class="absolute inset-x-0 max-w-xs mx-auto text-2xl font-medium text-center rtl:text-3xl lg:text-lg lg:me-12 lg:inset-x-auto lg:end-0 mt-36"
+    class="absolute inset-x-0 invisible float-left max-w-xs mx-auto text-2xl font-medium text-center lg:visible mt-96 rtl:text-3xl lg:text-lg lg:me-12 lg:inset-x-auto lg:end-0 lg:mt-36"
   >
     "{{ $t("waiting.body") }}"
     <span
@@ -96,3 +96,10 @@ function handleResize() {
   }
 }
 </script>
+
+<style>
+#moonSymbol {
+  shape-outside: circle(50%);
+  float: left;
+}
+</style>

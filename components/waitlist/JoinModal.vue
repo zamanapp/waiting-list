@@ -1,7 +1,7 @@
 <template>
   <button
     ref="expandableElement"
-    class="px-6 py-3 text-xl font-normal text-white bg-black rounded-md dark:text-slate-200 w-fit disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-gray-700"
+    class="px-6 py-3 mt-6 text-xl font-normal text-white bg-black rounded-md md:self-end lg:self-start dark:text-slate-200 w-fit disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-gray-700"
     @click="isOpen = true"
   >
     <TextExpander
