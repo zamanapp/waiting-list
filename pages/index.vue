@@ -31,6 +31,7 @@
 
 <script setup lang="ts">
 import { breakpointsTailwind } from "@vueuse/core";
+const i18n = useI18n();
 
 const { height, width } = useWindowSize();
 const breakpoints = useBreakpoints(breakpointsTailwind);
@@ -49,10 +50,11 @@ let moon = ref<SVGSVGElement | null>(null);
 onMounted(() => {
   moon.value = document.querySelector("svg#moonSymbol");
   handleResize();
-  watch(width, handleResize);
-  watch(height, handleResize);
-  watch(moonSize, handleResize);
-  watch(tablets, handleResize);
+  watch([width, height, moonSize, tablets], handleResize);
+  // watch(width, handleResize);
+  // watch(height, handleResize);
+  // watch(moonSize, handleResize);
+  // watch(tablets, handleResize);
 });
 
 function handleResize() {

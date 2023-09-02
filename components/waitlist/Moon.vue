@@ -1,12 +1,13 @@
 <template>
+  <div>hello</div>
   <svg
     id="moonSymbol"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.1"
     :width="sizePx"
     :height="sizePx"
     :viewBox="`0 0 ${maxDimension} ${maxDimension}`"
-    dir="ltr"
   >
     <defs>
       <circle id="moon" :cx="centerX" :cy="centerY" :r="outerSize" />
@@ -21,11 +22,7 @@
       <path id="seconds" :d="circleToPath(moonSize + SECONDS_R_CONST)" />
     </defs>
 
-    <text
-      v-if="showGuide"
-      class="transition-transform duration-500 ease-in-out origin-center"
-      :transform="`rotate(${-monthsRotation})`"
-    >
+    <text v-if="showGuide">
       <textPath
         :class="`${
           $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
@@ -41,15 +38,10 @@
         {{ months.split(month)[1] }}
       </textPath>
     </text>
-    <text
-      v-if="showGuide"
-      class="transition-transform duration-500 ease-in-out origin-center"
-      :transform="`rotate(${-daysRotation})`"
-    >
+    <text v-if="showGuide">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${daysFontSize}px;`"
-        side="right"
         :textLength="daysTextLength"
         href="#days"
       >
@@ -60,14 +52,9 @@
         {{ days.split(String(day))[1] }}
       </textPath>
     </text>
-    <text
-      v-if="showGuide"
-      class="transition-transform duration-500 ease-in-out origin-center"
-      :transform="`rotate(${-hoursRotation})`"
-    >
+    <text v-if="showGuide">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
-        side="right"
         :style="`font-size: ${hoursFontSize}px;`"
         :textLength="hoursTextLength"
         href="#hours"
@@ -79,14 +66,9 @@
         {{ hours.split(String(hour))[1] }}
       </textPath>
     </text>
-    <text
-      v-if="showGuide"
-      class="transition-transform duration-500 ease-in-out origin-center"
-      :transform="`rotate(${-minutesRotation})`"
-    >
+    <text v-if="showGuide">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
-        side="right"
         :style="`font-size: ${minutesFontSize}px;`"
         :textLength="minutesTextLength"
         href="#minutes"
@@ -98,14 +80,9 @@
         {{ minutes.split(String(minute))[1] }}
       </textPath>
     </text>
-    <text
-      v-if="showGuide"
-      class="transition-all duration-500 ease-in-out origin-center"
-      :transform="`rotate(${-secondsRotation})`"
-    >
+    <text v-if="showGuide">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
-        side="right"
         :style="`font-size: ${secondsFontSize}px;`"
         :textLength="secondsTextLength"
         href="#seconds"
@@ -351,7 +328,7 @@ let month = ref(
   }).format(temporalDate)
 );
 
-// some ligatures in arabic combine two letters in one glyph
+// some ligatures in arabic combine two letters in one glyph so we need to count them out
 const DUAL_GLYPH_LIGATURES = 4;
 const moLength = computed(() =>
   locale.value === "ar"
