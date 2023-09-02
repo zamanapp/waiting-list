@@ -22,7 +22,7 @@
       <path id="seconds" :d="circleToPath(moonSize + SECONDS_R_CONST)" />
     </defs>
 
-    <text v-if="showGuide">
+    <text v-if="showGuide" :textLength="monthsTextLength">
       <textPath
         :class="`${
           $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
@@ -38,7 +38,7 @@
         {{ months.split(month)[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide">
+    <text v-if="showGuide" :textLength="daysTextLength">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${daysFontSize}px;`"
@@ -52,7 +52,7 @@
         {{ days.split(String(day))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide">
+    <text v-if="showGuide" :textLength="hoursTextLength">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${hoursFontSize}px;`"
@@ -66,7 +66,7 @@
         {{ hours.split(String(hour))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide">
+    <text v-if="showGuide" :textLength="minutesTextLength">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${minutesFontSize}px;`"
@@ -80,12 +80,12 @@
         {{ minutes.split(String(minute))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide">
+    <text v-if="showGuide" :textLength="secondsTextLength">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${secondsFontSize}px;`"
-        :textLength="secondsTextLength"
         href="#seconds"
+        :textLength="secondsTextLength"
       >
         {{ seconds.split(String(second))[0].trim() }}
         <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
@@ -663,5 +663,9 @@ function circleToPath(
   transform-origin: center;
   transform: rotateY(v-bind(moonDeg));
   backface-visibility: visible;
+}
+
+text {
+  text-rendering: geometricPrecision;
 }
 </style>

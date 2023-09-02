@@ -25,6 +25,7 @@
     "@formkit/nuxt": "^0.17.2",
     "@formkit/themes": "^0.17.2",
     "@js-temporal/polyfill": "^0.4.3",
+    "gsap": "^3.12.2",
     "mitt": "^3.0.0",
     "notiwind": "^2.0.1"
   }
