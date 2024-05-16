@@ -1,5 +1,5 @@
 <template>
-  <div>hello</div>
+  <div>Hello</div>
   <svg
     id="moonSymbol"
     xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@
       <path id="seconds" :d="circleToPath(moonSize + SECONDS_R_CONST)" />
     </defs>
 
-    <text v-if="showGuide" :textLength="monthsTextLength">
+    <text v-if="showGuide" id="months-path" :textLength="monthsTextLength">
       <textPath
         :class="`${
           $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
@@ -38,7 +38,7 @@
         {{ months.split(month)[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide" :textLength="daysTextLength">
+    <text id="days-path" v-if="showGuide" :textLength="daysTextLength">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${daysFontSize}px;`"
@@ -52,7 +52,7 @@
         {{ days.split(String(day))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide" :textLength="hoursTextLength">
+    <text v-if="showGuide" id="hours-path" :textLength="hoursTextLength">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${hoursFontSize}px;`"
@@ -66,7 +66,7 @@
         {{ hours.split(String(hour))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide" :textLength="minutesTextLength">
+    <text v-if="showGuide" id="minutes-path" :textLength="minutesTextLength">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${minutesFontSize}px;`"
@@ -80,7 +80,7 @@
         {{ minutes.split(String(minute))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide" :textLength="secondsTextLength">
+    <text v-if="showGuide" id="seconds-path" :textLength="secondsTextLength">
       <textPath
         class="font-mono fill-slate-300 dark:fill-slate-500"
         :style="`font-size: ${secondsFontSize}px;`"
@@ -118,8 +118,8 @@
       :stroke-width="lineWeight"
     ></use>
     <use href="#crescent" :class="`disc ${fill}`" />
-    <!-- <rect width="3px" height="100%" :x="centerX" fill="red" />
-    <rect width="100%" height="3px" :y="centerY" fill="red" /> -->
+    <rect width="3px" height="100%" :x="centerX" fill="red" />
+    <rect width="100%" height="3px" :y="centerY" fill="red" />
   </svg>
 </template>
 
@@ -172,8 +172,13 @@ const propsConfig = {
 <script setup lang="ts">
 import { Temporal, Intl, toTemporalInstant } from "@js-temporal/polyfill";
 import { computed, ref, unref } from "vue";
-import { useNow, breakpointsTailwind } from "@vueuse/core";
-
+import {
+  useNow,
+  breakpointsTailwind,
+  useWindowFocus,
+  whenever,
+} from "@vueuse/core";
+import { gsap } from "gsap";
 // https://tc39.es/proposal-temporal/docs/calendar.html#writing-cross-calendar-code
 // todo: customize https://github.com/GriffinJohnston/uiball-loaders
 // realtime: https://dev.to/thormeier/use-your-i-moon-gination-lets-build-a-moon-phase-visualizer-with-css-and-js-aih
@@ -181,16 +186,17 @@ import { useNow, breakpointsTailwind } from "@vueuse/core";
 // http://jsfiddle.net/alnitak/ah1k1mo3/
 const props = defineProps(propsConfig);
 const breakpoints = useBreakpoints(breakpointsTailwind);
+const focused = useWindowFocus();
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
 const { locale } = useI18n();
 
-let orbsSurface = ref(props.moonSize * 0.73); // we take 63% of the remaining space to allow it to be used by the orbits
+let orbsSurface = ref(props.moonSize * 0.73); // we take 73% of the remaining space to allow it to be used by the orbits
 if (mobile.value) {
-  orbsSurface.value = props.moonSize * 1.75;
+  orbsSurface.value = props.moonSize * 1.75; // 175% of the moon size
 } else if (tablets.value) {
-  orbsSurface.value = props.moonSize * 1.5;
+  orbsSurface.value = props.moonSize * 1.5; // 150% of the moon size
 }
 
 // we calculate the orbits radius additional constant by by dividing that space equally then we minus the font size used on the orb to shift the radius
@@ -209,7 +215,7 @@ const SECONDS_R_CONST = computed(
 );
 
 const moCircumference = computed(
-  () => 2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value)
+  () => 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value)
 );
 const dCircumference = computed(
   () => 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value)
@@ -266,10 +272,12 @@ const cal = ref(
     props.calendar ? props.calendar : Calendars.UMM_AL_QURA
   )
 );
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 unref(now.value).toTemporalInstant = toTemporalInstant;
 let temporalDate = unref(now.value).toTemporalInstant().toZonedDateTime({
   calendar: cal.value,
-  timeZone: Temporal.Now.timeZone(),
+  timeZone,
 });
 let rotation = ref(props.moonDegree ? props.moonDegree : 0);
 let moonDeg = ref(`${rotation.value}deg`);
@@ -308,7 +316,7 @@ let months = ref(
       month: i + 1,
       year: temporalDate.year,
       calendar: cal.value,
-      timeZone: temporalDate.timeZone,
+      timeZone,
     });
     return " ".concat(
       new Intl.DateTimeFormat(locale.value, {
@@ -329,12 +337,19 @@ let month = ref(
 );
 
 // some ligatures in arabic combine two letters in one glyph so we need to count them out
-const DUAL_GLYPH_LIGATURES = 4;
-const moLength = computed(() =>
-  locale.value === "ar"
-    ? months.value.length - DUAL_GLYPH_LIGATURES
-    : months.value.length
-);
+console.log(months.value);
+console.log(locale.value);
+const encoder = new TextEncoder();
+// const DUAL_GLYPH_LIGATURES = 4;
+// const moLength = computed(() =>
+//   locale.value === "ar"
+//     ? months.value.length - DUAL_GLYPH_LIGATURES
+//     : months.value.length
+// );
+const moLength = computed(() => encoder.encode(months.value).length);
+
+console.log("length", moLength.value);
+console.log("size", encoder.encode(months.value).length);
 
 let day = ref(
   temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day)
@@ -410,7 +425,124 @@ const secondsRotation = ref(
   sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit
 );
 
-// const focused = useWindowFocus();
+const resettingAnimation = ref(false);
+
+whenever(focused, () => {
+  resettingAnimation.value = true;
+  gsap.fromTo(
+    "#seconds-path",
+    {
+      rotation: 0,
+    },
+    {
+      rotation: -secondsRotation.value,
+      duration: 0.1,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    }
+  );
+
+  gsap.fromTo(
+    "#minutes-path",
+    {
+      rotation: 0,
+    },
+    {
+      rotation: -minutesRotation.value,
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    }
+  );
+
+  gsap.fromTo(
+    "#hours-path",
+    {
+      rotation: 0,
+    },
+    {
+      rotation: -hoursRotation.value,
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    }
+  );
+
+  gsap.fromTo(
+    "#days-path",
+    {
+      rotation: 0,
+    },
+    {
+      rotation: -daysRotation.value,
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    }
+  );
+
+  gsap.fromTo(
+    "#months-path",
+    {
+      rotation: 0,
+    },
+    {
+      rotation: -monthsRotation.value,
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    }
+  );
+});
+
+onMounted(() => {
+  watch(secondsRotation, () => {
+    gsap.to("#seconds-path", {
+      rotation: -secondsRotation.value,
+      duration: 0.3,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    });
+
+    gsap.to("#minutes-path", {
+      rotation: -minutesRotation.value,
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    });
+
+    gsap.to("#hours-path", {
+      rotation: -hoursRotation.value,
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    });
+
+    gsap.to("#days-path", {
+      rotation: -daysRotation.value,
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    });
+
+    gsap.to("#months-path", {
+      rotation: -monthsRotation.value,
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center",
+    });
+  });
+});
 
 watch(
   locale,
@@ -423,7 +555,7 @@ watch(
           month: i + 1,
           year: temporalDate.year,
           calendar: cal.value,
-          timeZone: temporalDate.timeZone,
+          timeZone,
         });
         return " ".concat(
           new Intl.DateTimeFormat(locale.value, {
@@ -513,7 +645,7 @@ watch(now, (_, oldNow) => {
 
   temporalDate = unref(now.value).toTemporalInstant().toZonedDateTime({
     calendar: cal.value,
-    timeZone: Temporal.Now.timeZone(),
+    timeZone,
   });
 
   hours.value = Array.from(
@@ -538,7 +670,7 @@ watch(now, (_, oldNow) => {
         month: i + 1,
         year: temporalDate.year,
         calendar: cal.value,
-        timeZone: temporalDate.timeZone,
+        timeZone,
       });
       return " ".concat(
         new Intl.DateTimeFormat(locale.value, {

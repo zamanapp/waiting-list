@@ -44,8 +44,13 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 # TODO:
 
 - [ ] Persist the language switching
-- [ ] Fix moon centering
+- [ ] Fix months centring in both lang
 - [ ] Fix browser inconsistencies
+  - [x] Fix text flip on Firefox
+  - [x] Fix text length inconsistent with Firefox and safari
+  - [x] Fix Animation on safari
+  - [ ] Fix arabic circle not visible in Firefox
+  - [ ] Fix arabic not displaying properly on Safari
 - [x] Fix rotation of arabic months
 - [x] Responsiveness for mobil
 - [x] Add join logic
