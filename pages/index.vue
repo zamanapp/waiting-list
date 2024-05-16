@@ -3,7 +3,7 @@
     class="absolute inset-x-0 flex flex-col mx-8 mt-20 font-medium md:mx-14 lg:max-w-md md:text-center lg:mx-12 lg:inset-x-auto lg:start-0 lg:mt-36"
   >
     <h2
-      class="mb-6 text-5xl font-semibold text-start font-main dark:text-slate-200"
+      class="max-w-sm mb-6 text-5xl font-semibold text-start font-main dark:text-slate-200"
       v-html="$t('waiting.manage')"
     ></h2>
     <!-- <JoinModal /> -->
@@ -30,6 +30,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: "slider",
+});
+
 import { breakpointsTailwind } from "@vueuse/core";
 const i18n = useI18n();
 

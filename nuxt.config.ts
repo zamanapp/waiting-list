@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     langDir: "locales",
     defaultLocale: "en",
     strategy: "prefix_except_default",
-    precompile: { strictMessage: false },
+    // precompile: { strictMessage: false },
     baseUrl:
       process.env.NODE_ENV === "production"
         ? process.env.BASE_URL
