@@ -2,7 +2,6 @@
   <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir">
     <Head>
       <Title>{{ title }}</Title>
-      <Title>Title</Title>
       <template v-for="link in head.link" :key="link.id">
         <Link
           :id="link.id"

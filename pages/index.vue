@@ -6,7 +6,7 @@
       class="mb-6 text-5xl font-semibold text-start font-main dark:text-slate-200"
       v-html="$t('waiting.manage')"
     ></h2>
-    <JoinModal />
+    <!-- <JoinModal /> -->
   </div>
 
   <p
@@ -20,12 +20,12 @@
   </p>
 
   <div dir="ltr">
-    <Moon
+    <!-- <Moon
       :moon-size="moonSize"
       :line-weight="lineWeight"
       class="fixed mx-auto origin-center pointer-events-none"
       show-guide
-    />
+    /> -->
   </div>
 </template>
 

@@ -8,8 +8,8 @@
     </NuxtLink>
 
     <div class="flex items-center gap-3">
-      <LangSwitcher />
-      <ThemeSwitcher />
+      <!-- <LangSwitcher /> -->
+      <!-- <ThemeSwitcher /> -->
     </div>
   </nav>
 </template>

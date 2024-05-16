@@ -8,8 +8,8 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
     "@nuxt/devtools",
-    "@nuxthq/ui",
-    "@formkit/nuxt",
+    "@nuxtjs/tailwindcss",
+    "shadcn-nuxt",
   ],
 
   imports: {

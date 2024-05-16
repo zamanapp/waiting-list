@@ -124,7 +124,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from "vue";
+import type { PropType } from "vue";
 import { Calendars, calendarsValues } from "../../types/Calendars";
 
 const BASE_SIZE = 348;
