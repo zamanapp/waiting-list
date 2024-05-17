@@ -1,31 +1,74 @@
 <template>
   <div
-    class="absolute inset-x-0 flex flex-col mx-8 mt-20 font-medium md:mx-14 lg:max-w-md md:text-center lg:mx-12 lg:inset-x-auto lg:start-0 lg:mt-36"
+    ref="left"
+    class="dark absolute w-full h-screen overflow-hidden z-[2] bg-gray-900 text-white"
   >
-    <h2
-      class="max-w-sm mb-6 text-5xl font-semibold text-start font-main dark:text-slate-200"
-      v-html="$t('waiting.manage')"
-    ></h2>
-    <!-- <JoinModal /> -->
+    <Navigation />
+
+    <div
+      class="absolute flex flex-col w-[50vw] mx-8 mt-20 font-medium md:mx-14 md:text-center lg:mx-12 lg:mt-36"
+    >
+      <h2
+        class="max-w-sm mb-6 text-5xl font-semibold lg:max-w-md text-start font-main dark:text-slate-200"
+        v-html="$t('waiting.manage')"
+      ></h2>
+      <!-- <JoinModal /> -->
+    </div>
+
+    <div
+      class="absolute flex justify-end invisible float-left w-screen text-2xl font-medium text-center lg:visible mt-96 rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+    >
+      <p class="max-w-xs">
+        "{{ $t("waiting.body") }}"
+        <span
+          class="block mt-2 font-mono text-sm text-slate-400 dark:text-slate-200"
+          >-{{ $t("waiting.author") }}</span
+        >
+      </p>
+    </div>
+
+    <div dir="ltr">
+      <Moon
+        :moon-size="moonSize"
+        :line-weight="lineWeight"
+        class="absolute mx-auto origin-center pointer-events-none"
+        show-guide
+      />
+    </div>
   </div>
 
-  <p
-    class="absolute inset-x-0 invisible float-left max-w-xs mx-auto text-2xl font-medium text-center lg:visible mt-96 rtl:text-3xl lg:text-lg lg:me-12 lg:inset-x-auto lg:end-0 lg:mt-36"
-  >
-    "{{ $t("waiting.body") }}"
-    <span
-      class="block mt-2 font-mono text-sm text-slate-400 dark:text-slate-200"
-      >-{{ $t("waiting.author") }}</span
+  <div class="absolute w-full h-screen overflow-hidden">
+    <Navigation />
+    <div
+      class="absolute flex flex-col w-[50vw] mx-8 mt-20 font-medium md:mx-14 md:text-center lg:mx-12 lg:mt-36"
     >
-  </p>
+      <h2
+        class="max-w-sm mb-6 text-5xl font-semibold lg:max-w-md text-start font-main dark:text-slate-200"
+        v-html="$t('waiting.manage')"
+      ></h2>
+      <!-- <JoinModal /> -->
+    </div>
 
-  <div dir="ltr">
-    <!-- <Moon
-      :moon-size="moonSize"
-      :line-weight="lineWeight"
-      class="fixed mx-auto origin-center pointer-events-none"
-      show-guide
-    /> -->
+    <div
+      class="absolute flex justify-end invisible float-left w-screen text-2xl font-medium text-center lg:visible mt-96 rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+    >
+      <p class="max-w-xs">
+        "{{ $t("waiting.body") }}"
+        <span
+          class="block mt-2 font-mono text-sm text-slate-400 dark:text-slate-200"
+          >-{{ $t("waiting.author") }}</span
+        >
+      </p>
+    </div>
+
+    <div dir="ltr">
+      <Moon
+        :moon-size="moonSize"
+        :line-weight="lineWeight"
+        class="absolute mx-auto origin-center pointer-events-none"
+        show-guide
+      />
+    </div>
   </div>
 </template>
 
@@ -49,16 +92,25 @@ const moonSize = ref(widthSurface.value - padding.value * 2);
 const lineWeight = ref(32);
 const rotation = ref(0);
 
-let moon = ref<SVGSVGElement | null>(null);
+let moons = ref<NodeListOf<SVGSVGElement> | null>(null);
+let left = ref<HTMLElement | null>(null);
+
+const { x } = useMouse();
+const leftWidth = computed(() => (x.value / width.value) * 100);
 
 onMounted(() => {
-  moon.value = document.querySelector("svg#moonSymbol");
+  moons.value = document.querySelectorAll("svg#moonSymbol");
   handleResize();
   watch([width, height, moonSize, tablets], handleResize);
   // watch(width, handleResize);
   // watch(height, handleResize);
   // watch(moonSize, handleResize);
   // watch(tablets, handleResize);
+  if (left.value) {
+    watch(leftWidth, (value) => {
+      left.value!.style.width = `${value}%`;
+    });
+  }
 });
 
 function handleResize() {
@@ -69,8 +121,10 @@ function handleResize() {
     lineWeight.value = 28;
 
     rotation.value = 45;
-    if (moon.value?.style) {
-      moon.value.style.transform = `translate(-${x}px, ${y}px) rotate(${rotation.value}deg)`;
+    if (moons.value) {
+      for (let moon of moons.value) {
+        moon.style.transform = `translate(-${x}px, ${y}px) rotate(${rotation.value}deg)`;
+      }
     }
   } else if (tablets.value) {
     const y = moonSize.value / 2 - padding.value * 2;
@@ -78,14 +132,18 @@ function handleResize() {
     moonSize.value = widthSurface.value * 2;
     lineWeight.value = 32;
     rotation.value = 45;
-    if (moon.value?.style) {
-      moon.value.style.transform = `translate(-${x}px, ${y}px) rotate(${rotation.value}deg)`;
+    if (moons.value) {
+      for (let moon of moons.value) {
+        moon.style.transform = `translate(-${x}px, ${y}px) rotate(${rotation.value}deg)`;
+      }
     }
   } else {
     const y = height.value - moonSize.value / 2;
     const x = (width.value - moonSize.value) / 2;
-    if (moon.value?.style) {
-      moon.value.style.transform = `translate(${x}px, ${y}px)`;
+    if (moons.value) {
+      for (let moon of moons.value) {
+        moon.style.transform = `translate(${x}px, ${y}px)`;
+      }
     }
 
     if (moonSize.value > width.value) {
@@ -95,8 +153,10 @@ function handleResize() {
         width.value / 2 +
         (moonSize.value - width.value) / 2 -
         moonSize.value / 2;
-      if (moon.value?.style) {
-        moon.value.style.transform = `translateX(${x}px)`;
+      if (moons.value) {
+        for (let moon of moons.value) {
+          moon.style.transform = `translateX(${x}px)`;
+        }
       }
     }
   }

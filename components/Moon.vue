@@ -1,5 +1,4 @@
 <template>
-  <div>Hello</div>
   <svg
     id="moonSymbol"
     xmlns="http://www.w3.org/2000/svg"
@@ -26,13 +25,13 @@
       <textPath
         :class="`${
           $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
-        } fill-slate-300 dark:fill-slate-500`"
+        } fill-gray-300 dark:fill-gray-500`"
         :style="`font-size: ${monthsFontSize}px;`"
         :textLength="monthsTextLength"
         href="#months"
       >
         {{ months.split(month)[0] }}
-        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ month }}
         </tspan>
         {{ months.split(month)[1] }}
@@ -40,13 +39,13 @@
     </text>
     <text id="days-path" v-if="showGuide" :textLength="daysTextLength">
       <textPath
-        class="font-mono fill-slate-300 dark:fill-slate-500"
+        class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${daysFontSize}px;`"
         :textLength="daysTextLength"
         href="#days"
       >
         {{ days.split(String(day))[0] }}
-        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ day }}
         </tspan>
         {{ days.split(String(day))[1] }}
@@ -54,13 +53,13 @@
     </text>
     <text v-if="showGuide" id="hours-path" :textLength="hoursTextLength">
       <textPath
-        class="font-mono fill-slate-300 dark:fill-slate-500"
+        class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${hoursFontSize}px;`"
         :textLength="hoursTextLength"
         href="#hours"
       >
         {{ hours.split(String(hour))[0] }}
-        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ hour }}
         </tspan>
         {{ hours.split(String(hour))[1] }}
@@ -68,13 +67,13 @@
     </text>
     <text v-if="showGuide" id="minutes-path" :textLength="minutesTextLength">
       <textPath
-        class="font-mono fill-slate-300 dark:fill-slate-500"
+        class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${minutesFontSize}px;`"
         :textLength="minutesTextLength"
         href="#minutes"
       >
         {{ minutes.split(String(minute))[0] }}
-        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ minute }}
         </tspan>
         {{ minutes.split(String(minute))[1] }}
@@ -82,13 +81,13 @@
     </text>
     <text v-if="showGuide" id="seconds-path" :textLength="secondsTextLength">
       <textPath
-        class="font-mono fill-slate-300 dark:fill-slate-500"
+        class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${secondsFontSize}px;`"
         href="#seconds"
         :textLength="secondsTextLength"
       >
         {{ seconds.split(String(second))[0].trim() }}
-        <tspan class="font-semibold fill-black dark:fill-slate-300" dy="0">
+        <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ second }}
         </tspan>
         {{ seconds.split(String(second))[1].trim() }}
@@ -96,14 +95,14 @@
     </text>
 
     <rect
-      class="illusion fill-black dark:fill-slate-950"
+      class="illusion fill-black dark:fill-gray-950"
       clip-path="url(#clip-moon)"
       width="50%"
       height="100%"
       :x="flipValue"
     />
     <rect
-      class="illusion fill-white dark:fill-slate-300"
+      class="illusion fill-white dark:fill-gray-300"
       clip-path="url(#clip-moon)"
       width="50%"
       height="100%"
@@ -113,19 +112,19 @@
     <use
       fill-opacity="0"
       fill="white"
-      class="stroke-black dark:stroke-slate-300 dark:shadow-xl shadow-slate-200"
+      class="stroke-black dark:stroke-gray-300 dark:shadow-xl shadow-gray-200"
       href="#moon"
       :stroke-width="lineWeight"
     ></use>
     <use href="#crescent" :class="`disc ${fill}`" />
-    <rect width="3px" height="100%" :x="centerX" fill="red" />
-    <rect width="100%" height="3px" :y="centerY" fill="red" />
+    <!-- <rect width="3px" height="100%" :x="centerX" fill="red" />
+    <rect width="100%" height="3px" :y="centerY" fill="red" /> -->
   </svg>
 </template>
 
 <script lang="ts">
 import type { PropType } from "vue";
-import { Calendars, calendarsValues } from "../../types/Calendars";
+import { Calendars, calendarsValues } from "../types/Calendars";
 
 const BASE_SIZE = 348;
 
@@ -172,12 +171,7 @@ const propsConfig = {
 <script setup lang="ts">
 import { Temporal, Intl, toTemporalInstant } from "@js-temporal/polyfill";
 import { computed, ref, unref } from "vue";
-import {
-  useNow,
-  breakpointsTailwind,
-  useWindowFocus,
-  whenever,
-} from "@vueuse/core";
+import { breakpointsTailwind, useWindowFocus, whenever } from "@vueuse/core";
 import { gsap } from "gsap";
 // https://tc39.es/proposal-temporal/docs/calendar.html#writing-cross-calendar-code
 // todo: customize https://github.com/GriffinJohnston/uiball-loaders
@@ -266,7 +260,6 @@ const maxDimension = computed(() => props.moonSize * 4);
 const centerX = computed(() => maxDimension.value / 2);
 const centerY = computed(() => maxDimension.value / 2);
 
-const now = useNow();
 const cal = ref(
   Temporal.Calendar.from(
     props.calendar ? props.calendar : Calendars.UMM_AL_QURA
@@ -274,11 +267,11 @@ const cal = ref(
 );
 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-unref(now.value).toTemporalInstant = toTemporalInstant;
-let temporalDate = unref(now.value).toTemporalInstant().toZonedDateTime({
+let temporalDate = useTemporalNow({
   calendar: cal.value,
   timeZone,
 });
+
 let rotation = ref(props.moonDegree ? props.moonDegree : 0);
 let moonDeg = ref(`${rotation.value}deg`);
 const seconds = Array.from({ length: 60 }, (_: number, i: number) =>
@@ -294,37 +287,42 @@ const minutes = Array.from({ length: 60 }, (_: number, i: number) =>
   .concat(" ");
 
 let hours = ref(
-  Array.from({ length: temporalDate.hoursInDay }, (_: number, i: number) =>
-    i + 1 <= 9 ? `0${i + 1}` : String(i + 1)
+  Array.from(
+    { length: temporalDate.value.hoursInDay },
+    (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
   )
     .join(" ")
     .concat(" ")
 );
 
 let days = ref(
-  Array.from({ length: temporalDate.daysInMonth }, (_: number, i: number) =>
-    i + 1 <= 9 ? `0${i + 1}` : String(i + 1)
+  Array.from(
+    { length: temporalDate.value.daysInMonth },
+    (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
   )
     .join(" ")
     .concat(" ")
 );
 
 let months = ref(
-  Array.from({ length: temporalDate.monthsInYear }, (_: number, i: number) => {
-    const date = Temporal.ZonedDateTime.from({
-      day: 1,
-      month: i + 1,
-      year: temporalDate.year,
-      calendar: cal.value,
-      timeZone,
-    });
-    return " ".concat(
-      new Intl.DateTimeFormat(locale.value, {
-        month: "short",
+  Array.from(
+    { length: temporalDate.value.monthsInYear },
+    (_: number, i: number) => {
+      const date = Temporal.ZonedDateTime.from({
+        day: 1,
+        month: i + 1,
+        year: temporalDate.value.year,
         calendar: cal.value,
-      }).format(date)
-    );
-  })
+        timeZone,
+      });
+      return " ".concat(
+        new Intl.DateTimeFormat(locale.value, {
+          month: "short",
+          calendar: cal.value,
+        }).format(date.toInstant())
+      );
+    }
+  )
     .join("")
     .concat(" ")
 );
@@ -333,7 +331,7 @@ let month = ref(
   new Intl.DateTimeFormat(locale.value, {
     month: "short",
     calendar: cal.value,
-  }).format(temporalDate)
+  }).format(temporalDate.value.toInstant())
 );
 
 // some ligatures in arabic combine two letters in one glyph so we need to count them out
@@ -352,29 +350,31 @@ console.log("length", moLength.value);
 console.log("size", encoder.encode(months.value).length);
 
 let day = ref(
-  temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day)
+  temporalDate.value.day <= 9
+    ? `0${temporalDate.value.day}`
+    : String(temporalDate.value.day)
 );
 
 let hour = computed(() => {
-  if (temporalDate.hour === 0) {
+  if (temporalDate.value.hour === 0) {
     return "24";
-  } else if (temporalDate.hour <= 9) {
-    return `0${temporalDate.hour}`;
+  } else if (temporalDate.value.hour <= 9) {
+    return `0${temporalDate.value.hour}`;
   } else {
-    return String(temporalDate.hour);
+    return String(temporalDate.value.hour);
   }
 });
 
 let minute = ref(
-  temporalDate.minute <= 9
-    ? `0${temporalDate.minute}`
-    : String(temporalDate.minute)
+  temporalDate.value.minute <= 9
+    ? `0${temporalDate.value.minute}`
+    : String(temporalDate.value.minute)
 );
 
 let second = ref(
-  temporalDate.second <= 9
-    ? `0${temporalDate.second}`
-    : String(temporalDate.second)
+  temporalDate.value.second <= 9
+    ? `0${temporalDate.value.second}`
+    : String(temporalDate.value.second)
 );
 
 const moSpace = moCircumference.value / moLength.value;
@@ -548,12 +548,12 @@ watch(
   locale,
   () => {
     months.value = Array.from(
-      { length: temporalDate.monthsInYear },
+      { length: temporalDate.value.monthsInYear },
       (_: number, i: number) => {
         const date = Temporal.ZonedDateTime.from({
           day: 1,
           month: i + 1,
-          year: temporalDate.year,
+          year: temporalDate.value.year,
           calendar: cal.value,
           timeZone,
         });
@@ -561,7 +561,7 @@ watch(
           new Intl.DateTimeFormat(locale.value, {
             month: "short",
             calendar: cal.value,
-          }).format(date)
+          }).format(date.toInstant())
         );
       }
     )
@@ -571,7 +571,7 @@ watch(
     month.value = new Intl.DateTimeFormat(locale.value, {
       month: "short",
       calendar: cal.value,
-    }).format(temporalDate);
+    }).format(temporalDate.value.toInstant());
 
     // arabic text combines some letters into one ligature
     monthsRotation.value = 0;
@@ -636,102 +636,102 @@ const flipValue = computed(() => {
 
 const fill = computed(() =>
   rotation.value >= 90 && rotation.value <= 270
-    ? "fill-white dark:fill-slate-300"
-    : "fill-black dark:fill-slate-950"
+    ? "fill-white dark:fill-gray-300"
+    : "fill-black dark:fill-gray-950"
 );
 
-watch(now, (_, oldNow) => {
-  unref(now.value).toTemporalInstant = toTemporalInstant;
+watch(temporalDate, (_, oldTemporal) => {
+  // unref(now.value).toTemporalInstant = toTemporalInstant;
 
-  temporalDate = unref(now.value).toTemporalInstant().toZonedDateTime({
-    calendar: cal.value,
-    timeZone,
-  });
+  // temporalDate = unref(now.value).toTemporalInstant().toZonedDateTime({
+  //   calendar: cal.value,
+  //   timeZone,
+  // });
 
-  hours.value = Array.from(
-    { length: temporalDate.hoursInDay },
-    (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
-  )
-    .join(" ")
-    .concat(" ");
+  // hours.value = Array.from(
+  //   { length: temporalDate.hoursInDay },
+  //   (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
+  // )
+  //   .join(" ")
+  //   .concat(" ");
 
-  days.value = Array.from(
-    { length: temporalDate.daysInMonth },
-    (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
-  )
-    .join(" ")
-    .concat(" ");
+  // days.value = Array.from(
+  //   { length: temporalDate.daysInMonth },
+  //   (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
+  // )
+  //   .join(" ")
+  //   .concat(" ");
 
-  months.value = Array.from(
-    { length: temporalDate.monthsInYear },
-    (_: number, i: number) => {
-      const date = Temporal.ZonedDateTime.from({
-        day: 1,
-        month: i + 1,
-        year: temporalDate.year,
-        calendar: cal.value,
-        timeZone,
-      });
-      return " ".concat(
-        new Intl.DateTimeFormat(locale.value, {
-          month: "short",
-          calendar: cal.value,
-        }).format(date)
-      );
-    }
-  )
-    .join("")
-    .concat(" ");
+  // months.value = Array.from(
+  //   { length: temporalDate.monthsInYear },
+  //   (_: number, i: number) => {
+  //     const date = Temporal.ZonedDateTime.from({
+  //       day: 1,
+  //       month: i + 1,
+  //       year: temporalDate.year,
+  //       calendar: cal.value,
+  //       timeZone,
+  //     });
+  //     return " ".concat(
+  //       new Intl.DateTimeFormat(locale.value, {
+  //         month: "short",
+  //         calendar: cal.value,
+  //       }).format(date)
+  //     );
+  //   }
+  // )
+  //   .join("")
+  //   .concat(" ");
 
-  month.value = new Intl.DateTimeFormat(locale.value, {
-    month: "short",
-    calendar: cal.value,
-  }).format(temporalDate);
+  // month.value = new Intl.DateTimeFormat(locale.value, {
+  //   month: "short",
+  //   calendar: cal.value,
+  // }).format(temporalDate);
 
-  day.value =
-    temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day);
+  // day.value =
+  //   temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day);
 
-  hour = computed(() => {
-    if (temporalDate.hour === 0) {
-      return "24";
-    } else if (temporalDate.hour <= 9) {
-      return `0${temporalDate.hour}`;
-    } else {
-      return String(temporalDate.hour);
-    }
-  });
+  // hour = computed(() => {
+  //   if (temporalDate.hour === 0) {
+  //     return "24";
+  //   } else if (temporalDate.hour <= 9) {
+  //     return `0${temporalDate.hour}`;
+  //   } else {
+  //     return String(temporalDate.hour);
+  //   }
+  // });
 
-  minute.value =
-    temporalDate.minute <= 9
-      ? `0${temporalDate.minute}`
-      : String(temporalDate.minute);
+  // minute.value =
+  //   temporalDate.minute <= 9
+  //     ? `0${temporalDate.minute}`
+  //     : String(temporalDate.minute);
 
-  second.value =
-    temporalDate.second <= 9
-      ? `0${temporalDate.second}`
-      : String(temporalDate.second);
+  // second.value =
+  //   temporalDate.second <= 9
+  //     ? `0${temporalDate.second}`
+  //     : String(temporalDate.second);
 
-  if (oldNow.getMonth() !== now.value.getMonth()) {
+  if (oldTemporal.month !== temporalDate.value.month) {
     monthsRotation.value =
       monthsRotation.value + (moUnit * month.value.length + moUnit);
   }
 
-  if (oldNow.getDay() !== now.value.getDay()) {
+  if (oldTemporal.day !== temporalDate.value.day) {
     daysRotation.value =
       daysRotation.value + (dUnit * day.value.length + dUnit);
   }
 
-  if (oldNow.getHours() !== now.value.getHours()) {
+  if (oldTemporal.hour !== temporalDate.value.hour) {
     hoursRotation.value =
       hoursRotation.value + (hUnit * hour.value.length + hUnit);
   }
 
-  if (oldNow.getMinutes() !== now.value.getMinutes()) {
+  if (oldTemporal.minute !== temporalDate.value.minute) {
     minutesRotation.value =
       minutesRotation.value + (mUnit * minute.value.length + mUnit);
   }
 
-  if (oldNow.getSeconds() !== now.value.getSeconds()) {
+  if (oldTemporal.second !== temporalDate.value.second) {
     secondsRotation.value =
       secondsRotation.value + (sUnit * second.value.length + sUnit);
   }
@@ -771,7 +771,7 @@ watch(now, (_, oldNow) => {
   rotation.value =
     props.moonDegree || props.moonDegree === 0
       ? props.moonDegree
-      : (temporalDate.day * 360) / (temporalDate.daysInMonth + 1);
+      : (temporalDate.value.day * 360) / (temporalDate.value.daysInMonth + 1);
 
   moonDeg.value = `${rotation.value}deg`;
 });
