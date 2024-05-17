@@ -186,12 +186,15 @@ const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
 const { locale } = useI18n();
 
-let orbsSurface = ref(props.moonSize * 0.73); // we take 73% of the remaining space to allow it to be used by the orbits
-if (mobile.value) {
-  orbsSurface.value = props.moonSize * 1.75; // 175% of the moon size
-} else if (tablets.value) {
-  orbsSurface.value = props.moonSize * 1.5; // 150% of the moon size
-}
+let orbsSurface = computed(() => {
+  if (mobile.value) {
+    return props.moonSize * 1.75; // 175% of the moon size
+  } else if (tablets.value) {
+    return props.moonSize * 1.5; // 150% of the moon size
+  } else {
+    return props.moonSize * 0.73; // we take 73% of the remaining space to allow it to be used by the orbits
+  }
+});
 
 // we calculate the orbits radius additional constant by by dividing that space equally then we minus the font size used on the orb to shift the radius
 const MONTHS_R_CONST = computed(() => orbsSurface.value); // the last orbit uses all the available space
@@ -286,26 +289,26 @@ const minutes = Array.from({ length: 60 }, (_: number, i: number) =>
   .join(" ")
   .concat(" ");
 
-let hours = ref(
-  Array.from(
+let hours = computed(() => {
+  return Array.from(
     { length: temporalDate.value.hoursInDay },
     (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
   )
     .join(" ")
-    .concat(" ")
-);
+    .concat(" ");
+});
 
-let days = ref(
-  Array.from(
+let days = computed(() => {
+  return Array.from(
     { length: temporalDate.value.daysInMonth },
     (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
   )
     .join(" ")
-    .concat(" ")
-);
+    .concat(" ");
+});
 
-let months = ref(
-  Array.from(
+let months = computed(() => {
+  return Array.from(
     { length: temporalDate.value.monthsInYear },
     (_: number, i: number) => {
       const date = Temporal.ZonedDateTime.from({
@@ -324,15 +327,15 @@ let months = ref(
     }
   )
     .join("")
-    .concat(" ")
-);
+    .concat(" ");
+});
 
-let month = ref(
-  new Intl.DateTimeFormat(locale.value, {
+const month = computed(() => {
+  return new Intl.DateTimeFormat(locale.value, {
     month: "short",
     calendar: cal.value,
-  }).format(temporalDate.value.toInstant())
-);
+  }).format(temporalDate.value.toInstant());
+});
 
 // some ligatures in arabic combine two letters in one glyph so we need to count them out
 console.log(months.value);
@@ -349,13 +352,13 @@ const moLength = computed(() => encoder.encode(months.value).length);
 console.log("length", moLength.value);
 console.log("size", encoder.encode(months.value).length);
 
-let day = ref(
-  temporalDate.value.day <= 9
+const day = computed(() => {
+  return temporalDate.value.day <= 9
     ? `0${temporalDate.value.day}`
-    : String(temporalDate.value.day)
-);
+    : String(temporalDate.value.day);
+});
 
-let hour = computed(() => {
+const hour = computed(() => {
   if (temporalDate.value.hour === 0) {
     return "24";
   } else if (temporalDate.value.hour <= 9) {
@@ -365,17 +368,17 @@ let hour = computed(() => {
   }
 });
 
-let minute = ref(
-  temporalDate.value.minute <= 9
+const minute = computed(() => {
+  return temporalDate.value.minute <= 9
     ? `0${temporalDate.value.minute}`
-    : String(temporalDate.value.minute)
-);
+    : String(temporalDate.value.minute);
+});
 
-let second = ref(
-  temporalDate.value.second <= 9
+const second = computed(() => {
+  return temporalDate.value.second <= 9
     ? `0${temporalDate.value.second}`
-    : String(temporalDate.value.second)
-);
+    : String(temporalDate.value.second);
+});
 
 const moSpace = moCircumference.value / moLength.value;
 const moUnit = (moSpace * 360) / moCircumference.value;
@@ -390,9 +393,6 @@ const monthsRotation = ref(
     (moLength.value / 4) * moUnit +
     (moUnit * (month.value.length - 1)) / 2
 );
-console.log("length", moLength.value);
-console.log("index", moIndex.value);
-console.log("rotation", monthsRotation.value);
 
 const dSpace = dCircumference.value / days.value.length;
 const dUnit = (dSpace * 360) / dCircumference.value;
@@ -705,11 +705,6 @@ watch(temporalDate, (_, oldTemporal) => {
   //   temporalDate.minute <= 9
   //     ? `0${temporalDate.minute}`
   //     : String(temporalDate.minute);
-
-  // second.value =
-  //   temporalDate.second <= 9
-  //     ? `0${temporalDate.second}`
-  //     : String(temporalDate.second);
 
   if (oldTemporal.month !== temporalDate.value.month) {
     monthsRotation.value =
