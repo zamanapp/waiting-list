@@ -14,16 +14,42 @@
       <clipPath id="clip-moon">
         <use xlink:href="#crescent" />
       </clipPath>
-      <path id="months" :d="circleToPath(moonSize + MONTHS_R_CONST)" />
-      <path id="days" :d="circleToPath(moonSize + DAYS_R_CONST)" />
-      <path id="hours" :d="circleToPath(moonSize + HOURS_R_CONST)" />
-      <path id="minutes" :d="circleToPath(moonSize + MINUTES_R_CONST)" />
-      <path id="seconds" :d="circleToPath(moonSize + SECONDS_R_CONST)" />
+      <path
+        id="months"
+        class="origin-center"
+        :d="circleToPath(moonSize + MONTHS_R_CONST)"
+      />
+      <path
+        id="days"
+        class="origin-center"
+        :d="circleToPath(moonSize + DAYS_R_CONST)"
+      />
+      <path
+        id="hours"
+        class="origin-center"
+        :d="circleToPath(moonSize + HOURS_R_CONST)"
+      />
+      <path
+        id="minutes"
+        class="origin-center"
+        :d="circleToPath(moonSize + MINUTES_R_CONST)"
+      />
+      <path
+        id="seconds"
+        class="origin-center"
+        :d="circleToPath(moonSize + SECONDS_R_CONST)"
+      />
     </defs>
 
-    <text v-if="showGuide" id="months-path" :textLength="monthsTextLength">
+    <text
+      v-if="showGuide"
+      class="origin-center"
+      ref="monthsPath"
+      :transform="`rotate(0 ${centerX} ${centerY})`"
+      :textLength="monthsTextLength"
+    >
       <textPath
-        :class="`${
+        :class="`origin-center ${
           $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
         } fill-gray-300 dark:fill-gray-500`"
         :style="`font-size: ${monthsFontSize}px;`"
@@ -37,7 +63,13 @@
         {{ months.split(month)[1] }}
       </textPath>
     </text>
-    <text id="days-path" v-if="showGuide" :textLength="daysTextLength">
+    <text
+      v-if="showGuide"
+      class="origin-center"
+      ref="daysPath"
+      :transform="`rotate(0 ${centerX} ${centerY})`"
+      :textLength="daysTextLength"
+    >
       <textPath
         class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${daysFontSize}px;`"
@@ -51,7 +83,13 @@
         {{ days.split(String(day))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide" id="hours-path" :textLength="hoursTextLength">
+    <text
+      v-if="showGuide"
+      class="origin-center"
+      ref="hoursPath"
+      :transform="`rotate(0 ${centerX} ${centerY})`"
+      :textLength="hoursTextLength"
+    >
       <textPath
         class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${hoursFontSize}px;`"
@@ -65,7 +103,13 @@
         {{ hours.split(String(hour))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide" id="minutes-path" :textLength="minutesTextLength">
+    <text
+      v-if="showGuide"
+      class="origin-center"
+      ref="minutesPath"
+      :transform="`rotate(0 ${centerX} ${centerY})`"
+      :textLength="minutesTextLength"
+    >
       <textPath
         class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${minutesFontSize}px;`"
@@ -79,7 +123,13 @@
         {{ minutes.split(String(minute))[1] }}
       </textPath>
     </text>
-    <text v-if="showGuide" id="seconds-path" :textLength="secondsTextLength">
+    <text
+      v-if="showGuide"
+      class="origin-center"
+      ref="secondsPath"
+      :transform="`rotate(0 ${centerX} ${centerY})`"
+      :textLength="secondsTextLength"
+    >
       <textPath
         class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${secondsFontSize}px;`"
@@ -169,8 +219,8 @@ const propsConfig = {
 </script>
 
 <script setup lang="ts">
-import { Temporal, Intl, toTemporalInstant } from "@js-temporal/polyfill";
-import { computed, ref, unref } from "vue";
+import { Temporal, Intl } from "@js-temporal/polyfill";
+import { computed, ref } from "vue";
 import { breakpointsTailwind, useWindowFocus, whenever } from "@vueuse/core";
 import { gsap } from "gsap";
 // https://tc39.es/proposal-temporal/docs/calendar.html#writing-cross-calendar-code
@@ -257,6 +307,12 @@ const secondsFontSize = computed(() => {
   return size * 4;
 });
 
+const monthsPath = ref<SVGTextElement | null>(null);
+const daysPath = ref<SVGTextElement | null>(null);
+const hoursPath = ref<SVGTextElement | null>(null);
+const minutesPath = ref<SVGTextElement | null>(null);
+const secondsPath = ref<SVGTextElement | null>(null);
+
 const sizePx = computed(() => `${props.moonSize}px`);
 const outerSize = computed(() => props.moonSize + props.lineWeight / 2 - 1);
 const maxDimension = computed(() => props.moonSize * 4);
@@ -275,8 +331,16 @@ let temporalDate = useTemporalNow({
   timeZone,
 });
 
-let rotation = ref(props.moonDegree ? props.moonDegree : 0);
-let moonDeg = ref(`${rotation.value}deg`);
+const rotation = computed(() => {
+  return props.moonDegree || props.moonDegree === 0
+    ? props.moonDegree
+    : (temporalDate.value.withCalendar(Calendars.UMM_AL_QURA).day * 360) /
+        (temporalDate.value.withCalendar(Calendars.UMM_AL_QURA).daysInMonth +
+          1);
+});
+
+let moonDeg = computed(() => `${rotation.value}deg`);
+
 const seconds = Array.from({ length: 60 }, (_: number, i: number) =>
   i <= 9 ? `0${i}` : String(i)
 )
@@ -307,16 +371,13 @@ let days = computed(() => {
     .concat(" ");
 });
 
-let months = computed(() => {
+const months = computed(() => {
   return Array.from(
     { length: temporalDate.value.monthsInYear },
     (_: number, i: number) => {
-      const date = Temporal.ZonedDateTime.from({
+      const date = temporalDate.value.with({
         day: 1,
         month: i + 1,
-        year: temporalDate.value.year,
-        calendar: cal.value,
-        timeZone,
       });
       return " ".concat(
         new Intl.DateTimeFormat(locale.value, {
@@ -428,118 +489,177 @@ const secondsRotation = ref(
 const resettingAnimation = ref(false);
 
 whenever(focused, () => {
-  resettingAnimation.value = true;
-  gsap.fromTo(
-    "#seconds-path",
-    {
-      rotation: 0,
-    },
-    {
-      rotation: -secondsRotation.value,
-      duration: 0.1,
-      // in out
-      ease: "sine",
-      transformOrigin: "center",
-    }
-  );
+  if (!resettingAnimation.value) {
+    resettingAnimation.value = true;
+    gsap.fromTo(
+      secondsPath.value,
+      {
+        attr: {
+          transform: `rotate(0 ${centerX.value} ${centerY.value})`,
+        },
+      },
+      {
+        // rotation: -secondsRotation.value,
+        attr: {
+          transform: `rotate(${-secondsRotation.value} ${centerX.value} ${
+            centerY.value
+          })`,
+        },
+        duration: 0.1,
+        // in out
+        ease: "sine",
+        transformOrigin: "center center center",
+      }
+    );
 
-  gsap.fromTo(
-    "#minutes-path",
-    {
-      rotation: 0,
-    },
-    {
-      rotation: -minutesRotation.value,
-      duration: 0.5,
-      // in out
-      ease: "sine",
-      transformOrigin: "center",
-    }
-  );
+    gsap.fromTo(
+      minutesPath.value,
+      {
+        attr: {
+          transform: `rotate(0 ${centerX.value} ${centerY.value})`,
+        },
+      },
+      {
+        // rotation: -minutesRotation.value,
+        attr: {
+          transform: `rotate(${-minutesRotation.value} ${centerX.value} ${
+            centerY.value
+          })`,
+        },
+        duration: 0.5,
+        // in out
+        ease: "sine",
+        transformOrigin: "center center center",
+      }
+    );
 
-  gsap.fromTo(
-    "#hours-path",
-    {
-      rotation: 0,
-    },
-    {
-      rotation: -hoursRotation.value,
-      duration: 0.5,
-      // in out
-      ease: "sine",
-      transformOrigin: "center",
-    }
-  );
+    gsap.fromTo(
+      hoursPath.value,
+      {
+        attr: {
+          transform: `rotate(0 ${centerX.value} ${centerY.value})`,
+        },
+      },
+      {
+        // rotation: -hoursRotation.value,
+        attr: {
+          transform: `rotate(${-hoursRotation.value} ${centerX.value} ${
+            centerY.value
+          })`,
+        },
+        duration: 0.5,
+        // in out
+        ease: "sine",
+        transformOrigin: "center center center",
+      }
+    );
 
-  gsap.fromTo(
-    "#days-path",
-    {
-      rotation: 0,
-    },
-    {
-      rotation: -daysRotation.value,
-      duration: 0.5,
-      // in out
-      ease: "sine",
-      transformOrigin: "center",
-    }
-  );
+    gsap.fromTo(
+      daysPath.value,
+      {
+        attr: {
+          transform: `rotate(0 ${centerX.value} ${centerY.value})`,
+        },
+      },
+      {
+        // rotation: -daysRotation.value,
+        attr: {
+          transform: `rotate(${-daysRotation.value} ${centerX.value} ${
+            centerY.value
+          })`,
+        },
+        duration: 0.5,
+        // in out
+        ease: "sine",
+        transformOrigin: "center center center",
+      }
+    );
 
-  gsap.fromTo(
-    "#months-path",
-    {
-      rotation: 0,
-    },
-    {
-      rotation: -monthsRotation.value,
-      duration: 0.5,
-      // in out
-      ease: "sine",
-      transformOrigin: "center",
-    }
-  );
+    gsap.fromTo(
+      monthsPath.value,
+      {
+        attr: {
+          transform: `rotate(0 ${centerX.value} ${centerY.value})`,
+        },
+      },
+      {
+        // rotation: -monthsRotation.value,
+        attr: {
+          transform: `rotate(${-monthsRotation.value} ${centerX.value} ${
+            centerY.value
+          })`,
+        },
+        duration: 0.5,
+        // in out
+        ease: "sine",
+        transformOrigin: "center center center",
+      }
+    );
+    resettingAnimation.value = false;
+  }
 });
 
 onMounted(() => {
   watch(secondsRotation, () => {
-    gsap.to("#seconds-path", {
-      rotation: -secondsRotation.value,
+    gsap.to(secondsPath.value, {
+      // rotation: -secondsRotation.value,
+      attr: {
+        transform: `rotate(${-secondsRotation.value} ${centerX.value} ${
+          centerY.value
+        })`,
+      },
       duration: 0.3,
       // in out
       ease: "sine",
-      transformOrigin: "center",
+      transformOrigin: "center center center",
     });
-
-    gsap.to("#minutes-path", {
-      rotation: -minutesRotation.value,
+    gsap.to(minutesPath.value, {
+      // rotation: -minutesRotation.value,
+      attr: {
+        transform: `rotate(${-minutesRotation.value} ${centerX.value} ${
+          centerY.value
+        })`,
+      },
       duration: 0.5,
       // in out
       ease: "sine",
-      transformOrigin: "center",
+      transformOrigin: "center center center",
     });
-
-    gsap.to("#hours-path", {
-      rotation: -hoursRotation.value,
+    gsap.to(hoursPath.value, {
+      // rotation: -hoursRotation.value,
+      attr: {
+        transform: `rotate(${-hoursRotation.value} ${centerX.value} ${
+          centerY.value
+        })`,
+      },
       duration: 0.5,
       // in out
       ease: "sine",
-      transformOrigin: "center",
+      transformOrigin: "center center center",
     });
-
-    gsap.to("#days-path", {
-      rotation: -daysRotation.value,
+    gsap.to(daysPath.value, {
+      // rotation: -daysRotation.value,
+      attr: {
+        transform: `rotate(${-daysRotation.value} ${centerX.value} ${
+          centerY.value
+        })`,
+      },
       duration: 0.5,
       // in out
       ease: "sine",
-      transformOrigin: "center",
+      transformOrigin: "center center center",
     });
-
-    gsap.to("#months-path", {
-      rotation: -monthsRotation.value,
+    gsap.to(monthsPath.value, {
+      // rotation: -monthsRotation.value,
+      attr: {
+        transform: `rotate(${-monthsRotation.value} ${centerX.value} ${
+          centerY.value
+        })`,
+      },
       duration: 0.5,
       // in out
       ease: "sine",
-      transformOrigin: "center",
+      transformOrigin: "center center center",
     });
   });
 });
@@ -547,32 +667,6 @@ onMounted(() => {
 watch(
   locale,
   () => {
-    months.value = Array.from(
-      { length: temporalDate.value.monthsInYear },
-      (_: number, i: number) => {
-        const date = Temporal.ZonedDateTime.from({
-          day: 1,
-          month: i + 1,
-          year: temporalDate.value.year,
-          calendar: cal.value,
-          timeZone,
-        });
-        return " ".concat(
-          new Intl.DateTimeFormat(locale.value, {
-            month: "short",
-            calendar: cal.value,
-          }).format(date.toInstant())
-        );
-      }
-    )
-      .join("")
-      .concat(" ");
-
-    month.value = new Intl.DateTimeFormat(locale.value, {
-      month: "short",
-      calendar: cal.value,
-    }).format(temporalDate.value.toInstant());
-
     // arabic text combines some letters into one ligature
     monthsRotation.value = 0;
     monthsRotation.value =
@@ -641,71 +735,6 @@ const fill = computed(() =>
 );
 
 watch(temporalDate, (_, oldTemporal) => {
-  // unref(now.value).toTemporalInstant = toTemporalInstant;
-
-  // temporalDate = unref(now.value).toTemporalInstant().toZonedDateTime({
-  //   calendar: cal.value,
-  //   timeZone,
-  // });
-
-  // hours.value = Array.from(
-  //   { length: temporalDate.hoursInDay },
-  //   (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
-  // )
-  //   .join(" ")
-  //   .concat(" ");
-
-  // days.value = Array.from(
-  //   { length: temporalDate.daysInMonth },
-  //   (_: number, i: number) => (i + 1 <= 9 ? `0${i + 1}` : String(i + 1))
-  // )
-  //   .join(" ")
-  //   .concat(" ");
-
-  // months.value = Array.from(
-  //   { length: temporalDate.monthsInYear },
-  //   (_: number, i: number) => {
-  //     const date = Temporal.ZonedDateTime.from({
-  //       day: 1,
-  //       month: i + 1,
-  //       year: temporalDate.year,
-  //       calendar: cal.value,
-  //       timeZone,
-  //     });
-  //     return " ".concat(
-  //       new Intl.DateTimeFormat(locale.value, {
-  //         month: "short",
-  //         calendar: cal.value,
-  //       }).format(date)
-  //     );
-  //   }
-  // )
-  //   .join("")
-  //   .concat(" ");
-
-  // month.value = new Intl.DateTimeFormat(locale.value, {
-  //   month: "short",
-  //   calendar: cal.value,
-  // }).format(temporalDate);
-
-  // day.value =
-  //   temporalDate.day <= 9 ? `0${temporalDate.day}` : String(temporalDate.day);
-
-  // hour = computed(() => {
-  //   if (temporalDate.hour === 0) {
-  //     return "24";
-  //   } else if (temporalDate.hour <= 9) {
-  //     return `0${temporalDate.hour}`;
-  //   } else {
-  //     return String(temporalDate.hour);
-  //   }
-  // });
-
-  // minute.value =
-  //   temporalDate.minute <= 9
-  //     ? `0${temporalDate.minute}`
-  //     : String(temporalDate.minute);
-
   if (oldTemporal.month !== temporalDate.value.month) {
     monthsRotation.value =
       monthsRotation.value + (moUnit * month.value.length + moUnit);
@@ -730,45 +759,36 @@ watch(temporalDate, (_, oldTemporal) => {
     secondsRotation.value =
       secondsRotation.value + (sUnit * second.value.length + sUnit);
   }
+});
 
-  monthsTextLength = computed(() => {
-    const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
-    const unit = circumference / moLength.value;
-    return circumference - unit;
-  });
+monthsTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
+  const unit = circumference / moLength.value;
+  return circumference - unit;
+});
 
-  daysTextLength = computed(() => {
-    const circumference = 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value);
-    const unit = circumference / days.value.length;
-    return circumference - unit;
-  });
+daysTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value);
+  const unit = circumference / days.value.length;
+  return circumference - unit;
+});
 
-  hoursTextLength = computed(() => {
-    const circumference = 2 * Math.PI * (props.moonSize + HOURS_R_CONST.value);
-    const unit = circumference / hours.value.length;
-    return circumference - unit;
-  });
+hoursTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + HOURS_R_CONST.value);
+  const unit = circumference / hours.value.length;
+  return circumference - unit;
+});
 
-  minutesTextLength = computed(() => {
-    const circumference =
-      2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value);
-    const unit = circumference / minutes.length;
-    return circumference - unit;
-  });
+minutesTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value);
+  const unit = circumference / minutes.length;
+  return circumference - unit;
+});
 
-  secondsTextLength = computed(() => {
-    const circumference =
-      2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value);
-    const unit = circumference / seconds.length;
-    return circumference - unit;
-  });
-
-  rotation.value =
-    props.moonDegree || props.moonDegree === 0
-      ? props.moonDegree
-      : (temporalDate.value.day * 360) / (temporalDate.value.daysInMonth + 1);
-
-  moonDeg.value = `${rotation.value}deg`;
+secondsTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value);
+  const unit = circumference / seconds.length;
+  return circumference - unit;
 });
 
 function circleToPath(

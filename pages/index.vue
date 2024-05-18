@@ -1,7 +1,7 @@
 <template>
   <div
     ref="left"
-    class="dark absolute w-full h-screen overflow-hidden z-[2] bg-gray-900 text-white"
+    class="dark absolute w-[50%] h-screen overflow-hidden z-[2] bg-gray-900 text-white"
   >
     <Navigation />
 
@@ -31,6 +31,7 @@
       <Moon
         :moon-size="moonSize"
         :line-weight="lineWeight"
+        :calendar="Calendars.ISO"
         class="absolute mx-auto origin-center pointer-events-none"
         show-guide
       />
@@ -73,11 +74,12 @@
 </template>
 
 <script setup lang="ts">
+import { breakpointsTailwind } from "@vueuse/core";
+import { Calendars } from "../types/Calendars";
+
 definePageMeta({
   layout: "slider",
 });
-
-import { breakpointsTailwind } from "@vueuse/core";
 
 const { height, width } = useWindowSize();
 const breakpoints = useBreakpoints(breakpointsTailwind);

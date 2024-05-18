@@ -5,6 +5,7 @@ export enum Calendars {
   TABULAR = "islamic-tbla",
   UMM_AL_QURA = "islamic-umalqura",
   SIGHTING_SA = "islamic-rgsa",
+  ISO = "iso8601",
 }
 
 export const calendarsValues = Object.values(Calendars);

@@ -3,6 +3,7 @@
     <Moon
       :moon-size="moonSize"
       :line-weight="lineWeight"
+      :calendar="Calendars.ISO"
       class="mx-auto origin-center pointer-events-none"
       show-guide
     />
@@ -11,6 +12,7 @@
 
 <script setup lang="ts">
 const { height, width } = useWindowSize();
+import { Calendars } from "../types/Calendars";
 
 const padding = ref(48); // p-12 = 48px
 const moonSize = ref(width.value - padding.value * 2);

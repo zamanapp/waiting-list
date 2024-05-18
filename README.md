@@ -43,7 +43,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 # TODO:
 
-- [ ] Persist the language switching
+- [x] Persist the language switching
 - [ ] Fix months centring in both lang
 - [ ] Fix browser inconsistencies
   - [x] Fix text flip on Firefox
