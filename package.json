@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@js-temporal/polyfill": "^0.4.3",
+    "bowser": "^2.11.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "gsap": "^3.12.2",

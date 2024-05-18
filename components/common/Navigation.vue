@@ -20,7 +20,7 @@
       <NuxtLink class="px-3 py-2 text-lg font-medium cursor-pointer">
         Changelog
       </NuxtLink>
-      <!-- <LangSwitcher /> -->
+      <LangSwitcher />
       <!-- <ThemeSwitcher /> -->
     </div>
   </nav>

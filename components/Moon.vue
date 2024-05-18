@@ -59,11 +59,15 @@
         :textLength="monthsTextLength"
         href="#months"
       >
-        {{ months.split(month)[0] }}
+        <tspan>
+          {{ months.split(month)[0] }}
+        </tspan>
         <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ month }}
         </tspan>
-        {{ months.split(month)[1] }}
+        <tspan>
+          {{ months.split(month)[1] }}
+        </tspan>
       </textPath>
     </text>
     <text
@@ -79,11 +83,15 @@
         :textLength="daysTextLength"
         href="#days"
       >
-        {{ days.split(String(day))[0] }}
+        <tspan>
+          {{ days.split(String(day))[0] }}
+        </tspan>
         <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ day }}
         </tspan>
-        {{ days.split(String(day))[1] }}
+        <tspan>
+          {{ days.split(String(day))[1] }}
+        </tspan>
       </textPath>
     </text>
     <text
@@ -99,11 +107,11 @@
         :textLength="hoursTextLength"
         href="#hours"
       >
-        {{ hours.split(String(hour))[0] }}
+        <tspan>{{ hours.split(String(hour))[0] }}</tspan>
         <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ hour }}
         </tspan>
-        {{ hours.split(String(hour))[1] }}
+        <tspan>{{ hours.split(String(hour))[1] }}</tspan>
       </textPath>
     </text>
     <text
@@ -119,11 +127,15 @@
         :textLength="minutesTextLength"
         href="#minutes"
       >
-        {{ minutes.split(String(minute))[0] }}
+        <tspan>
+          {{ minutes.split(String(minute))[0] }}
+        </tspan>
         <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ minute }}
         </tspan>
-        {{ minutes.split(String(minute))[1] }}
+        <tspan>
+          {{ minutes.split(String(minute))[1] }}
+        </tspan>
       </textPath>
     </text>
     <text
@@ -136,14 +148,18 @@
       <textPath
         class="font-mono fill-gray-300 dark:fill-gray-500"
         :style="`font-size: ${secondsFontSize}px;`"
-        href="#seconds"
         :textLength="secondsTextLength"
+        href="#seconds"
       >
-        {{ seconds.split(String(second))[0].trim() }}
+        <tspan>
+          {{ seconds.split(String(second))[0] }}
+        </tspan>
         <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
           {{ second }}
         </tspan>
-        {{ seconds.split(String(second))[1].trim() }}
+        <tspan>
+          {{ seconds.split(String(second))[1] }}
+        </tspan>
       </textPath>
     </text>
 
@@ -226,6 +242,7 @@ import { Temporal, Intl } from "@js-temporal/polyfill";
 import { computed, ref } from "vue";
 import { breakpointsTailwind, useWindowFocus, whenever } from "@vueuse/core";
 import { gsap } from "gsap";
+import Browser from "bowser";
 // https://tc39.es/proposal-temporal/docs/calendar.html#writing-cross-calendar-code
 // todo: customize https://github.com/GriffinJohnston/uiball-loaders
 // realtime: https://dev.to/thormeier/use-your-i-moon-gination-lets-build-a-moon-phase-visualizer-with-css-and-js-aih
@@ -282,20 +299,20 @@ const sCircumference = computed(
 
 const monthsFontSize = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + orbsSurface.value);
-  const size = circumference / (moLength.value + (moLength.value - 1));
-  return size * 3;
+  const size = circumference / moLength.value;
+  return size;
 });
 const daysFontSize = computed(() => {
   const circumference =
     2 * Math.PI * (props.moonSize + orbsSurface.value * (4 / 5));
-  const size = circumference / (days.value.length + (days.value.length - 1));
-  return size * 3;
+  const size = circumference / days.value.length;
+  return size * 1.3;
 });
 const hoursFontSize = computed(() => {
   const circumference =
     2 * Math.PI * (props.moonSize + orbsSurface.value * (3 / 5));
-  const size = circumference / (hours.value.length + (hours.value.length - 1));
-  return size * 3;
+  const size = circumference / hours.value.length;
+  return size * 1.2;
 });
 const minutesFontSize = computed(() => {
   const circumference =
@@ -310,6 +327,38 @@ const secondsFontSize = computed(() => {
   return size * 4;
 });
 
+const browser = Browser.getParser(window.navigator.userAgent).getBrowser().name;
+
+const monthsTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
+  const unit = circumference / moLength.value;
+  return browser === "Safari" ? circumference - unit : circumference - unit;
+});
+
+const daysTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value);
+  const unit = circumference / days.value.length;
+  return browser === "Safari" ? circumference - unit : circumference - unit;
+});
+
+const hoursTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + HOURS_R_CONST.value);
+  const unit = circumference / hours.value.length;
+  return browser === "Safari" ? circumference - unit : circumference - unit;
+});
+
+const minutesTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value);
+  const unit = circumference / minutes.length;
+  return browser === "Safari" ? circumference - unit : circumference - unit;
+});
+
+const secondsTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value);
+  const unit = circumference / seconds.length;
+  return browser === "Safari" ? circumference - unit : circumference - unit;
+});
+
 const monthsPath = ref<SVGTextElement | null>(null);
 const daysPath = ref<SVGTextElement | null>(null);
 const hoursPath = ref<SVGTextElement | null>(null);
@@ -322,7 +371,7 @@ const maxDimension = computed(() => props.moonSize * 4);
 const centerX = computed(() => maxDimension.value / 2);
 const centerY = computed(() => maxDimension.value / 2);
 
-const cal = ref(
+const cal = computed(() =>
   Temporal.Calendar.from(
     props.calendar ? props.calendar : Calendars.UMM_AL_QURA
   )
@@ -444,49 +493,63 @@ const second = computed(() => {
     : String(temporalDate.value.second);
 });
 
-const moSpace = moCircumference.value / moLength.value;
-const moUnit = (moSpace * 360) / moCircumference.value;
+const moSpace = computed(() => moCircumference.value / moLength.value);
+const moUnit = computed(() => (moSpace.value * 360) / moCircumference.value);
 const moIndex = computed(() =>
   locale.value === "ar"
     ? months.value.length -
       (months.value.search(month.value) + month.value.length)
     : months.value.search(month.value)
 );
-const monthsRotation = ref(
-  moUnit * moIndex.value -
-    (moLength.value / 4) * moUnit +
-    (moUnit * (month.value.length - 1)) / 2
+const monthsRotation = computed(() => {
+  return (
+    moUnit.value * moIndex.value -
+    (moLength.value / 4) * moUnit.value +
+    (moUnit.value * (month.value.length - 1)) / 2
+  );
+});
+
+const dSpace = computed(() => dCircumference.value / days.value.length);
+const dUnit = computed(() => (dSpace.value * 360) / dCircumference.value);
+const dIndex = computed(() => days.value.search(day.value));
+const daysRotation = computed(
+  () =>
+    dUnit.value * dIndex.value +
+    dUnit.value -
+    (days.value.length / 4) * dUnit.value
 );
 
-const dSpace = dCircumference.value / days.value.length;
-const dUnit = (dSpace * 360) / dCircumference.value;
-const dIndex = days.value.search(day.value);
-const daysRotation = ref(
-  dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit
+const hSpace = computed(() => hCircumference.value / hours.value.length);
+const hUnit = computed(() => (hSpace.value * 360) / hCircumference.value);
+const hIndex = computed(() => hours.value.search(hour.value));
+const hoursRotation = computed(
+  () =>
+    hUnit.value * hIndex.value +
+    hUnit.value -
+    (hours.value.length / 4) * hUnit.value
 );
 
-const hSpace = hCircumference.value / hours.value.length;
-const hUnit = (hSpace * 360) / hCircumference.value;
-const hIndex = hours.value.search(hour.value);
-const hoursRotation = ref(
-  hUnit * hIndex + hUnit - (hours.value.length / 4) * hUnit
-);
-
-const mSpace = mCircumference.value / minutes.length;
-const mUnit = (mSpace * 360) / mCircumference.value;
-const mIndex = minutes.search(minute.value);
-const minutesRotation = ref(
-  mUnit * mIndex + mUnit - (minutes.length / 4) * mUnit
+const mSpace = computed(() => mCircumference.value / minutes.length);
+const mUnit = computed(() => (mSpace.value * 360) / mCircumference.value);
+const mIndex = computed(() => minutes.search(minute.value));
+const minutesRotation = computed(
+  () =>
+    mUnit.value * mIndex.value +
+    mUnit.value -
+    (minutes.length / 4) * mUnit.value
 );
 
 // circumference -> 360
 // one space -> ?
 // one space * 360 / circumference
-const sSpace = sCircumference.value / seconds.length;
-const sUnit = (sSpace * 360) / sCircumference.value;
-const sIndex = seconds.search(second.value);
-const secondsRotation = ref(
-  sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit
+const sSpace = computed(() => sCircumference.value / seconds.length);
+const sUnit = computed(() => (sSpace.value * 360) / sCircumference.value);
+const sIndex = computed(() => seconds.search(second.value));
+const secondsRotation = computed(
+  () =>
+    sUnit.value * sIndex.value +
+    sUnit.value -
+    (seconds.length / 4) * sUnit.value
 );
 
 const resettingAnimation = ref(false);
@@ -657,62 +720,32 @@ onMounted(() => {
   });
 });
 
-watch(
-  locale,
-  () => {
-    // arabic text combines some letters into one ligature
-    monthsRotation.value = 0;
-    monthsRotation.value =
-      moUnit * moIndex.value -
-      (moLength.value / 4) * moUnit +
-      (moUnit * (month.value.length - 1)) / 2;
+// watch(
+//   locale,
+//   () => {
+//     // arabic text combines some letters into one ligature
+//     monthsRotation.value = 0;
+//     monthsRotation.value =
+//       moUnit * moIndex.value -
+//       (moLength.value / 4) * moUnit +
+//       (moUnit * (month.value.length - 1)) / 2;
 
-    console.log("local length", moLength.value);
-    console.log("locale index", moIndex.value);
-    console.log("locale rotation", monthsRotation.value);
+//     console.log("local length", moLength.value);
+//     console.log("locale index", moIndex.value);
+//     console.log("locale rotation", monthsRotation.value);
 
-    // daysRotation.value = dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit;
+//     daysRotation.value =
+//       dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit;
 
-    // hoursRotation.value =
-    //   hUnit * hIndex + hUnit - (hours.value.length / 4) * hUnit;
+//     // hoursRotation.value =
+//     //   hUnit * hIndex + hUnit - (hours.value.length / 4) * hUnit;
 
-    // minutesRotation.value = mUnit * mIndex + mUnit - (minutes.length / 4) * mUnit;
+//     // minutesRotation.value = mUnit * mIndex + mUnit - (minutes.length / 4) * mUnit;
 
-    // secondsRotation.value = sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit;
-  },
-  { flush: "post" }
-);
-
-let monthsTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
-  const unit = circumference / moLength.value;
-  return circumference - unit;
-});
-
-let daysTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value);
-  const unit = circumference / days.value.length;
-  return circumference - unit;
-});
-
-let hoursTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + HOURS_R_CONST.value);
-  const unit = circumference / hours.value.length;
-  return circumference - unit;
-});
-
-let minutesTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value);
-  const unit = circumference / minutes.length;
-  return circumference - unit;
-});
-
-let secondsTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value);
-  const unit = circumference / seconds.length;
-  return circumference - unit;
-});
-
+//     // secondsRotation.value = sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit;
+//   },
+//   { flush: "post" }
+// );
 const flipValue = computed(() => {
   if (props.flip) {
     return moonPhase.value > 180 ? 0 : maxDimension.value / 2;
@@ -726,63 +759,6 @@ const fill = computed(() =>
     ? "fill-white dark:fill-gray-300"
     : "fill-black dark:fill-gray-950"
 );
-
-watch(temporalDate, (_, oldTemporal) => {
-  if (oldTemporal.month !== temporalDate.value.month) {
-    monthsRotation.value =
-      monthsRotation.value + (moUnit * month.value.length + moUnit);
-  }
-
-  if (oldTemporal.day !== temporalDate.value.day) {
-    daysRotation.value =
-      daysRotation.value + (dUnit * day.value.length + dUnit);
-  }
-
-  if (oldTemporal.hour !== temporalDate.value.hour) {
-    hoursRotation.value =
-      hoursRotation.value + (hUnit * hour.value.length + hUnit);
-  }
-
-  if (oldTemporal.minute !== temporalDate.value.minute) {
-    minutesRotation.value =
-      minutesRotation.value + (mUnit * minute.value.length + mUnit);
-  }
-
-  if (oldTemporal.second !== temporalDate.value.second) {
-    secondsRotation.value =
-      secondsRotation.value + (sUnit * second.value.length + sUnit);
-  }
-});
-
-monthsTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
-  const unit = circumference / moLength.value;
-  return circumference - unit;
-});
-
-daysTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value);
-  const unit = circumference / days.value.length;
-  return circumference - unit;
-});
-
-hoursTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + HOURS_R_CONST.value);
-  const unit = circumference / hours.value.length;
-  return circumference - unit;
-});
-
-minutesTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value);
-  const unit = circumference / minutes.length;
-  return circumference - unit;
-});
-
-secondsTextLength = computed(() => {
-  const circumference = 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value);
-  const unit = circumference / seconds.length;
-  return circumference - unit;
-});
 
 function circleToPath(
   r: number,
