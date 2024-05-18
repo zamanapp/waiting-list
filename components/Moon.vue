@@ -15,6 +15,7 @@
         <use xlink:href="#crescent" />
       </clipPath>
       <path
+        :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
         id="months"
         class="origin-center"
         :d="circleToPath(moonSize + MONTHS_R_CONST)"
@@ -42,6 +43,7 @@
     </defs>
 
     <text
+      :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
       v-if="showGuide"
       class="origin-center"
       ref="monthsPath"
@@ -49,6 +51,7 @@
       :textLength="monthsTextLength"
     >
       <textPath
+        :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
         :class="`origin-center ${
           $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
         } fill-gray-300 dark:fill-gray-500`"
@@ -331,7 +334,7 @@ let temporalDate = useTemporalNow({
   timeZone,
 });
 
-const rotation = computed(() => {
+const moonPhase = computed(() => {
   return props.moonDegree || props.moonDegree === 0
     ? props.moonDegree
     : (temporalDate.value.withCalendar(Calendars.UMM_AL_QURA).day * 360) /
@@ -339,7 +342,7 @@ const rotation = computed(() => {
           1);
 });
 
-let moonDeg = computed(() => `${rotation.value}deg`);
+let moonDeg = computed(() => `${moonPhase.value}deg`);
 
 const seconds = Array.from({ length: 60 }, (_: number, i: number) =>
   i <= 9 ? `0${i}` : String(i)
@@ -499,7 +502,6 @@ whenever(focused, () => {
         },
       },
       {
-        // rotation: -secondsRotation.value,
         attr: {
           transform: `rotate(${-secondsRotation.value} ${centerX.value} ${
             centerY.value
@@ -520,7 +522,6 @@ whenever(focused, () => {
         },
       },
       {
-        // rotation: -minutesRotation.value,
         attr: {
           transform: `rotate(${-minutesRotation.value} ${centerX.value} ${
             centerY.value
@@ -541,7 +542,6 @@ whenever(focused, () => {
         },
       },
       {
-        // rotation: -hoursRotation.value,
         attr: {
           transform: `rotate(${-hoursRotation.value} ${centerX.value} ${
             centerY.value
@@ -562,7 +562,6 @@ whenever(focused, () => {
         },
       },
       {
-        // rotation: -daysRotation.value,
         attr: {
           transform: `rotate(${-daysRotation.value} ${centerX.value} ${
             centerY.value
@@ -583,7 +582,6 @@ whenever(focused, () => {
         },
       },
       {
-        // rotation: -monthsRotation.value,
         attr: {
           transform: `rotate(${-monthsRotation.value} ${centerX.value} ${
             centerY.value
@@ -602,7 +600,6 @@ whenever(focused, () => {
 onMounted(() => {
   watch(secondsRotation, () => {
     gsap.to(secondsPath.value, {
-      // rotation: -secondsRotation.value,
       attr: {
         transform: `rotate(${-secondsRotation.value} ${centerX.value} ${
           centerY.value
@@ -614,7 +611,6 @@ onMounted(() => {
       transformOrigin: "center center center",
     });
     gsap.to(minutesPath.value, {
-      // rotation: -minutesRotation.value,
       attr: {
         transform: `rotate(${-minutesRotation.value} ${centerX.value} ${
           centerY.value
@@ -626,7 +622,6 @@ onMounted(() => {
       transformOrigin: "center center center",
     });
     gsap.to(hoursPath.value, {
-      // rotation: -hoursRotation.value,
       attr: {
         transform: `rotate(${-hoursRotation.value} ${centerX.value} ${
           centerY.value
@@ -638,7 +633,6 @@ onMounted(() => {
       transformOrigin: "center center center",
     });
     gsap.to(daysPath.value, {
-      // rotation: -daysRotation.value,
       attr: {
         transform: `rotate(${-daysRotation.value} ${centerX.value} ${
           centerY.value
@@ -650,7 +644,6 @@ onMounted(() => {
       transformOrigin: "center center center",
     });
     gsap.to(monthsPath.value, {
-      // rotation: -monthsRotation.value,
       attr: {
         transform: `rotate(${-monthsRotation.value} ${centerX.value} ${
           centerY.value
@@ -722,14 +715,14 @@ let secondsTextLength = computed(() => {
 
 const flipValue = computed(() => {
   if (props.flip) {
-    return rotation.value > 180 ? 0 : maxDimension.value / 2;
+    return moonPhase.value > 180 ? 0 : maxDimension.value / 2;
   } else {
-    return rotation.value > 180 ? maxDimension.value / 2 : 0;
+    return moonPhase.value > 180 ? maxDimension.value / 2 : 0;
   }
 });
 
 const fill = computed(() =>
-  rotation.value >= 90 && rotation.value <= 270
+  moonPhase.value >= 90 && moonPhase.value <= 270
     ? "fill-white dark:fill-gray-300"
     : "fill-black dark:fill-gray-950"
 );

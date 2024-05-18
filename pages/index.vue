@@ -16,7 +16,7 @@
     </div>
 
     <div
-      class="absolute flex justify-end invisible float-left w-screen text-2xl font-medium text-center lg:visible mt-96 rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      class="absolute flex justify-end invisible w-screen text-2xl font-medium text-center float-start lg:visible mt-96 rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
     >
       <p class="max-w-xs">
         "{{ $t("waiting.body") }}"
@@ -93,9 +93,10 @@ const rotation = ref(0);
 
 let moons = ref<NodeListOf<SVGSVGElement> | null>(null);
 let left = ref<HTMLElement | null>(null);
+const { locale } = useI18n();
 
 const { x } = useMouse();
-const leftWidth = computed(() => (x.value / width.value) * 100);
+const sideWidth = computed(() => (x.value / width.value) * 100);
 
 onMounted(() => {
   moons.value = document.querySelectorAll("svg#moonSymbol");
@@ -105,8 +106,12 @@ onMounted(() => {
   // watch(height, handleResize);
   // watch(moonSize, handleResize);
   // watch(tablets, handleResize);
-  if (left.value) {
-    watch(leftWidth, (value) => {
+  if (locale.value === "ar") {
+    watch(sideWidth, (value) => {
+      left.value!.style.width = `${value}%`;
+    });
+  } else {
+    watch(sideWidth, (value) => {
       left.value!.style.width = `${value}%`;
     });
   }

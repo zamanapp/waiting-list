@@ -14,7 +14,7 @@
         <Meta :id="meta.id" :property="meta.property" :content="meta.content" />
       </template>
     </Head>
-    <Body>
+    <Body dir="lrt">
       <slot />
     </Body>
   </Html>
