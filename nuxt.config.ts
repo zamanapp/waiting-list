@@ -1,6 +1,3 @@
-import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "url";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
@@ -10,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxt/devtools",
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
+    "@vee-validate/nuxt",
   ],
 
   imports: {
@@ -33,7 +31,7 @@ export default defineNuxtConfig({
         file: "ar.json",
       },
     ],
-    lazy: true,
+    lazy: false,
     langDir: "locales",
     defaultLocale: "en",
     strategy: "prefix_except_default",

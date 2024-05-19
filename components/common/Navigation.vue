@@ -21,11 +21,12 @@
         Changelog
       </NuxtLink>
       <LangSwitcher />
+      <Icon icon="hugeicons:new-twitter" />
       <!-- <ThemeSwitcher /> -->
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
-//
+import { Icon } from "@iconify/vue";
 </script>

@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Ref } from "vue";
+import type { Ref } from "vue";
 
 const propsConfig = {
   text: {
@@ -29,8 +29,8 @@ const propsConfig = {
 <script setup lang="ts">
 // https://codesandbox.io/s/flamboyant-haze-32r9jg?file%5C=/src/App.js&file=/src/ScrambleText.js
 const props = defineProps(propsConfig);
-const firstInterval: Ref<NodeJS.Timer | null> = ref(null);
-const secondInterval: Ref<NodeJS.Timer | null> = ref(null);
+const firstInterval: Ref<NodeJS.Timeout | null> = ref(null);
+const secondInterval: Ref<NodeJS.Timeout | null> = ref(null);
 const speed = ref(30);
 const { locale } = useI18n();
 
