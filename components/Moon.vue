@@ -251,6 +251,7 @@ import Browser from "bowser";
 const props = defineProps(propsConfig);
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const focused = useWindowFocus();
+const encoder = new TextEncoder();
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
@@ -299,8 +300,9 @@ const sCircumference = computed(
 
 const monthsFontSize = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + orbsSurface.value);
-  const size = circumference / moLength.value;
-  return size;
+  // we take the size of the hijri months as they are longer
+  const size = circumference / encoder.encode(hijriMonths.value).length;
+  return size * 1.3;
 });
 const daysFontSize = computed(() => {
   const circumference =
@@ -443,6 +445,29 @@ const months = computed(() => {
     .concat(" ");
 });
 
+const hijriMonths = computed(() => {
+  return Array.from(
+    {
+      length: temporalDate.value.withCalendar(Calendars.UMM_AL_QURA)
+        .monthsInYear,
+    },
+    (_: number, i: number) => {
+      const date = temporalDate.value.withCalendar(Calendars.UMM_AL_QURA).with({
+        day: 1,
+        month: i + 1,
+      });
+      return " ".concat(
+        new Intl.DateTimeFormat(locale.value, {
+          month: "short",
+          calendar: Calendars.UMM_AL_QURA,
+        }).format(date.toInstant())
+      );
+    }
+  )
+    .join("")
+    .concat(" ");
+});
+
 const month = computed(() => {
   return new Intl.DateTimeFormat(locale.value, {
     month: "short",
@@ -453,7 +478,6 @@ const month = computed(() => {
 // some ligatures in arabic combine two letters in one glyph so we need to count them out
 console.log(months.value);
 console.log(locale.value);
-const encoder = new TextEncoder();
 // const DUAL_GLYPH_LIGATURES = 4;
 // const moLength = computed(() =>
 //   locale.value === "ar"
