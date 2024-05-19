@@ -12,7 +12,7 @@
         class="max-w-sm mb-6 text-5xl font-semibold lg:max-w-md text-start font-main dark:text-slate-200"
         v-html="$t('waiting.manage')"
       ></h2>
-      <JoinModal :waiting-text="$t('waiting.waiting')" />
+      <JoinModal button-type="outline" :waiting-text="$t('waiting.waiting')" />
     </div>
 
     <div
@@ -47,7 +47,10 @@
         class="max-w-sm mb-6 text-5xl font-semibold lg:max-w-md text-start font-main dark:text-slate-200"
         v-html="$t('waiting.manage')"
       ></h2>
-      <JoinModal :waiting-text="$t('waiting.waitingExpand')" />
+      <JoinModal
+        button-type="secondary"
+        :waiting-text="$t('waiting.waitingExpand')"
+      />
     </div>
 
     <div

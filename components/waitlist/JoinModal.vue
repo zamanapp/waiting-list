@@ -2,7 +2,8 @@
   <Dialog>
     <DialogTrigger as-child>
       <Button
-        class="px-6 py-3 mt-6 text-xl font-normal text-white bg-black rounded-md w-52 md:self-end lg:self-start dark:text-slate-200 disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-gray-700"
+        :variant="buttonType"
+        class="px-6 py-3 mt-6 text-xl font-normal rounded-md w-52 md:self-end lg:self-start disabled:cursor-not-allowed"
       >
         {{ waitingText }}
       </Button>
@@ -76,6 +77,20 @@ defineProps({
   waitingText: {
     type: String,
     required: true,
+  },
+  buttonType: {
+    type: String as PropType<
+      | "default"
+      | "link"
+      | "destructive"
+      | "outline"
+      | "secondary"
+      | "ghost"
+      | null
+      | undefined
+    >,
+    required: false,
+    default: null,
   },
 });
 
