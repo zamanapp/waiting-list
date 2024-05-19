@@ -1,4 +1,5 @@
 <template>
+  {{ moLength }}
   <svg
     id="moonSymbol"
     xmlns="http://www.w3.org/2000/svg"
@@ -445,6 +446,7 @@ const months = computed(() => {
     .concat(" ");
 });
 
+// used to calcualate the months font size as we take the longest of both calendars
 const hijriMonths = computed(() => {
   return Array.from(
     {
@@ -478,13 +480,17 @@ const month = computed(() => {
 // some ligatures in arabic combine two letters in one glyph so we need to count them out
 console.log(months.value);
 console.log(locale.value);
-// const DUAL_GLYPH_LIGATURES = 4;
-// const moLength = computed(() =>
-//   locale.value === "ar"
-//     ? months.value.length - DUAL_GLYPH_LIGATURES
-//     : months.value.length
-// );
-const moLength = computed(() => encoder.encode(months.value).length);
+const DUAL_GLYPH_LIGATURES = 4;
+const moLength = computed(() => {
+  if (locale.value === "ar") {
+    return months.value.length - DUAL_GLYPH_LIGATURES;
+  } else {
+    return cal.value.id === Calendars.ISO
+      ? encoder.encode(months.value).length
+      : months.value.length;
+  }
+});
+// const moLength = computed(() => encoder.encode(months.value).length);
 
 console.log("length", moLength.value);
 console.log("size", encoder.encode(months.value).length);
