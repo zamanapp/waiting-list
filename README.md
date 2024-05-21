@@ -56,4 +56,8 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 - [x] Add join logic
 - [x] Add notification
 - [ ] Privacy and policy
-- [ ] Manifesto?
+- [ ] Manifesto
+- [ ] Add a logo
+- [ ] Add a favicon
+- [ ] Revisit the header
+- [ ] Fix the join button
