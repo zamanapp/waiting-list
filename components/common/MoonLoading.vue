@@ -1,8 +1,6 @@
 <template>
   <div
-    :class="`relative overflow-hidden bg-white rounded-full moon ${
-      dark ? 'border-white' : 'border-black'
-    }`"
+    class="relative overflow-hidden bg-white border-black rounded-full moon dark:border-white"
   >
     <div class="inner"></div>
   </div>
@@ -11,12 +9,19 @@
 <script setup lang="ts">
 // todo: customize https://github.com/GriffinJohnston/uiball-loaders
 // realtime: https://dev.to/thormeier/use-your-i-moon-gination-lets-build-a-moon-phase-visualizer-with-css-and-js-aih
-const props = defineProps(["size", "lineWeight", "dark"]);
+// const props = defineProps(["size", "lineWeight", "dark", "speed"]);
+const props = defineProps({
+  size: { type: Number, default: 24 },
+  lineWeight: { type: Number, default: 2 },
+  speed: { type: Number, default: 1 },
+});
 
-const sizePx = computed(() => (props.size ? `${props.size}px` : `24px`));
-const borderPx = computed(() =>
-  props.lineWeight ? `${props.lineWeight}px` : `2px`
-);
+const sizePx = computed(() => `${props.size}px`);
+const borderPx = computed(() => `${props.lineWeight}px`);
+const animationSpeed = computed(() => (props.speed ? props.speed : 1));
+const innerTiming = computed(() => `${2 * animationSpeed.value}s`);
+const moonDuration = computed(() => `${1 * animationSpeed.value}s`);
+const moonTiming = computed(() => `${0.5 * animationSpeed.value}s`);
 </script>
 
 <style>
@@ -36,14 +41,15 @@ const borderPx = computed(() =>
   left: 0;
   width: 50%;
   height: 100%;
-  animation: flip 1s 0.5s steps(2) infinite alternate;
+  animation: flip v-bind(moonDuration) v-bind(moonTiming) steps(2) infinite
+    alternate;
 }
 
 .inner {
   transform-style: preserve-3d;
   width: 100%;
   height: 100%;
-  animation: rotate 2s linear infinite;
+  animation: rotate v-bind(innerTiming) linear infinite;
 }
 
 .inner::after {
@@ -63,7 +69,7 @@ const borderPx = computed(() =>
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  transition: transform 2s;
+  transition: transform v-bind(innerTiming);
   position: absolute;
   backface-visibility: hidden;
 }

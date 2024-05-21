@@ -18,7 +18,7 @@ const props = defineProps({
     >
       <h2 class="w-full font-medium text-center text-9xl">The year is</h2>
       <h1 class="inline-flex items-center leading-none error">
-        4<MoonLoading :line-weight="14" :size="size" />4
+        4<MoonLoading :line-weight="14" :size="size" :speed="0.77" />4
       </h1>
       <p class="text-xl italic text-gray-600">
         it seems that a glitch in the time space continuum has occurred.

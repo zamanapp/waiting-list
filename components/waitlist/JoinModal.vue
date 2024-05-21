@@ -3,7 +3,7 @@
     <DialogTrigger as-child>
       <Button
         :variant="buttonType"
-        class="px-6 py-3 mt-6 text-xl font-normal rounded-md w-52 md:self-end lg:self-start disabled:cursor-not-allowed"
+        class="px-6 py-3 mt-6 text-xl font-medium rounded-md w-52 md:self-end lg:self-start disabled:cursor-not-allowed"
       >
         {{ waitingText }}
       </Button>
@@ -12,7 +12,12 @@
     <DialogContent :disable-outside-pointer-events="true" :trapFocus="true">
       <DialogHeader>
         <DialogTitle>Get notified when we launch</DialogTitle>
-        <form id="sabrListForm" class="space-y-6" @submit="submitHandler">
+        <Form
+          id="sabrListForm"
+          class="space-y-6"
+          :validation-schema="schema"
+          @submit="submitHandler"
+        >
           <FormField name="email" v-slot="{ componentField }">
             <FormItem v-auto-animate>
               <FormLabel>
@@ -28,7 +33,7 @@
               <FormMessage />
             </FormItem>
           </FormField>
-        </form>
+        </Form>
         <DialogDescription>
           <p>
             {{ $t("modal.privacy") }}
@@ -108,13 +113,7 @@ const schema = toTypedSchema(
   })
 );
 
-const { handleSubmit } = useForm({
-  validationSchema: schema,
-});
-
-const submitHandler = handleSubmit(async (values) => {
-  console.log("submitHandler");
-  console.log(values);
+const submitHandler = async (values: any) => {
   const { error, pending } = await useApiFetch("waitlist", {
     method: "POST",
     body: JSON.stringify(values?.email),
@@ -127,5 +126,5 @@ const submitHandler = handleSubmit(async (values) => {
       title: "You have been added to the patently waiting!",
     });
   }
-});
+};
 </script>

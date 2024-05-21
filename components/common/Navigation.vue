@@ -1,19 +1,19 @@
 <template>
   <nav
-    class="absolute flex items-center justify-between w-screen px-12 py-3 backdrop-blur-xl"
+    class="absolute grid items-center justify-between w-screen grid-cols-5 px-12 py-3 backdrop-blur-xl"
   >
-    <NuxtLink class="w-28" to="/">
+    <NuxtLink class="col-span-2 w-28" to="/">
       <!-- <Logo /> -->
       <div class="h-12 text-7xl">*</div>
     </NuxtLink>
 
-    <div>
+    <div class="flex justify-center">
       <NuxtLink class="px-3 py-2 text-lg font-medium cursor-pointer">
         Our Manifesto
       </NuxtLink>
     </div>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center justify-end col-span-2 gap-3">
       <NuxtLink class="px-3 py-2 text-lg font-medium cursor-pointer">
         Blog
       </NuxtLink>
