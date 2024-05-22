@@ -3,8 +3,7 @@
     class="absolute grid items-center justify-between w-screen grid-cols-5 px-12 py-3 backdrop-blur-xl"
   >
     <NuxtLink class="col-span-2 w-28" to="/">
-      <!-- <Logo /> -->
-      <div class="h-12 text-7xl">*</div>
+      <Logo class="h-9 w-9 dark:fill-gray-200" />
     </NuxtLink>
 
     <div class="flex justify-center">
