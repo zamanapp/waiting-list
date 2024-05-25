@@ -89,8 +89,17 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
-const padding = ref(48); // p-12 = 48px
-const moonSize = ref(width.value - padding.value * 2);
+const padding = ref(115); // p-12 = 48px
+const moonSize = computed(() => {
+  if (mobile.value) {
+    return width.value * 2;
+  } else if (tablets.value) {
+    return width.value * 2;
+  } else {
+    return width.value - padding.value * 2;
+  }
+});
+
 const lineWeight = ref(32);
 const rotation = ref(0);
 
@@ -105,10 +114,7 @@ onMounted(() => {
   moons.value = document.querySelectorAll("svg#moonSymbol");
   handleResize();
   watch([width, height, moonSize, tablets], handleResize);
-  // watch(width, handleResize);
-  // watch(height, handleResize);
-  // watch(moonSize, handleResize);
-  // watch(tablets, handleResize);
+
   if (locale.value === "ar") {
     watch(sideWidth, (value) => {
       left.value!.style.width = `${value}%`;
@@ -124,7 +130,6 @@ function handleResize() {
   if (mobile.value) {
     const y = moonSize.value * 1.25;
     const x = width.value;
-    moonSize.value = width.value * 2;
     lineWeight.value = 28;
 
     rotation.value = 45;
@@ -136,7 +141,6 @@ function handleResize() {
   } else if (tablets.value) {
     const y = moonSize.value / 2 - padding.value * 2;
     const x = width.value;
-    moonSize.value = width.value * 2;
     lineWeight.value = 32;
     rotation.value = 45;
     if (moons.value) {
@@ -154,7 +158,6 @@ function handleResize() {
     }
 
     if (moonSize.value > width.value) {
-      moonSize.value = width.value - padding.value * 2;
       // just a guard code in case the moonSize is greater than the width
       const x =
         width.value / 2 +

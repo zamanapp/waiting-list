@@ -15,6 +15,11 @@
         <use xlink:href="#crescent" />
       </clipPath>
       <path
+        id="year"
+        class="origin-center"
+        :d="circleToPath(moonSize + YEAR_R_CONST)"
+      />
+      <path
         :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
         id="months"
         class="origin-center"
@@ -41,7 +46,28 @@
         :d="circleToPath(moonSize + SECONDS_R_CONST)"
       />
     </defs>
-
+    <text
+      :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
+      v-if="showGuide"
+      class="origin-center"
+      ref="yearPath"
+      :transform="`rotate(0 ${centerX} ${centerY})`"
+      :textLength="yearTextLength"
+    >
+      <textPath
+        :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
+        :class="`origin-center ${
+          $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
+        } fill-gray-300 dark:fill-gray-500`"
+        :style="`font-size: ${yearFontSize}px;`"
+        :textLength="yearTextLength"
+        href="#year"
+      >
+        <tspan class="font-semibold fill-black dark:fill-gray-300" dy="0">
+          {{ year }}
+        </tspan>
+      </textPath>
+    </text>
     <text
       :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
       v-if="showGuide"
@@ -268,6 +294,9 @@ let orbsSurface = computed(() => {
 });
 
 // we calculate the orbits radius additional constant by by dividing that space equally then we minus the font size used on the orb to shift the radius
+const YEAR_R_CONST = computed(
+  () => orbsSurface.value + orbsSurface.value * 0.3
+);
 const MONTHS_R_CONST = computed(() => orbsSurface.value); // the last orbit uses all the available space
 const DAYS_R_CONST = computed(
   () => orbsSurface.value * (4 / 5) - daysFontSize.value / 3
@@ -297,6 +326,14 @@ const mCircumference = computed(
 const sCircumference = computed(
   () => 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value)
 );
+
+const yearFontSize = computed(() => {
+  const circumference =
+    2 * Math.PI * (props.moonSize + orbsSurface.value * 1.3);
+  // we take the size of the Hijri months as they are longer
+  const size = circumference / encoder.encode(hijriMonths.value).length;
+  return size * 1.3;
+});
 
 const monthsFontSize = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + orbsSurface.value);
@@ -329,38 +366,45 @@ const secondsFontSize = computed(() => {
   return size * 4;
 });
 
-const browser = Browser.getParser(window.navigator.userAgent).getBrowser().name;
+// const browser = Browser.getParser(window.navigator.userAgent).getBrowser().name;
+
+const yearTextLength = computed(() => {
+  const circumference = 2 * Math.PI * (props.moonSize + YEAR_R_CONST.value);
+  const unit = circumference / (year.value.length + 2 * 12 - 1);
+  return (circumference - unit) / 12;
+});
 
 const monthsTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value);
   const unit = circumference / moLength.value;
-  return browser === "Safari" ? circumference - unit : circumference - unit;
+  return circumference - unit;
 });
 
 const daysTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + DAYS_R_CONST.value);
   const unit = circumference / days.value.length;
-  return browser === "Safari" ? circumference - unit : circumference - unit;
+  return circumference - unit;
 });
 
 const hoursTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + HOURS_R_CONST.value);
   const unit = circumference / hours.value.length;
-  return browser === "Safari" ? circumference - unit : circumference - unit;
+  return circumference - unit;
 });
 
 const minutesTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + MINUTES_R_CONST.value);
   const unit = circumference / minutes.length;
-  return browser === "Safari" ? circumference - unit : circumference - unit;
+  return circumference - unit;
 });
 
 const secondsTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value);
   const unit = circumference / seconds.length;
-  return browser === "Safari" ? circumference - unit : circumference - unit;
+  return circumference - unit;
 });
 
+const yearPath = ref<SVGTextElement | null>(null);
 const monthsPath = ref<SVGTextElement | null>(null);
 const daysPath = ref<SVGTextElement | null>(null);
 const hoursPath = ref<SVGTextElement | null>(null);
@@ -369,7 +413,7 @@ const secondsPath = ref<SVGTextElement | null>(null);
 
 const sizePx = computed(() => `${props.moonSize}px`);
 const outerSize = computed(() => props.moonSize + props.lineWeight / 2 - 1);
-const maxDimension = computed(() => props.moonSize * 4);
+const maxDimension = computed(() => props.moonSize * 4.2);
 const centerX = computed(() => maxDimension.value / 2);
 const centerY = computed(() => maxDimension.value / 2);
 
@@ -476,9 +520,14 @@ const month = computed(() => {
   }).format(temporalDate.value.toInstant());
 });
 
+const year = computed(() => {
+  return new Intl.DateTimeFormat(locale.value, {
+    year: "numeric",
+    calendar: cal.value,
+  }).format(temporalDate.value.toInstant());
+});
+
 // some ligatures in arabic combine two letters in one glyph so we need to count them out
-console.log(months.value);
-console.log(locale.value);
 const DUAL_GLYPH_LIGATURES = 4;
 const moLength = computed(() => {
   if (locale.value === "ar") {
@@ -489,7 +538,6 @@ const moLength = computed(() => {
       : months.value.length;
   }
 });
-// const moLength = computed(() => encoder.encode(months.value).length);
 
 console.log("length", moLength.value);
 console.log("size", encoder.encode(months.value).length);
@@ -530,6 +578,14 @@ const moIndex = computed(() =>
       (months.value.search(month.value) + month.value.length)
     : months.value.search(month.value)
 );
+
+// 90 degree offset
+// const yearRotation = computed(() => {
+//   const circumference = 2 * Math.PI * (props.moonSize + YEAR_R_CONST.value);
+//   const unit = circumference / (year.value.length + 2 * 12 - 1);
+//   return 90 - year.value.length / 2;
+// });
+
 const monthsRotation = computed(() => {
   return (
     moUnit.value * moIndex.value -
@@ -685,6 +741,24 @@ whenever(focused, () => {
         transformOrigin: "center center center",
       }
     );
+
+    gsap.fromTo(
+      yearPath.value,
+      {
+        attr: {
+          transform: `rotate(0 ${centerX.value} ${centerY.value})`,
+        },
+      },
+      {
+        attr: {
+          transform: `rotate(75 ${centerX.value} ${centerY.value})`,
+        },
+        duration: 0.5,
+        // in out
+        ease: "sine",
+        transformOrigin: "center center center",
+      }
+    );
     resettingAnimation.value = false;
   }
 });
@@ -746,35 +820,18 @@ onMounted(() => {
       ease: "sine",
       transformOrigin: "center center center",
     });
+    gsap.to(yearPath.value, {
+      attr: {
+        transform: `rotate(75 ${centerX.value} ${centerY.value})`,
+      },
+      duration: 0.5,
+      // in out
+      ease: "sine",
+      transformOrigin: "center center center",
+    });
   });
 });
 
-// watch(
-//   locale,
-//   () => {
-//     // arabic text combines some letters into one ligature
-//     monthsRotation.value = 0;
-//     monthsRotation.value =
-//       moUnit * moIndex.value -
-//       (moLength.value / 4) * moUnit +
-//       (moUnit * (month.value.length - 1)) / 2;
-
-//     console.log("local length", moLength.value);
-//     console.log("locale index", moIndex.value);
-//     console.log("locale rotation", monthsRotation.value);
-
-//     daysRotation.value =
-//       dUnit * dIndex + dUnit - (days.value.length / 4) * dUnit;
-
-//     // hoursRotation.value =
-//     //   hUnit * hIndex + hUnit - (hours.value.length / 4) * hUnit;
-
-//     // minutesRotation.value = mUnit * mIndex + mUnit - (minutes.length / 4) * mUnit;
-
-//     // secondsRotation.value = sUnit * sIndex + sUnit - (seconds.length / 4) * sUnit;
-//   },
-//   { flush: "post" }
-// );
 const flipValue = computed(() => {
   if (props.flip) {
     return moonPhase.value > 180 ? 0 : maxDimension.value / 2;
