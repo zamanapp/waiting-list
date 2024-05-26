@@ -285,31 +285,75 @@ const { locale } = useI18n();
 
 let orbsSurface = computed(() => {
   if (mobile.value) {
-    return props.moonSize * 1.75; // 175% of the moon size
+    return props.moonSize * 0.73; // 175% of the moon size
   } else if (tablets.value) {
-    return props.moonSize * 1.5; // 150% of the moon size
+    return props.moonSize * 0.5; // 150% of the moon size
   } else {
     return props.moonSize * 0.73; // we take 73% of the remaining space to allow it to be used by the orbits
   }
 });
 
 // we calculate the orbits radius additional constant by by dividing that space equally then we minus the font size used on the orb to shift the radius
-const YEAR_R_CONST = computed(
-  () => orbsSurface.value + orbsSurface.value * 0.3
-);
-const MONTHS_R_CONST = computed(() => orbsSurface.value); // the last orbit uses all the available space
-const DAYS_R_CONST = computed(
-  () => orbsSurface.value * (4 / 5) - daysFontSize.value / 3
-);
-const HOURS_R_CONST = computed(
-  () => orbsSurface.value * (3 / 5) - hoursFontSize.value / 2
-);
-const MINUTES_R_CONST = computed(
-  () => orbsSurface.value * (2 / 5) - minutesFontSize.value
-);
-const SECONDS_R_CONST = computed(
-  () => orbsSurface.value * (1 / 5) - secondsFontSize.value
-);
+const YEAR_R_CONST = computed(() => {
+  const large = orbsSurface.value + orbsSurface.value * 0.3;
+  if (mobile.value) {
+    return large;
+  } else if (tablets.value) {
+    return large + 40;
+  } else {
+    return large;
+  }
+});
+const MONTHS_R_CONST = computed(() => {
+  const large = orbsSurface.value;
+  if (mobile.value) {
+    return large;
+  } else if (tablets.value) {
+    return large + 40;
+  } else {
+    return large;
+  }
+}); // the last orbit uses all the available space
+const DAYS_R_CONST = computed(() => {
+  const large = orbsSurface.value * (4 / 5) - daysFontSize.value / 3;
+  if (mobile.value) {
+    return large;
+  } else if (tablets.value) {
+    return large + 40;
+  } else {
+    return large;
+  }
+});
+const HOURS_R_CONST = computed(() => {
+  const large = orbsSurface.value * (3 / 5) - hoursFontSize.value / 2;
+  if (mobile.value) {
+    return large;
+  } else if (tablets.value) {
+    return large + 40;
+  } else {
+    return large;
+  }
+});
+const MINUTES_R_CONST = computed(() => {
+  const large = orbsSurface.value * (2 / 5) - minutesFontSize.value;
+  if (mobile.value) {
+    return large;
+  } else if (tablets.value) {
+    return large + 40;
+  } else {
+    return large;
+  }
+});
+const SECONDS_R_CONST = computed(() => {
+  const large = orbsSurface.value * (1 / 5) - secondsFontSize.value;
+  if (mobile.value) {
+    return large;
+  } else if (tablets.value) {
+    return large + 40;
+  } else {
+    return large;
+  }
+});
 
 const moCircumference = computed(
   () => 2 * Math.PI * (props.moonSize + MONTHS_R_CONST.value)

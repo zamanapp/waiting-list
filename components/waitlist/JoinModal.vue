@@ -3,7 +3,7 @@
     <DialogTrigger as-child>
       <Button
         :variant="buttonType"
-        class="px-6 py-3 mt-6 text-xl font-medium rounded-md w-52 md:self-end lg:self-start disabled:cursor-not-allowed"
+        class="px-6 py-3 mt-3 text-xl font-medium rounded-md w-52 lg:self-start disabled:cursor-not-allowed"
       >
         {{ waitingText }}
       </Button>
