@@ -1,96 +1,130 @@
 <template>
-  <button
-    ref="expandableElement"
-    class="px-6 py-3 mt-6 text-xl font-normal text-white bg-black rounded-md md:self-end lg:self-start dark:text-slate-200 w-fit disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-gray-700"
-    @click="isOpen = true"
-  >
-    <TextExpander
-      class="text-2xl lg:text-xl"
-      :text="$t('waiting.waiting')"
-      :expanded-text="$t('waiting.waitingExpand')"
-      :expand="expand"
-    />
-  </button>
-  <UModal v-model="isOpen">
-    <UCard>
-      <FormKit
-        type="form"
-        id="login"
-        v-model="identity"
-        submit-label="Login"
-        @submit="submitHandler"
-        :actions="false"
+  <Dialog>
+    <DialogTrigger as-child>
+      <Button
+        :variant="buttonType"
+        class="px-6 py-3 mt-3 text-xl font-medium rounded-md w-52 lg:self-start disabled:cursor-not-allowed"
       >
-        <div class="flex items-start w-full">
-          <FormKit
-            type="email"
-            name="email"
-            :sectionsSchema="{
-              label: { $el: null, children: [] },
-            }"
-            :placeholder="$t('modal.email')"
-            :label="$t('modal.email')"
-            validation="required|email"
-            :classes="{
-              outer: 'w-2/3 mx-2 my-0',
-            }"
-          />
-          <FormKit
-            type="submit"
-            :classes="{
-              outer: 'grow my-0',
-              wrapper: '$reset my-0',
-            }"
-          >
-            <div class="flex justify-center align-top">
-              <MoonLoading v-if="loading" />
-              <div v-else>{{ $t("modal.join") }}</div>
-            </div>
-          </FormKit>
-        </div>
-      </FormKit>
-      <p>
-        {{ $t("modal.privacy") }}
-        <RouterLink to="/privacy" class="underline cursor-pointer">{{
-          $t("modal.policy")
-        }}</RouterLink>
-      </p>
-    </UCard>
-  </UModal>
+        {{ waitingText }}
+      </Button>
+    </DialogTrigger>
+
+    <DialogContent :disable-outside-pointer-events="true" :trapFocus="true">
+      <DialogHeader>
+        <DialogTitle>Get notified when we launch</DialogTitle>
+        <Form
+          id="sabrListForm"
+          class="space-y-6"
+          :validation-schema="schema"
+          @submit="submitHandler"
+        >
+          <FormField name="email" v-slot="{ componentField }">
+            <FormItem v-auto-animate>
+              <FormLabel>
+                {{ $t("modal.email") }}
+              </FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  :placeholder="$t('modal.placeholder')"
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+        </Form>
+        <DialogDescription>
+          <p>
+            {{ $t("modal.privacy") }}
+            <NuxtLink to="/privacy" class="underline cursor-pointer">{{
+              $t("modal.policy")
+            }}</NuxtLink>
+          </p>
+        </DialogDescription>
+
+        <DialogFooter>
+          <Button form="sabrListForm" type="submit">{{
+            $t("modal.join")
+          }}</Button>
+        </DialogFooter>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 import { useApiFetch } from "~/composables/useApiFetch";
+import { vAutoAnimate } from "@formkit/auto-animate/vue";
+import * as z from "zod";
+import { toTypedSchema } from "@vee-validate/zod";
+
+defineProps({
+  waitingText: {
+    type: String,
+    required: true,
+  },
+  buttonType: {
+    type: String as PropType<
+      | "default"
+      | "link"
+      | "destructive"
+      | "outline"
+      | "secondary"
+      | "ghost"
+      | null
+      | undefined
+    >,
+    required: false,
+    default: null,
+  },
+});
 
 const emitter = useEmitter();
-const isOpen = ref(false);
-
-const expand = ref(false);
-
-const expandableElement = ref();
-const isHovered = useElementHover(expandableElement);
-
-watch(isHovered, () => {
-  expand.value = isHovered.value;
-});
-
-const identity = ref({
-  email: "",
-});
 
 let loading = ref(false);
 
-const submitHandler = async () => {
+const schema = toTypedSchema(
+  z.object({
+    email: z
+      .string({
+        required_error: "Email is required",
+      })
+      .email("Invalid email address"),
+  })
+);
+
+const submitHandler = async (values: any) => {
   const { error, pending } = await useApiFetch("waitlist", {
     method: "POST",
-    body: JSON.stringify(identity.value),
+    body: JSON.stringify(values?.email),
   });
 
   loading = pending;
 
   if (!error.value) {
-    emitter.emit("success", "Successfully joined the waiting list");
-    isOpen.value = false;
+    emitter.emit("success", {
+      title: "You have been added to the patently waiting!",
+    });
   }
 };
 </script>

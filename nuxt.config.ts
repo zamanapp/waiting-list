@@ -1,6 +1,3 @@
-import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "url";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
@@ -8,8 +5,9 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
     "@nuxt/devtools",
-    "@nuxthq/ui",
-    "@formkit/nuxt",
+    "@nuxtjs/tailwindcss",
+    "shadcn-nuxt",
+    "@vee-validate/nuxt",
   ],
 
   imports: {
@@ -33,11 +31,11 @@ export default defineNuxtConfig({
         file: "ar.json",
       },
     ],
-    lazy: true,
+    lazy: false,
     langDir: "locales",
     defaultLocale: "en",
     strategy: "prefix_except_default",
-    precompile: { strictMessage: false },
+    // precompile: { strictMessage: false },
     baseUrl:
       process.env.NODE_ENV === "production"
         ? process.env.BASE_URL
@@ -58,6 +56,14 @@ export default defineNuxtConfig({
   },
 
   components: [{ path: "~/components", pathPrefix: false }],
+
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        baseUrl: ".",
+      },
+    },
+  },
 
   vite: {
     vue: {

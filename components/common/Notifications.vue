@@ -1,58 +1,36 @@
 <template>
-  <NotificationGroup group="error">
-    <div
-      class="fixed inset-0 z-50 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
-    >
-      <div class="w-full max-w-sm">
-        <Notification
-          v-slot="{ notifications }"
-          enter="transform ease-out duration-300 transition"
-          enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
-          enter-to="translate-y-0 opacity-100 sm:translate-x-0"
-          leave="transition ease-in duration-500"
-          leave-from="opacity-100"
-          leave-to="opacity-0"
-          move="transition duration-500"
-          move-delay="delay-300"
-        >
-          <Alert
-            v-for="notification in notifications"
-            :key="notification.id"
-            type="danger"
-            :title="notification.title"
-          >
-            {{ notification.text }}
-          </Alert>
-        </Notification>
-      </div>
-    </div>
-  </NotificationGroup>
-  <NotificationGroup group="success">
-    <div
-      class="fixed inset-0 z-50 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
-    >
-      <div class="w-full max-w-sm">
-        <Notification
-          v-slot="{ notifications }"
-          enter="transform ease-out duration-300 transition"
-          enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
-          enter-to="translate-y-0 opacity-100 sm:translate-x-0"
-          leave="transition ease-in duration-500"
-          leave-from="opacity-100"
-          leave-to="opacity-0"
-          move="transition duration-500"
-          move-delay="delay-300"
-        >
-          <Alert
-            v-for="notification in notifications"
-            :key="notification.id"
-            type="success"
-            :title="notification.title"
-          >
-            {{ notification.text }}
-          </Alert>
-        </Notification>
-      </div>
-    </div>
-  </NotificationGroup>
+  <Toaster position="top-right" rich-colors />
 </template>
+
+<script lang="ts" setup>
+import { Toaster, toast } from "vue-sonner";
+import type { ExternalToast } from "~/composables/useEmitter";
+import { errorsMap } from "~/utils/constants/Errors";
+
+interface NotificationPayload {
+  title: string;
+  options?: ExternalToast;
+}
+
+const emitter = useEmitter();
+
+emitter.on("info", (payload: NotificationPayload) => {
+  toast(payload.title, payload.options);
+});
+
+emitter.on("success", (payload: NotificationPayload) => {
+  toast.success(payload.title, payload.options);
+});
+
+emitter.on("warning", (payload: NotificationPayload) => {
+  toast.warning(payload.title, payload.options);
+});
+
+emitter.on("error", (payload: NotificationPayload) => {
+  // check if the error has a friendlier message
+  const friendlierMessage = errorsMap.has(payload.title)
+    ? errorsMap.get(payload.title)
+    : payload.title;
+  toast.error(friendlierMessage!, payload.options);
+});
+</script>
