@@ -197,7 +197,7 @@
       :x="flipValue"
     />
     <rect
-      class="illusion fill-white dark:fill-gray-300"
+      class="illusion fill-white dark:fill-gray-100"
       clip-path="url(#clip-moon)"
       width="50%"
       height="100%"
@@ -207,7 +207,7 @@
     <use
       fill-opacity="0"
       fill="white"
-      class="stroke-black dark:stroke-gray-300 dark:shadow-xl shadow-gray-200"
+      class="stroke-black dark:stroke-gray-300 dark:shadow-xl shadow-gray-100"
       href="#moon"
       :stroke-width="lineWeight"
     ></use>
@@ -886,7 +886,7 @@ const flipValue = computed(() => {
 
 const fill = computed(() =>
   moonPhase.value >= 90 && moonPhase.value <= 270
-    ? "fill-white dark:fill-gray-300"
+    ? "fill-white dark:fill-gray-100"
     : "fill-black dark:fill-gray-950"
 );
 

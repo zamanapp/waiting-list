@@ -17,7 +17,7 @@
     </div>
 
     <div
-      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-80 lg:justify-end md:invisible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-80 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
     >
       <p class="max-w-xs">
         "{{ $t("waiting.body") }}"
@@ -56,7 +56,7 @@
     </div>
 
     <div
-      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-80 lg:justify-end md:invisible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-80 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
     >
       <p class="max-w-xs">
         "{{ $t("waiting.body") }}"
