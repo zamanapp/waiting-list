@@ -17,6 +17,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        logo: ["'Space Grotesk'", ...defaultTheme.fontFamily.sans],
         main: ["'Satoshi'", ...defaultTheme.fontFamily.sans],
         monoArabic: ["'Kawkab Mono'", ...defaultTheme.fontFamily.mono],
       },
