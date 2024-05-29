@@ -12,18 +12,18 @@
     </button>
   </div>
   <div dir="ltr" class="grid items-center">
-    <Moon
+    <!-- <Moon
       :moon-size="moonSize"
       :line-weight="lineWeight"
       :calendar="calendar"
       class="mx-auto origin-center pointer-events-none"
       show-guide
-    />
+    /> -->
   </div>
 </template>
 
 <script setup lang="ts">
-const { height, width } = useWindowSize();
+const { width } = useWindowSize();
 import { Calendars } from "../types/Calendars";
 
 const padding = ref(48); // p-12 = 48px

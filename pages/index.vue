@@ -17,6 +17,7 @@
     </div>
 
     <div
+      ref="quote"
       class="absolute flex justify-center w-screen text-xl font-medium text-center mt-80 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
     >
       <p class="max-w-xs">
@@ -94,7 +95,13 @@ const mobile = breakpoints.smaller("md");
 const padding = ref(115); // p-12 = 48px
 const moonSize = computed(() => {
   if (mobile.value) {
-    return width.value * 2;
+    if (quote.value) {
+      const { bottom } = quote.value.getBoundingClientRect();
+      const ratio = 1 + bottom / height.value;
+      return width.value * ratio - 20;
+    } else {
+      return width.value * 1.5;
+    }
   } else if (tablets.value) {
     return width.value * 2;
   } else {
@@ -114,6 +121,7 @@ const lineWeight = computed(() => {
 
 let moons = ref<NodeListOf<SVGSVGElement> | null>(null);
 let left = ref<HTMLElement | null>(null);
+const quote = ref<HTMLElement | null>(null);
 // const { locale } = useI18n();
 
 const { x } = useMouse();

@@ -537,8 +537,7 @@ const months = computed(() => {
 const hijriMonths = computed(() => {
   return Array.from(
     {
-      length: temporalDate.value.withCalendar(Calendars.UMM_AL_QURA)
-        .monthsInYear,
+      length: 12,
     },
     (_: number, i: number) => {
       const date = temporalDate.value.withCalendar(Calendars.UMM_AL_QURA).with({
