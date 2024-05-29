@@ -9,7 +9,7 @@
       class="absolute flex flex-col w-screen overflow-hidden lg:w-[50vw] items-center lg:items-start mt-24 md:mt-36 font-medium lg:mx-12 lg:mt-36"
     >
       <h2
-        class="max-w-sm mx-12 mb-6 text-4xl font-semibold text-center text-pretty lg:mx-0 md:text-5xl md:max-w-lg lg:max-w-md lg:text-start font-main dark:text-slate-200"
+        class="max-w-screen-md mb-6 text-4xl font-semibold text-center md:mx-12 text-pretty lg:mx-0 md:text-5xl md:max-w-lg lg:max-w-md lg:text-start font-main dark:text-slate-200"
       >
         {{ $t("waiting.manage") }}
       </h2>
@@ -18,7 +18,7 @@
 
     <div
       ref="quote"
-      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-80 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-72 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
     >
       <p class="max-w-xs">
         "{{ $t("waiting.body") }}"
@@ -46,7 +46,7 @@
       class="absolute flex flex-col w-screen overflow-hidden md:mt-36 lg:w-[50vw] items-center lg:items-start mt-24 font-medium lg:mx-12 lg:mt-36"
     >
       <h2
-        class="max-w-sm mx-12 mb-6 text-4xl font-semibold text-center md:max-w-lg lg:mx-0 md:text-5xl lg:max-w-md lg:text-start font-main dark:text-slate-200"
+        class="max-w-screen-md mb-6 text-4xl font-semibold text-center md:mx-12 md:max-w-lg lg:mx-0 md:text-5xl lg:max-w-md lg:text-start font-main dark:text-slate-200"
       >
         {{ $t("waiting.manage") }}
       </h2>
@@ -57,7 +57,7 @@
     </div>
 
     <div
-      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-80 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-72 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
     >
       <p class="max-w-xs">
         "{{ $t("waiting.body") }}"
@@ -67,7 +67,6 @@
         >
       </p>
     </div>
-
     <div dir="ltr">
       <Moon
         :moon-size="moonSize"
@@ -87,13 +86,20 @@ definePageMeta({
   layout: "slider",
 });
 
-const { height, width } = useWindowSize();
+const { height, width } = useWindowSize({ includeScrollbar: true });
 const breakpoints = useBreakpoints(breakpointsTailwind);
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
 const padding = ref(115); // p-12 = 48px
-const moonSize = computed(() => {
+const overlap = computed(() => {
+  if (moons.value === null || quote.value === null) return false;
+  const moonBounding = moons.value![0].getBoundingClientRect();
+  const quoteBounding = quote.value!.getBoundingClientRect();
+  return quoteBounding.bottom >= moonBounding.top;
+});
+const moonSize = ref(0);
+const initialMoonSize = computed(() => {
   if (mobile.value) {
     if (quote.value) {
       const { bottom } = quote.value.getBoundingClientRect();
@@ -138,11 +144,25 @@ const desiredY = computed(() => {
   return height.value - moonSize.value / 2;
 });
 
+// resize the moon on mobiles if the quote and the moon overlap
+watch(
+  overlap,
+  (value) => {
+    if (mobile.value && quote.value && value) {
+      const { bottom } = quote.value.getBoundingClientRect();
+      let ratio = 0.5 + bottom / height.value;
+      const desiredWidth = width.value * ratio - 20;
+      moonSize.value = desiredWidth;
+    }
+  },
+  { immediate: true }
+);
+
 onMounted(() => {
+  moonSize.value = initialMoonSize.value;
   moons.value = document.querySelectorAll("svg#moonSymbol");
   handleResize();
   watch([width, height, moonSize, tablets], handleResize);
-
   watch(sideWidth, (value) => {
     left.value!.style.width = `${value}%`;
   });
