@@ -582,9 +582,6 @@ const moLength = computed(() => {
   }
 });
 
-console.log("length", moLength.value);
-console.log("size", encoder.encode(months.value).length);
-
 const day = computed(() => {
   return temporalDate.value.day <= 9
     ? `0${temporalDate.value.day}`

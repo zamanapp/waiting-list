@@ -44,7 +44,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 # TODO:
 
 - [x] Persist the language switching
-- [ ] Fix months centring in both lang
+- [x] Fix months centring in both lang
 - [ ] Fix browser inconsistencies
   - [x] Fix text flip on Firefox
   - [x] Fix text length inconsistent with Firefox and safari
@@ -57,7 +57,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 - [x] Add notification
 - [ ] Privacy and policy
 - [ ] Manifesto
-- [ ] Add a logo
-- [ ] Add a favicon
+- [x] Add a logo
+- [x] Add a favicon
 - [ ] Revisit the header
-- [ ] Fix the join button
+- [x] Fix the join button

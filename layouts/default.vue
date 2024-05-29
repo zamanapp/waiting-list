@@ -33,8 +33,6 @@ const head = useLocaleHead({
 });
 
 const title = computed(
-  () => route.meta.title ?? `${appConfig.appName} - Coming soon`
+  () => route.meta.title ?? `${appConfig.appName} - Join the Sabr list`
 );
-
-// const title = computed(() => t('layouts.title', { title: t(route.meta.title ?? 'TBD') }))
 </script>
