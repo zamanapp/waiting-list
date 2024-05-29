@@ -268,7 +268,6 @@ import { Temporal, Intl } from "@js-temporal/polyfill";
 import { computed, ref } from "vue";
 import { breakpointsTailwind, useWindowFocus, whenever } from "@vueuse/core";
 import { gsap } from "gsap";
-import Browser from "bowser";
 // https://tc39.es/proposal-temporal/docs/calendar.html#writing-cross-calendar-code
 // todo: customize https://github.com/GriffinJohnston/uiball-loaders
 // realtime: https://dev.to/thormeier/use-your-i-moon-gination-lets-build-a-moon-phase-visualizer-with-css-and-js-aih
@@ -409,8 +408,6 @@ const secondsFontSize = computed(() => {
   const size = circumference / (seconds.length + (seconds.length - 1));
   return size * 4;
 });
-
-// const browser = Browser.getParser(window.navigator.userAgent).getBrowser().name;
 
 const yearTextLength = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + YEAR_R_CONST.value);
