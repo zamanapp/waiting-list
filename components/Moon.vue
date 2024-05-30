@@ -625,6 +625,7 @@ const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 let temporalDate = useTemporalNow({
   calendar: cal.value,
   timeZone,
+  interval: 500,
 });
 
 const moonPhase = computed(() => {
