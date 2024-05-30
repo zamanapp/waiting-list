@@ -277,6 +277,154 @@ const props = defineProps(propsConfig);
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const focused = useWindowFocus();
 const encoder = new TextEncoder();
+const monthsMap = new Map([
+  [
+    "ar",
+    new Map([
+      [
+        Calendars.ISO,
+        [
+          " يناير",
+          " فبراير",
+          " مارس",
+          " أبريل",
+          " مايو",
+          " يونيو",
+          " يوليو",
+          " أغسطس",
+          " سبتمبر",
+          " أكتوبر",
+          " نوفمبر",
+          " ديسمبر",
+        ],
+      ],
+      [
+        Calendars.UMM_AL_QURA,
+        [
+          " محرم",
+          " صفر",
+          " ربيع الأول",
+          " ربيع الثاني",
+          " جمادى الأولى",
+          " جمادى الثانية",
+          " رجب",
+          " شعبان",
+          " رمضان",
+          " شوال",
+          " ذو القعدة",
+          " ذو الحجة",
+        ],
+      ],
+      [
+        Calendars.TABULAR,
+        [
+          " محرم",
+          " صفر",
+          " ربيع الأول",
+          " ربيع الثاني",
+          " جمادى الأولى",
+          " جمادى الثانية",
+          " رجب",
+          " شعبان",
+          " رمضان",
+          " شوال",
+          " ذو القعدة",
+          " ذو الحجة",
+        ],
+      ],
+      [
+        Calendars.CIVIC,
+        [
+          " محرم",
+          " صفر",
+          " ربيع الأول",
+          " ربيع الثاني",
+          " جمادى الأولى",
+          " جمادى الثانية",
+          " رجب",
+          " شعبان",
+          " رمضان",
+          " شوال",
+          " ذو القعدة",
+          " ذو الحجة",
+        ],
+      ],
+    ]),
+  ],
+  [
+    "en",
+    new Map([
+      [
+        Calendars.ISO,
+        [
+          " Jan",
+          " Feb",
+          " Mar",
+          " Apr",
+          " May",
+          " Jun",
+          " Jul",
+          " Aug",
+          " Sep",
+          " Oct",
+          " Nov",
+          " Dec",
+        ],
+      ],
+      [
+        Calendars.UMM_AL_QURA,
+        [
+          " Muh.",
+          " Saf.",
+          " Rab. I",
+          " Rab. II",
+          " Jum. I",
+          " Jum. II",
+          " Raj.",
+          " Sha.",
+          " Ram.",
+          " Shaw.",
+          " Dhuʻl-Q.",
+          " Dhuʻl-H.",
+        ],
+      ],
+      [
+        Calendars.TABULAR,
+        [
+          " Muh.",
+          " Saf.",
+          " Rab. I",
+          " Rab. II",
+          " Jum. I",
+          " Jum. II",
+          " Raj.",
+          " Sha.",
+          " Ram.",
+          " Shaw.",
+          " Dhuʻl-Q.",
+          " Dhuʻl-H.",
+        ],
+      ],
+      [
+        Calendars.CIVIC,
+        [
+          " Muh.",
+          " Saf.",
+          " Rab. I",
+          " Rab. II",
+          " Jum. I",
+          " Jum. II",
+          " Raj.",
+          " Sha.",
+          " Ram.",
+          " Shaw.",
+          " Dhuʻl-Q.",
+          " Dhuʻl-H.",
+        ],
+      ],
+    ]),
+  ],
+]);
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
@@ -511,23 +659,13 @@ let days = computed(() => {
 });
 
 const months = computed(() => {
-  return Array.from(
-    { length: temporalDate.value.monthsInYear },
-    (_: number, i: number) => {
-      const date = temporalDate.value.with({
-        day: 1,
-        month: i + 1,
-      });
-      return " ".concat(
-        new Intl.DateTimeFormat(locale.value, {
-          month: "short",
-          calendar: cal.value,
-        }).format(date.toInstant())
-      );
-    }
-  )
-    .join("")
-    .concat(" ");
+  return (
+    monthsMap
+      .get(locale.value)
+      ?.get(cal.value.id as Calendars)
+      ?.join("")
+      .concat(" ") || ""
+  );
 });
 
 // used to calcualate the months font size as we take the longest of both calendars
@@ -554,17 +692,21 @@ const hijriMonths = computed(() => {
 });
 
 const month = computed(() => {
-  return new Intl.DateTimeFormat(locale.value, {
-    month: "short",
-    calendar: cal.value,
-  }).format(temporalDate.value.toInstant());
+  return (
+    monthsMap.get(locale.value)?.get(cal.value.id as Calendars)?.[
+      temporalDate.value.month - 1
+    ] || ""
+  );
 });
 
 const year = computed(() => {
+  // replace BC with AH for Chromium Android bug
   return new Intl.DateTimeFormat(locale.value, {
     year: "numeric",
     calendar: cal.value,
-  }).format(temporalDate.value.toInstant());
+  })
+    .format(temporalDate.value.toInstant())
+    .replace("BC", "AH");
 });
 
 // some ligatures in arabic combine two letters in one glyph so we need to count them out
