@@ -1,9 +1,13 @@
 <template>
   <div class="flex items-center gap-3">
-    <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:telegram" />
+    <NuxtLink to="https://t.me/zamanapp" target="__blank">
+      <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:telegram" />
+    </NuxtLink>
     <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:new-twitter" />
     <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:linkedin-01" />
-    <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:github" />
+    <NuxtLink to="https://github.com/zamanapp" target="__blank">
+      <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:github" />
+    </NuxtLink>
   </div>
 </template>
 

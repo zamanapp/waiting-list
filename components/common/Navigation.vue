@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="absolute grid items-center justify-between w-screen grid-cols-2 px-6 py-3 md:grid-cols-4 lg:grid-cols-5 md:px-12 backdrop-blur-xl"
+    class="absolute grid items-center justify-between w-full grid-cols-2 px-6 py-3 md:grid-cols-4 lg:grid-cols-5 md:px-12 backdrop-blur-xl"
   >
     <NuxtLink
       class="inline-flex items-center gap-2 align-middle cols-span-1 lg:col-span-2"
@@ -22,7 +22,7 @@
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader class="gap-6 my-12">
-          <NuxtLink>
+          <NuxtLink :to="localePath('/manifesto')">
             <DrawerTitle>Manifesto</DrawerTitle>
           </NuxtLink>
           <NuxtLink>
@@ -37,7 +37,10 @@
     </Drawer>
 
     <div v-if="!mobile" class="flex justify-center invisible md:visible">
-      <NuxtLink class="px-3 py-2 text-lg font-medium cursor-pointer">
+      <NuxtLink
+        :to="localePath('/manifesto')"
+        class="px-3 py-2 text-lg font-medium cursor-pointer"
+      >
         Manifesto
       </NuxtLink>
     </div>
@@ -62,6 +65,7 @@
 import { breakpointsTailwind } from "@vueuse/core";
 import { Icon } from "@iconify/vue";
 
+const localePath = useLocalePath();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 
 const mobile = breakpoints.smaller("md");

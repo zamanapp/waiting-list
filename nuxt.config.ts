@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
     "@vee-validate/nuxt",
+    "@nuxt/content",
   ],
 
   app: {
@@ -60,6 +61,11 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       useCookie: true,
     },
+  },
+
+  content: {
+    locales: ["en", "ar"],
+    defaultLocale: "en",
   },
 
   runtimeConfig: {
