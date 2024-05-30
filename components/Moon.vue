@@ -268,6 +268,7 @@ import { Temporal, Intl } from "@js-temporal/polyfill";
 import { computed, ref } from "vue";
 import { breakpointsTailwind, useWindowFocus, whenever } from "@vueuse/core";
 import { gsap } from "gsap";
+import Browser from "bowser";
 // https://tc39.es/proposal-temporal/docs/calendar.html#writing-cross-calendar-code
 // todo: customize https://github.com/GriffinJohnston/uiball-loaders
 // realtime: https://dev.to/thormeier/use-your-i-moon-gination-lets-build-a-moon-phase-visualizer-with-css-and-js-aih
@@ -518,19 +519,27 @@ const sCircumference = computed(
   () => 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value)
 );
 
+const browserInfo = computed(() => Browser.parse(window.navigator.userAgent));
+
 const yearFontSize = computed(() => {
   const circumference =
     2 * Math.PI * (props.moonSize + orbsSurface.value * 1.3);
   // we take the size of the Hijri months as they are longer
   const size = circumference / encoder.encode(hijriMonths.value).length;
-  return size * 1.3;
+  return browserInfo.value.browser.name === "Chrome" &&
+    browserInfo.value.os.name === "Android"
+    ? size * 0.85
+    : size * 1.3;
 });
 
 const monthsFontSize = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + orbsSurface.value);
   // we take the size of the hijri months as they are longer
   const size = circumference / encoder.encode(hijriMonths.value).length;
-  return size * 1.3;
+  return browserInfo.value.browser.name === "Chrome" &&
+    browserInfo.value.os.name === "Android"
+    ? size * 0.85
+    : size * 1.3;
 });
 const daysFontSize = computed(() => {
   const circumference =
