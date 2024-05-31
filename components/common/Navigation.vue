@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="absolute grid items-center justify-between w-screen grid-cols-2 px-6 py-3 md:grid-cols-4 lg:grid-cols-5 md:px-12 backdrop-blur-xl"
+    class="grid items-center justify-between w-screen grid-cols-2 px-6 py-3 md:grid-cols-4 lg:grid-cols-5 md:px-12"
   >
     <NuxtLink
       class="inline-flex items-center gap-2 align-middle cols-span-1 lg:col-span-2"

@@ -15,7 +15,7 @@
       </template>
     </Head>
     <Body>
-      <Navigation />
+      <Navigation class="fixed backdrop-blur-xl" />
       <slot />
       <DefaultFooter />
     </Body>
