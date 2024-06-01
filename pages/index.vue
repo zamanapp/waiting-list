@@ -3,7 +3,7 @@
     ref="left"
     class="dark absolute w-[50%] h-screen overflow-hidden z-[2] bg-gray-900 text-white"
   >
-    <Navigation />
+    <Navigation ref="topNav" />
 
     <div
       class="absolute flex flex-col w-screen overflow-hidden lg:w-[50vw] items-center lg:items-start mt-24 md:mt-36 font-medium lg:mx-12 lg:mt-36"
@@ -88,6 +88,12 @@ definePageMeta({
 
 const { height, width } = useWindowSize({ includeScrollbar: true });
 const breakpoints = useBreakpoints(breakpointsTailwind);
+const { pixelRatio } = useDevicePixelRatio();
+
+console.log("width", width.value);
+console.log("height", height.value);
+console.log("ratio", width.value / height.value);
+console.log("pixelRatio", pixelRatio.value);
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
@@ -128,6 +134,7 @@ const lineWeight = computed(() => {
 let moons = ref<NodeListOf<SVGSVGElement> | null>(null);
 let left = ref<HTMLElement | null>(null);
 const quote = ref<HTMLElement | null>(null);
+const topNav = ref<HTMLElement | null>(null);
 // const { locale } = useI18n();
 
 const { x } = useMouse();
