@@ -88,12 +88,8 @@ definePageMeta({
 
 const { height, width } = useWindowSize({ includeScrollbar: true });
 const breakpoints = useBreakpoints(breakpointsTailwind);
-const { pixelRatio } = useDevicePixelRatio();
 
-console.log("width", width.value);
-console.log("height", height.value);
-console.log("ratio", width.value / height.value);
-console.log("pixelRatio", pixelRatio.value);
+const WindowRatio = computed(() => width.value / height.value);
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
@@ -104,6 +100,9 @@ const overlap = computed(() => {
   const quoteBounding = quote.value!.getBoundingClientRect();
   return quoteBounding.bottom >= moonBounding.top;
 });
+
+console.log("ratio", WindowRatio.value);
+console.log("coeficient");
 const moonSize = ref(0);
 const initialMoonSize = computed(() => {
   if (mobile.value) {
@@ -117,7 +116,8 @@ const initialMoonSize = computed(() => {
   } else if (tablets.value) {
     return width.value * 2;
   } else {
-    return width.value - padding.value * 2;
+    const size = width.value - padding.value * 2;
+    return WindowRatio.value > 2 ? size * (1 - (WindowRatio.value - 2)) : size;
   }
 });
 
