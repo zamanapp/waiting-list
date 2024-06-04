@@ -117,9 +117,7 @@ const initialMoonSize = computed(() => {
     return width.value * 2;
   } else {
     const size = width.value - padding.value * 2;
-    return WindowRatio.value > 2
-      ? size * (1.5 - (WindowRatio.value - 2))
-      : size;
+    return WindowRatio.value > 2 ? size * (1 - (WindowRatio.value - 2)) : size;
   }
 });
 
