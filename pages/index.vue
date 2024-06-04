@@ -6,10 +6,10 @@
     <Navigation ref="topNav" />
 
     <div
-      class="absolute flex flex-col w-screen overflow-hidden lg:w-[50vw] items-center lg:items-start mt-24 md:mt-36 font-medium lg:mx-12 lg:mt-36"
+      class="absolute flex flex-col w-screen overflow-hidden lg:w-[50vw] items-center lg:items-start mt-6 md:mt-36 font-medium lg:mx-12 lg:mt-36"
     >
       <h2
-        class="max-w-screen-md mb-6 text-4xl font-semibold text-center md:mx-12 text-pretty lg:mx-0 md:text-5xl md:max-w-lg lg:max-w-md lg:text-start font-main dark:text-slate-200"
+        class="max-w-screen-md mx-2 mb-3 text-4xl font-semibold text-center md:mx-12 text-pretty lg:mx-0 md:text-5xl md:max-w-lg lg:max-w-md lg:text-start font-main dark:text-slate-200"
       >
         {{ $t("waiting.manage") }}
       </h2>
@@ -18,7 +18,8 @@
 
     <div
       ref="quote"
-      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-72 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      v-if="showQuote"
+      class="absolute flex justify-center w-screen mt-48 text-xl font-medium text-center lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
     >
       <p class="max-w-xs">
         "{{ $t("waiting.body") }}"
@@ -43,10 +44,10 @@
   <div class="absolute w-full h-screen overflow-hidden">
     <Navigation />
     <div
-      class="absolute flex flex-col w-screen overflow-hidden md:mt-36 lg:w-[50vw] items-center lg:items-start mt-24 font-medium lg:mx-12 lg:mt-36"
+      class="absolute flex flex-col w-screen overflow-hidden md:mt-36 lg:w-[50vw] items-center lg:items-start mt-6 font-medium lg:mx-12 lg:mt-36"
     >
       <h2
-        class="max-w-screen-md mb-6 text-4xl font-semibold text-center md:mx-12 md:max-w-lg lg:mx-0 md:text-5xl lg:max-w-md lg:text-start font-main dark:text-slate-200"
+        class="max-w-screen-md mx-2 mb-3 text-4xl font-semibold text-center md:mx-12 md:max-w-lg lg:mx-0 md:text-5xl lg:max-w-md lg:text-start font-main dark:text-slate-200"
       >
         {{ $t("waiting.manage") }}
       </h2>
@@ -57,7 +58,8 @@
     </div>
 
     <div
-      class="absolute flex justify-center w-screen text-xl font-medium text-center mt-72 lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      v-if="showQuote"
+      class="absolute flex justify-center w-screen mt-48 text-xl font-medium text-center lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
     >
       <p class="max-w-xs">
         "{{ $t("waiting.body") }}"
@@ -94,6 +96,7 @@ const WindowRatio = computed(() => width.value / height.value);
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
 const padding = ref(115); // p-12 = 48px
+const showQuote = ref(true);
 const overlap = computed(() => {
   if (moons.value === null || quote.value === null) return false;
   const moonBounding = moons.value![0].getBoundingClientRect();
@@ -101,8 +104,6 @@ const overlap = computed(() => {
   return quoteBounding.bottom >= moonBounding.top;
 });
 
-console.log("ratio", WindowRatio.value);
-console.log("coeficient");
 const moonSize = ref(0);
 const initialMoonSize = computed(() => {
   if (mobile.value) {
@@ -152,24 +153,24 @@ const desiredY = computed(() => {
 });
 
 // resize the moon on mobiles if the quote and the moon overlap
-watch(
-  overlap,
-  (value) => {
-    if (mobile.value && quote.value && value) {
-      const { bottom } = quote.value.getBoundingClientRect();
-      let ratio = 0.5 + bottom / height.value;
-      const desiredWidth = width.value * ratio - 20;
-      moonSize.value = desiredWidth;
-    }
-  },
-  { immediate: true }
-);
+function resizeMoonForSmallerScreens() {
+  if (mobile.value && quote.value && overlap.value) {
+    const { bottom } = quote.value.getBoundingClientRect();
+    let ratio = 0.5 + bottom / height.value;
+    const desiredWidth = width.value * ratio - 20;
+    moonSize.value = desiredWidth;
+  }
+}
 
 onMounted(() => {
   moonSize.value = initialMoonSize.value;
   moons.value = document.querySelectorAll("svg#moonSymbol");
   handleResize();
   watch([width, height, moonSize, tablets], handleResize);
+  resizeMoonForSmallerScreens();
+  if (overlap.value) {
+    showQuote.value = false;
+  }
   watch(sideWidth, (value) => {
     left.value!.style.width = `${value}%`;
   });
