@@ -33,6 +33,23 @@
               <FormMessage />
             </FormItem>
           </FormField>
+
+          <FormField name="username" v-slot="{ componentField }">
+            <FormItem v-auto-animate class="username">
+              <FormLabel class="username"> Username </FormLabel>
+              <FormControl>
+                <Input
+                  class="username"
+                  type="text"
+                  placeholder="Username"
+                  v-bind="componentField"
+                  tabindex="-1"
+                  autocomplete="new-password"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
         </Form>
         <DialogDescription>
           <p>
@@ -110,10 +127,17 @@ const schema = toTypedSchema(
         required_error: "Email is required",
       })
       .email("Invalid email address"),
+    username: z.string().optional(),
   })
 );
 
 const submitHandler = async (values: any) => {
+  if (values.username) {
+    emitter.emit("error", {
+      title: "Unusual activity detected",
+    });
+    return;
+  }
   const { error, pending } = await useApiFetch("waitlist", {
     method: "POST",
     body: JSON.stringify(values?.email),
@@ -128,3 +152,12 @@ const submitHandler = async (values: any) => {
   }
 };
 </script>
+
+<style>
+.username {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: -999999999px;
+}
+</style>
