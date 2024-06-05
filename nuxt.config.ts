@@ -11,23 +11,6 @@ export default defineNuxtConfig({
     "@nuxt/content",
   ],
 
-  app: {
-    head: {
-      link: [
-        {
-          rel: "preconnect",
-          href: "https://api.fonts.coollabs.io",
-          crossorigin: "anonymous",
-        },
-        {
-          rel: "stylesheet",
-          // only pull zaman for the logo
-          href: "https://api.fonts.coollabs.io/css2?family=Space+Grotesk:wght@300..700&display=swap&text=zaman",
-        },
-      ],
-    },
-  },
-
   imports: {
     dirs: ["composables/**"],
   },
