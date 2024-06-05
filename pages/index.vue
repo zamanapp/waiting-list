@@ -168,7 +168,7 @@ onMounted(() => {
   handleResize();
   watch([width, height, moonSize, tablets], handleResize);
   resizeMoonForSmallerScreens();
-  if (overlap.value) {
+  if (overlap.value && mobile.value) {
     showQuote.value = false;
   }
   watch(sideWidth, (value) => {
