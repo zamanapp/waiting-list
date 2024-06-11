@@ -137,6 +137,15 @@
     font-style: normal;
   }
 
+  /* Scheherazade font */
+
+  @font-face {
+    font-family: "Scheherazade New";
+    src: url("../fonts/ScheherazadeNew-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-display: swap;
+  }
+
   /* 
   Kawkab font
 */

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center pt-24 pb-12">
-    <ContentDoc class="prose" :path="localePath('/privacy-policy')" />
+    <ContentDoc class="prose" :path="localePath('/restrictions')" />
   </div>
 </template>
 

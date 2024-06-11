@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid justify-center max-w-sm grid-flow-row gap-12 pt-24 mx-auto auto-rows-max"
+    class="grid justify-center max-w-sm grid-flow-row gap-12 pt-24 pb-12 mx-auto auto-rows-max"
   >
     <div class="flex flex-col items-center">
       <h1 class="text-4xl font-bold md:text-5xl font-main">

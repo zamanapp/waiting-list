@@ -1,4 +1,5 @@
 const animate = require("tailwindcss-animate");
+const typography = require("@tailwindcss/typography");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
@@ -20,6 +21,7 @@ module.exports = {
         logo: ["'Space Grotesk'", ...defaultTheme.fontFamily.sans],
         main: ["'Satoshi'", ...defaultTheme.fontFamily.sans],
         monoArabic: ["'Kawkab Mono'", ...defaultTheme.fontFamily.mono],
+        scheherazade: ["'Scheherazade New'", ...defaultTheme.fontFamily.serif],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -88,5 +90,5 @@ module.exports = {
       },
     },
   },
-  plugins: [animate],
+  plugins: [animate, typography],
 };
