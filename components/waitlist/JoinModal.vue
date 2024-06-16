@@ -2,6 +2,7 @@
   <Dialog>
     <DialogTrigger class="pointer-events-auto" as-child>
       <Button
+        @click="() => $posthog()?.capture('waitlist-open')"
         :variant="buttonType"
         class="px-6 py-3 mt-3 text-xl font-medium rounded-md pointer-events-auto w-52 lg:self-start disabled:cursor-not-allowed"
       >
@@ -95,6 +96,8 @@ import { vAutoAnimate } from "@formkit/auto-animate/vue";
 import * as z from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
 
+const { $posthog } = useNuxtApp();
+
 defineProps({
   waitingText: {
     type: String,
@@ -132,6 +135,7 @@ const schema = toTypedSchema(
 
 const submitHandler = async (values: any) => {
   if (values.username) {
+    $posthog()?.capture("waitlist-suspect", { values });
     emitter.emit("error", {
       title: t("modal.suspicious"),
     });
@@ -143,8 +147,14 @@ const submitHandler = async (values: any) => {
   });
 
   if (!error.value) {
+    $posthog()?.capture("waitlist-success", { email: values.email });
     emitter.emit("success", {
       title: t("modal.success"),
+    });
+  } else {
+    $posthog()?.capture("waitlist-failure", {
+      email: values.email,
+      error: error.value,
     });
   }
 };

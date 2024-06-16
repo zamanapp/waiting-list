@@ -58,6 +58,8 @@ export default defineNuxtConfig({
         process.env.NODE_ENV === "production"
           ? process.env.BACK_ENDPOINT
           : "http://localhost:3333",
+      posthogPublicKey: "phc_rKNNztrSrr1Knq5A9s2nIhDfvwYR2NLsMNGovGQu6ug",
+      posthogHost: "https://us.i.posthog.com",
     },
   },
 

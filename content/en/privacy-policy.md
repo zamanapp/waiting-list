@@ -36,7 +36,7 @@ Some of our products might sk you to share you location data with us. We use thi
 
 We collect information about your browsing activity for analytics and statistical purposes such as conversion rate testing and experimenting with new product designs or features. This includes, for example, your browser and operating system versions, your location, which web pages you visited and how long they took to load, and which website referred you to us.
 
-<!-- If you have an account and are signed in, these web analytics data are usually tied to your user account until your account is no longer active. -->
+If you have an account and are signed in, these web analytics data are usually tied to your user account until your account is no longer active.
 
 Zaman doesn't track your browsing activity across the Internet. We only collect your browsing activities within our products and websites.
 
@@ -51,9 +51,9 @@ We use CAPTCHA across our applications to mitigate brute force logins and as a m
 
 Zaman doesn't run ads on its products or websites. Nor do we use third-party platforms such as Google or Facebook to run ads on our behalf. We don't use third-party cookies for advertising purposes.
 
-<!-- Zaman products may or may not use persistent first-party cookies and sometimes third-party cookies to store certain preferences, make it easier for you to use our applications, and perform A/B testing as well as support some analytics. -->
+We also use persistent first-party cookies and some third-party cookies to store certain preferences, make it easier for you to use our applications, and perform A/B testing as well as support some analytics.
 
-Zaman products may or may not use persistent first-party cookies to store certain preferences, make it easier for you to use our applications.
+<!-- Zaman products may or may not use persistent first-party cookies to store certain preferences, make it easier for you to use our applications. -->
 
 A cookie is a piece of text stored by your browser. It may help remember login information and site preferences. You can adjust cookie retention settings and accept or block individual cookies in your browser settings, although our apps won't work and other aspects of our service may not function properly if you turn cookies off.
 
