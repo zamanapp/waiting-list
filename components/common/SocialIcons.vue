@@ -3,7 +3,9 @@
     <NuxtLink to="https://t.me/zamanapp" target="__blank">
       <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:telegram" />
     </NuxtLink>
-    <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:new-twitter" />
+    <NuxtLink to="https://x.com/zaman_hq">
+      <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:new-twitter" />
+    </NuxtLink>
     <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:linkedin-01" />
     <NuxtLink to="https://github.com/zamanapp" target="__blank">
       <Icon class="w-5 h-5 cursor-pointer" icon="hugeicons:github" />
