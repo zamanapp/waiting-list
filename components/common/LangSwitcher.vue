@@ -4,7 +4,7 @@
     :key="locale.code"
     :to="switchLocalePath(locale.code)"
   >
-    {{ locale.name }}
+    {{ locale.code }}
   </NuxtLink>
 </template>
 

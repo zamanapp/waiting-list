@@ -20,7 +20,6 @@
         :d="circleToPath(moonSize + YEAR_R_CONST)"
       />
       <path
-        :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
         id="months"
         class="origin-center"
         :d="circleToPath(moonSize + MONTHS_R_CONST)"
@@ -47,7 +46,6 @@
       />
     </defs>
     <text
-      :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
       v-if="showGuide"
       class="origin-center"
       ref="yearPath"
@@ -55,10 +53,7 @@
       :textLength="yearTextLength"
     >
       <textPath
-        :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
-        :class="`origin-center ${
-          $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
-        } fill-gray-300 dark:fill-gray-500`"
+        :class="`origin-center font-monoArabic fill-gray-300 dark:fill-gray-500`"
         :style="`font-size: ${yearFontSize}px;`"
         :textLength="yearTextLength"
         href="#year"
@@ -69,7 +64,6 @@
       </textPath>
     </text>
     <text
-      :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
       v-if="showGuide"
       class="origin-center"
       ref="monthsPath"
@@ -77,10 +71,7 @@
       :textLength="monthsTextLength"
     >
       <textPath
-        :dir="$i18n.localeProperties.dir === 'rtl' ? 'rtl' : 'ltr'"
-        :class="`origin-center ${
-          $i18n.localeProperties.dir === 'rtl' ? 'font-monoArabic' : 'font-mono'
-        } fill-gray-300 dark:fill-gray-500`"
+        :class="`origin-center font-monoArabic fill-gray-300 dark:fill-gray-500`"
         :style="`font-size: ${monthsFontSize}px;`"
         :textLength="monthsTextLength"
         href="#months"
@@ -429,7 +420,8 @@ const monthsMap = new Map([
 
 const tablets = breakpoints.between("md", "lg");
 const mobile = breakpoints.smaller("md");
-const { locale } = useI18n();
+// const { locale } = useI18n();
+const locale = ref("en"); // TODO: figure out how to support arabic on other browsers
 
 let orbsSurface = computed(() => {
   if (mobile.value) {

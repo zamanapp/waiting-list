@@ -3,13 +3,16 @@
     ref="left"
     class="dark absolute w-[50%] h-screen overflow-hidden z-[2] bg-gray-900 text-white"
   >
-    <Navigation ref="topNav" />
+    <Navigation :dir="localeProperties.dir" ref="topNav" />
 
     <div
-      class="absolute flex flex-col w-screen overflow-hidden lg:w-[50vw] items-center lg:items-start mt-6 md:mt-36 font-medium lg:mx-12 lg:mt-36"
+      :class="`absolute pointer-events-none flex flex-col w-screen overflow-hidden lg:w-[50vw] items-center lg:items-start mt-6 md:mt-36 font-medium lg:mx-12 lg:mt-36 ${
+        localeProperties.dir === 'rtl' ? 'font-logoArabic' : ''
+      }`"
     >
       <h2
-        class="max-w-screen-md mx-2 mb-3 text-4xl font-semibold text-center md:mx-12 text-pretty lg:mx-0 md:text-5xl md:max-w-lg lg:max-w-md lg:text-start font-main dark:text-slate-200"
+        :dir="localeProperties.dir"
+        class="max-w-screen-md mx-2 mb-3 text-4xl font-semibold text-center md:mx-12 text-pretty lg:mx-0 md:text-5xl md:max-w-lg lg:max-w-md lg:text-start dark:text-slate-200"
       >
         {{ $t("waiting.manage") }}
       </h2>
@@ -19,18 +22,19 @@
     <div
       ref="quote"
       v-if="showQuote"
-      class="absolute flex justify-center w-screen mt-48 text-xl font-medium text-center lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      :class="`absolute pointer-events-none flex justify-center w-screen mt-48 text-xl font-medium text-center lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36 ${
+        localeProperties.dir === 'rtl' ? 'font-logoArabic' : ''
+      }`"
     >
-      <p class="max-w-xs">
+      <p :dir="localeProperties.dir" class="max-w-xs">
         "{{ $t("waiting.body") }}"
-        <span
-          class="block mt-2 font-mono text-sm text-slate-400 dark:text-slate-200"
+        <span class="block mt-2 text-sm text-slate-400 dark:text-slate-200"
           >-{{ $t("waiting.author") }}</span
         >
       </p>
     </div>
 
-    <div dir="ltr">
+    <div>
       <Moon
         :moon-size="moonSize"
         :line-weight="lineWeight"
@@ -42,12 +46,16 @@
   </div>
 
   <div class="absolute w-full h-screen overflow-hidden">
-    <Navigation />
+    <Navigation :dir="localeProperties.dir" />
+
     <div
-      class="absolute flex flex-col w-screen overflow-hidden md:mt-36 lg:w-[50vw] items-center lg:items-start mt-6 font-medium lg:mx-12 lg:mt-36"
+      :class="`absolute pointer-events-none flex flex-col w-screen overflow-hidden md:mt-36 lg:w-[50vw] items-center lg:items-start mt-6 font-medium lg:mx-12 lg:mt-36 ${
+        localeProperties.dir === 'rtl' ? 'font-logoArabic' : ''
+      }`"
     >
       <h2
-        class="max-w-screen-md mx-2 mb-3 text-4xl font-semibold text-center md:mx-12 md:max-w-lg lg:mx-0 md:text-5xl lg:max-w-md lg:text-start font-main dark:text-slate-200"
+        :dir="localeProperties.dir"
+        class="max-w-screen-md mx-2 mb-3 text-4xl font-semibold text-center md:mx-12 md:max-w-lg lg:mx-0 md:text-5xl lg:max-w-md lg:text-start dark:text-slate-200"
       >
         {{ $t("waiting.manage") }}
       </h2>
@@ -59,17 +67,19 @@
 
     <div
       v-if="showQuote"
-      class="absolute flex justify-center w-screen mt-48 text-xl font-medium text-center lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36"
+      :class="`absolute pointer-events-none flex justify-center w-screen mt-48 text-xl font-medium text-center lg:justify-end md:invisible lg:visible float-start rtl:text-3xl lg:text-lg lg:pe-12 lg:mt-36 ${
+        localeProperties.dir === 'rtl' ? 'font-logoArabic' : ''
+      }`"
     >
-      <p class="max-w-xs">
+      <p :dir="localeProperties.dir" class="max-w-xs">
         "{{ $t("waiting.body") }}"
-        <span
-          class="block mt-2 font-mono text-sm text-slate-400 dark:text-slate-200"
+        <span class="block mt-2 text-sm text-slate-400 dark:text-slate-200"
           >-{{ $t("waiting.author") }}</span
         >
       </p>
     </div>
-    <div dir="ltr">
+
+    <div>
       <Moon
         :moon-size="moonSize"
         :line-weight="lineWeight"
@@ -88,7 +98,9 @@ definePageMeta({
   layout: "slider",
 });
 
+const { x } = useMouse();
 const { height, width } = useWindowSize({ includeScrollbar: true });
+const { localeProperties } = useI18n();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 
 const WindowRatio = computed(() => width.value / height.value);
@@ -136,9 +148,12 @@ let moons = ref<NodeListOf<SVGSVGElement> | null>(null);
 let left = ref<HTMLElement | null>(null);
 const quote = ref<HTMLElement | null>(null);
 const topNav = ref<HTMLElement | null>(null);
-// const { locale } = useI18n();
 
-const { x } = useMouse();
+// const sideWidth = computed(() =>
+//   localeProperties.value.dir === "rtl"
+//     ? 100 - (x.value / width.value) * 100
+//     : (x.value / width.value) * 100
+// );
 const sideWidth = computed(() => (x.value / width.value) * 100);
 
 const isMoonBiggerThanWidth = computed(() => moonSize.value > width.value);

@@ -14,7 +14,7 @@
         <Meta :id="meta.id" :property="meta.property" :content="meta.content" />
       </template>
     </Head>
-    <Body dir="lrt">
+    <Body dir="ltr">
       <slot />
     </Body>
   </Html>
@@ -23,7 +23,7 @@
 <script setup>
 const route = useRoute();
 const appConfig = useAppConfig();
-// const { t } = useI18n();
+// const { localeProperties } = useI18n();
 const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: "id",

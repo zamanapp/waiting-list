@@ -16,17 +16,19 @@ const props = defineProps({
       class="flex flex-col items-center justify-center w-full h-screen"
       v-if="error?.statusCode === 404"
     >
-      <h2 class="w-full font-medium text-center text-9xl">The year is</h2>
+      <h2 class="w-full font-medium text-center text-9xl">
+        {{ $t("error.year") }}
+      </h2>
       <h1 class="inline-flex items-center leading-none error">
-        4<MoonLoading :line-weight="14" :size="size" :speed="0.77" />4
+        4<MoonLoading :line-weight="14" :size="size" :speed="1" />4
       </h1>
       <p class="text-xl italic text-gray-600">
-        it seems that a glitch in the time space continuum has occurred.
+        {{ $t("error.glitch") }}
       </p>
       <NuxtLink
         class="px-6 py-3 m-3 text-xl text-white bg-black rounded-md"
         to="/"
-        >Go back to {{ new Date().getFullYear() }}</NuxtLink
+        >{{ $t("error.back") }} {{ new Date().getFullYear() }}</NuxtLink
       >
     </div>
     <div
@@ -38,16 +40,16 @@ const props = defineProps({
         <h1
           class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl"
         >
-          An Error Occurred
+          {{ $t("error.occured") }}
         </h1>
         <p class="mt-6 text-base leading-7 text-gray-600">
-          It seems that you have encountered an error. Please try again later.
+          {{ $t("error.encounter") }}
         </p>
         <div class="flex items-center justify-center mt-10 gap-x-6">
           <NuxtLink
             to="/"
             class="px-6 py-3 m-3 text-xl text-white bg-black rounded-md"
-            >Go back home</NuxtLink
+            >{{ $t("error.home") }}</NuxtLink
           >
         </div>
         <pre

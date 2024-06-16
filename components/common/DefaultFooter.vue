@@ -4,11 +4,8 @@
   >
     <!-- add copyrights -->
     <div>
-      Copyright &copy; {{ new Date().getFullYear() }} {{ appConfig.appName }}
+      {{ $t("footer.copyright") }} {{ new Date().getFullYear() }}
+      {{ $t("footer.name") }}
     </div>
   </footer>
 </template>
-
-<script setup lang="ts">
-const appConfig = useAppConfig();
-</script>

@@ -1,17 +1,17 @@
 <template>
   <Dialog>
-    <DialogTrigger as-child>
+    <DialogTrigger class="pointer-events-auto" as-child>
       <Button
         :variant="buttonType"
-        class="px-6 py-3 mt-3 text-xl font-medium rounded-md w-52 lg:self-start disabled:cursor-not-allowed"
+        class="px-6 py-3 mt-3 text-xl font-medium rounded-md pointer-events-auto w-52 lg:self-start disabled:cursor-not-allowed"
       >
         {{ waitingText }}
       </Button>
     </DialogTrigger>
 
     <DialogContent :disable-outside-pointer-events="true" :trapFocus="true">
-      <DialogHeader>
-        <DialogTitle>Get notified when we launch</DialogTitle>
+      <DialogHeader :dir="localeProperties.dir">
+        <DialogTitle>{{ $t("modal.header") }}</DialogTitle>
         <Form
           id="sabrListForm"
           class="space-y-6"
@@ -117,16 +117,15 @@ defineProps({
 });
 
 const emitter = useEmitter();
-
-let loading = ref(false);
+const { localeProperties, t } = useI18n();
 
 const schema = toTypedSchema(
   z.object({
     email: z
       .string({
-        required_error: "Email is required",
+        required_error: t("modal.required"),
       })
-      .email("Invalid email address"),
+      .email(t("modal.error")),
     username: z.string().optional(),
   })
 );
@@ -134,7 +133,7 @@ const schema = toTypedSchema(
 const submitHandler = async (values: any) => {
   if (values.username) {
     emitter.emit("error", {
-      title: "Unusual activity detected",
+      title: t("modal.suspicious"),
     });
     return;
   }
@@ -143,11 +142,9 @@ const submitHandler = async (values: any) => {
     body: JSON.stringify(values?.email),
   });
 
-  loading = pending;
-
   if (!error.value) {
     emitter.emit("success", {
-      title: "You have been added to the patently waiting!",
+      title: t("modal.success"),
     });
   }
 };
