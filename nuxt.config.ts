@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@vee-validate/nuxt",
     "@nuxt/content",
+    "@nuxt/image"
   ],
 
   imports: {
