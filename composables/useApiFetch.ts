@@ -13,9 +13,10 @@ export function useApiFetch<T extends Record<string, any>>(
   options?: UseFetchOptions<T>
 ) {
   const config = useRuntimeConfig();
-  return useFetch(`${config.public.backEndpoint}/api/${unref(path)}`, {
+  return useFetch(`/api/${unref(path)}`, {
     ...options,
     credentials: "include",
+    baseURL: config.public.backEndpoint,
     onResponseError({ response }) {
       if (!skippable(response)) {
         // Handle the response errors

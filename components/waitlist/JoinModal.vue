@@ -1,8 +1,8 @@
 <template>
-  <Dialog>
+  <Dialog :open="open">
     <DialogTrigger class="pointer-events-auto" as-child>
       <Button
-        @click="() => $posthog()?.capture('waitlist-open')"
+        @click="openDialog"
         :variant="buttonType"
         class="px-6 py-3 mt-3 text-xl font-medium rounded-md pointer-events-auto w-52 lg:self-start disabled:cursor-not-allowed"
       >
@@ -119,8 +119,14 @@ defineProps({
   },
 });
 
+const open = ref(false);
 const emitter = useEmitter();
 const { localeProperties, t } = useI18n();
+
+function openDialog() {
+  open.value = true;
+  $posthog()?.capture("waitlist-open");
+}
 
 const schema = toTypedSchema(
   z.object({
@@ -143,7 +149,7 @@ const submitHandler = async (values: any) => {
   }
   const { error, pending } = await useApiFetch("waitlist", {
     method: "POST",
-    body: JSON.stringify(values?.email),
+    body: JSON.stringify({ email: values?.email }),
   });
 
   if (!error.value) {
@@ -151,6 +157,8 @@ const submitHandler = async (values: any) => {
     emitter.emit("success", {
       title: t("modal.success"),
     });
+    open.value = false;
+    // TODO: add a message that confirms the user has been added to the waitlist when they are already on it
   } else {
     $posthog()?.capture("waitlist-failure", {
       email: values.email,
