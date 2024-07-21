@@ -11,6 +11,13 @@
     </DialogTrigger>
 
     <DialogContent :disable-outside-pointer-events="true" :trapFocus="true">
+      <DialogClose
+        @click="open = false"
+        class="absolute end-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+      >
+        <X class="w-4 h-4" />
+        <span class="sr-only">Close</span>
+      </DialogClose>
       <DialogHeader :dir="localeProperties.dir">
         <DialogTitle>{{ $t("modal.header") }}</DialogTitle>
         <Form
@@ -80,6 +87,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,6 +99,7 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { X } from "lucide-vue-next";
 import { useApiFetch } from "~/composables/useApiFetch";
 import { vAutoAnimate } from "@formkit/auto-animate/vue";
 import * as z from "zod";
