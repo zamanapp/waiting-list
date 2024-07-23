@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative overflow-hidden bg-white border-black rounded-full moon dark:border-white"
+    class="relative overflow-hidden bg-white border-black rounded-full dark:bg-black moon dark:border-white"
   >
     <div class="inner"></div>
   </div>
@@ -25,6 +25,16 @@ const moonTiming = computed(() => `${0.5 * animationSpeed.value}s`);
 </script>
 
 <style>
+:root {
+  --moon-bg: white;
+  --moon-fg: black;
+}
+
+.dark {
+  --moon-bg: black;
+  --moon-fg: white;
+}
+
 .moon {
   width: v-bind(sizePx);
   height: v-bind(sizePx);
@@ -33,7 +43,7 @@ const moonTiming = computed(() => `${0.5 * animationSpeed.value}s`);
 }
 
 .moon::before {
-  @apply bg-black;
+  background-color: var(--moon-fg);
   content: " ";
   display: block;
   position: absolute;
@@ -53,12 +63,12 @@ const moonTiming = computed(() => `${0.5 * animationSpeed.value}s`);
 }
 
 .inner::after {
-  @apply bg-white;
+  background-color: var(--moon-bg);
   transform: rotateY(180deg);
 }
 
 .inner::before {
-  @apply bg-black;
+  background-color: var(--moon-fg);
 }
 
 .inner::before,

@@ -69,7 +69,7 @@
         </DialogDescription>
 
         <DialogFooter>
-          <Button form="sabrListForm" type="submit">{{
+          <Button :loading="loading" form="sabrListForm" type="submit">{{
             $t("modal.join")
           }}</Button>
         </DialogFooter>
@@ -129,6 +129,7 @@ defineProps({
 });
 
 const open = ref(false);
+const loading = ref(false);
 const emitter = useEmitter();
 const { localeProperties, t } = useI18n();
 
@@ -149,6 +150,7 @@ const schema = toTypedSchema(
 );
 
 const submitHandler = async (values: any) => {
+  loading.value = true;
   if (values.username) {
     $posthog()?.capture("waitlist-suspect", { values });
     emitter.emit("error", {
@@ -174,6 +176,7 @@ const submitHandler = async (values: any) => {
       error: error.value,
     });
   }
+  loading.value = false;
 };
 </script>
 
