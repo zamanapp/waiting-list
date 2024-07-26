@@ -104,16 +104,21 @@ Accessing a customer's account when investigating potential abuse is a measure o
 
 We may aggregate and/or de-identify information collected through the services. We may use de-identified or aggregated data for any purpose, including marketing or analytics.
 
-<!-- TODO: add legal section -->
-<!-- ### When required under applicable law.
+<!-- TODO: Revise legal section once we have registered teh company -->
 
-Zaman is a U.S. company with its main data infrastructure located in the U.S.
+### When required under applicable law.
 
-- Requests for user data. Our policy is to not respond to government requests for user data unless we are compelled by legal process or in limited circumstances in the event of an emergency request. However, if U.S. law enforcement authorities have the necessary warrant, criminal subpoena, or court order requiring us to disclose data, we must comply. Likewise, we will only respond to requests from government authorities outside the U.S. if compelled by the U.S. government through procedures outlined in a mutual legal assistance treaty or agreement. It is Zaman policy to notify affected users before we disclose data unless we are legally prohibited from doing so, and except in some emergency cases.
+<!-- Zaman is a U.S. company with its main data infrastructure located in the U.S. -->
 
-- Preservation requests. Similarly, Zaman policy is to comply with requests to preserve data only if compelled by the U.S. Federal Stored Communications Act, 18 U.S.C. Section 2703(f), or by a properly served U.S. subpoena for civil matters. We do not disclose preserved data unless required by law or compelled by a court order that we choose not to appeal. Furthermore, unless we receive a proper warrant, court order, or subpoena before the required preservation period expires, we will destroy any preserved copies of customer data at the end of the preservation period.
+<!-- - Requests for user data. Our policy is to not respond to government requests for user data unless we are compelled by legal process or in limited circumstances in the event of an emergency request. However, if U.S. law enforcement authorities have the necessary warrant, criminal subpoena, or court order requiring us to disclose data, we must comply. Likewise, we will only respond to requests from government authorities outside the U.S. if compelled by the U.S. government through procedures outlined in a mutual legal assistance treaty or agreement. It is Zaman policy to notify affected users before we disclose data unless we are legally prohibited from doing so, and except in some emergency cases. -->
 
-- If we are audited by a tax authority, we may be required to disclose billing-related information. If that happens, we will disclose only the minimum needed, such as billing addresses and tax exemption information. -->
+- Requests for user data. Our policy is to not respond to government requests for user data unless we are compelled by legal process or in limited circumstances in the event of an emergency request. However, if the government law enforcement authorities have the necessary warrant, criminal subpoena, or court order requiring us to disclose data, we must comply. It is Zaman policy to notify affected users before we disclose data unless we are legally prohibited from doing so, and except in some emergency cases.
+
+<!-- - Preservation requests. Similarly, Zaman policy is to comply with requests to preserve data only if compelled by the U.S. Federal Stored Communications Act, 18 U.S.C. Section 2703(f), or by a properly served U.S. subpoena for civil matters. We do not disclose preserved data unless required by law or compelled by a court order that we choose not to appeal. Furthermore, unless we receive a proper warrant, court order, or subpoena before the required preservation period expires, we will destroy any preserved copies of customer data at the end of the preservation period. -->
+
+- Preservation requests. Similarly, Zaman policy is to comply with requests to preserve data only if compelled by law. We do not disclose preserved data unless required by law or compelled by a court order that we choose not to appeal. Furthermore, unless we receive a proper warrant, court order, or subpoena before the required preservation period expires, we will destroy any preserved copies of customer data at the end of the preservation period.
+
+- If we are audited by a tax authority, we may be required to disclose billing-related information. If that happens, we will disclose only the minimum needed, such as billing addresses and tax exemption information.
 
 ### During corporate changes.
 
