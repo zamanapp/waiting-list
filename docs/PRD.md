@@ -169,7 +169,7 @@ The goal of habit tracker is help the user with the following:
    1. By default Zaman offer quick access for Surah Al Kahf, Surah Al Mulk, Ayatul Kursi, Muawidhatayn, last two ayah’s of Surah Baqarah
    2. Quick access can have a description associated to it
 2. Users can write notes on a Surah or an Ayah
-3. Notes should display in Fuse
+3. Notes should display in Kenz
 
 ### Expanded State
 
@@ -184,13 +184,13 @@ The goal of habit tracker is help the user with the following:
 - Notes
 - Favorits
 
-## Fuse
+## Kenz
 
-Fuse is a private personal space that works very similar to mymind. Where users can dump their thoughts, ideas, and plans. and everything else they come across on the internet such us links, tweets, pdfs, etc.
+Kenz is a private personal space that works very similar to mymind. Where users can dump their thoughts, ideas, and plans. and everything else they come across on the internet such us links, tweets, pdfs, etc.
 
-Fuse can easily resurface the information the user has stored in it using AI when the user search for it. It also help the user organize information without explecitly tagging it.
+Kenz can easily resurface the information the user has stored in it using AI when the user search for it. It also help the user organize information without explecitly tagging it.
 
-Fuse will also integrate with the other widget as well as other third party service like Telegram or Whatsapp.
+Kenz will also integrate with the other widget as well as other third party service like Telegram or Whatsapp.
 
 ## Calendar widget:
 
@@ -310,6 +310,19 @@ A place where your thoughts and what you like is turned into treasure
 - Allocate buckets of time to specific type of activities (time slots)
 - Prayers, Deeds and Quran directly integrated in your calendar
 - Schedule Todos on your calendar
+
+## Coherence and harmoney between widgets
+
+In Zaman the widgets are not isolated from each other. they are connected to each other making them very powerful and convenient whne used togather.
+
+- Deeds can be shown on the PrayerMeter timeline.
+- Deeds can be added to the calendar even by drag and dropping them.
+- A deeds can redirect you to the wird widget (example reading surat al kahf every Friday)
+- Tracked deeds can be found in the habit tracker widget
+- The habit tracker trakcs deeds, wird (quran recitications, memorizations and revisions)
+- The calendar displays deeds and wird if you add to your schedule
+- Wird helps you create a Quran schedule in your calendar
+- Kenz can be connected to the calendar (example saving a link to a pdf)
 
 ## AI (MCP)
 

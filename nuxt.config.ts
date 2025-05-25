@@ -21,14 +21,14 @@ export default defineNuxtConfig({
       {
         name: "English",
         code: "en",
-        iso: "en-US",
+        language: "en-US",
         dir: "ltr",
         file: "en.json",
       },
       {
         name: "العربية",
         code: "ar",
-        iso: "ar-SA",
+        language: "ar-SA",
         dir: "rtl",
         file: "ar.json",
       },
