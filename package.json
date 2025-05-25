@@ -28,8 +28,11 @@
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
     "@js-temporal/polyfill": "^0.4.3",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/slim": "^3.8.1",
     "@vee-validate/nuxt": "^4.12.8",
     "@vee-validate/zod": "^4.12.8",
+    "@vueuse/motion": "^3.0.3",
     "bowser": "^2.11.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
