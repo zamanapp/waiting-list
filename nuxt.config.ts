@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     "@vee-validate/nuxt",
     "@nuxt/content",
     "@nuxt/image",
+    "@vueuse/motion/nuxt",
   ],
 
   imports: {
