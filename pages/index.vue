@@ -26,4 +26,25 @@
 definePageMeta({
   layout: "default",
 });
+
+useSeoMeta({
+  description: "[description]",
+  ogTitle: "[og:title]",
+  ogDescription: "[og:description]",
+  ogImage: "[og:image]",
+  twitterTitle: "[twitter:title]",
+  twitterDescription: "[twitter:description]",
+  twitterImage: "[twitter:image]",
+  twitterCard: "summary",
+});
+
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+});
 </script>

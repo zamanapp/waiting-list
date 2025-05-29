@@ -1,12 +1,16 @@
 const animate = require("tailwindcss-animate");
 const typography = require("@tailwindcss/typography");
 const defaultTheme = require("tailwindcss/defaultTheme");
+import fluid, { extract, screens, fontSize } from "fluid-tailwind";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
   prefix: "",
+  content: {
+    extract,
+  },
 
   theme: {
     container: {
@@ -16,6 +20,8 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    screens,
+    fontSize,
     extend: {
       fontFamily: {
         logo: ["'Space Grotesk'", ...defaultTheme.fontFamily.sans],
@@ -91,5 +97,5 @@ module.exports = {
       },
     },
   },
-  plugins: [animate, typography],
+  plugins: [animate, typography, fluid],
 };

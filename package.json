@@ -20,6 +20,7 @@
     "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.1.2",
+    "fluid-tailwind": "^1.0.4",
     "nuxt": "^3.17.4",
     "sass": "^1.62.1",
     "shadcn-nuxt": "^0.10.4",
