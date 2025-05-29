@@ -10,7 +10,7 @@
 html,
 body,
 #__nuxt {
-  @apply h-full dark:bg-slate-800 dark:text-slate-400;
+  @apply h-full;
 }
 html[dir="rtl"] {
   font-size: 18px;

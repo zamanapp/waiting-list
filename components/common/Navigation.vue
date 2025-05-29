@@ -29,6 +29,7 @@
           <NuxtLink>
             <DrawerTitle>{{ $t("header.changelog") }}</DrawerTitle>
           </NuxtLink>
+          <DarkmodeSwitcher />
           <SocialIcons class="mx-auto my-3" />
         </DrawerHeader>
       </DrawerContent>
@@ -47,6 +48,7 @@
       v-if="!mobile"
       class="flex items-center justify-end invisible gap-3 cols-span-1 md:col-span-2 lg:col-span-2 md:visible"
     >
+      <DarkmodeSwitcher />
       <NuxtLink class="px-3 py-2 text-lg font-medium cursor-pointer">
         {{ $t("header.blog") }}
       </NuxtLink>

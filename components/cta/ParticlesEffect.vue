@@ -15,18 +15,18 @@ let container: Container | undefined = undefined;
 
 const props = withDefaults(
   defineProps<{
-    id: string;
-    size: number;
-    minSize: number;
-    density: number;
-    speed: number;
-    minSpeed: number;
-    opacity: number;
-    minOpacity: number;
-    color: string;
-    background: string;
-    opacitySpeed: number;
-    options: ISourceOptions;
+    id?: string;
+    size?: number;
+    minSize?: number;
+    density?: number;
+    speed?: number;
+    minSpeed?: number;
+    opacity?: number;
+    minOpacity?: number;
+    color?: string;
+    background?: string;
+    opacitySpeed?: number;
+    options?: ISourceOptions;
   }>(),
   {
     id: () => `sparkles-${Math.round(Math.random() * 9999)}`,
@@ -44,53 +44,57 @@ const props = withDefaults(
   }
 );
 
-const defaultOptions: ISourceOptions = {
-  background: {
-    color: {
-      value: props.background,
-    },
-  },
-  fullScreen: {
-    enable: false,
-    zIndex: 1,
-  },
-  fpsLimit: 120,
-  particles: {
-    color: {
-      value: props.color,
-    },
-    move: {
-      enable: true,
-      direction: "none",
-      speed: {
-        min: props.minSpeed || props.speed / 10,
-        max: props.speed,
+function getOptions(): ISourceOptions {
+  const options: ISourceOptions = {
+    background: {
+      color: {
+        value: props.background,
       },
-      straight: false,
     },
-    number: {
-      value: props.density,
+    fullScreen: {
+      enable: false,
+      zIndex: 1,
     },
-    opacity: {
-      value: {
-        min: props.minOpacity || props.opacity / 10,
-        max: props.opacity,
+    fpsLimit: 120,
+    particles: {
+      color: {
+        value: props.color,
       },
-      animation: {
+      move: {
         enable: true,
-        sync: false,
-        speed: props.speed,
+        direction: "none",
+        speed: {
+          min: props.minSpeed || props.speed / 10,
+          max: props.speed,
+        },
+        straight: false,
+      },
+      number: {
+        value: props.density,
+      },
+      opacity: {
+        value: {
+          min: props.minOpacity || props.opacity / 10,
+          max: props.opacity,
+        },
+        animation: {
+          enable: true,
+          sync: false,
+          speed: props.speed,
+        },
+      },
+      size: {
+        value: {
+          min: props.minSize || props.size / 2.5,
+          max: props.size,
+        },
       },
     },
-    size: {
-      value: {
-        min: props.minSize || props.size / 2.5,
-        max: props.size,
-      },
-    },
-  },
-  detectRetina: true,
-};
+    detectRetina: true,
+  };
+
+  return options;
+}
 
 onMounted(async () => {
   await loadSlim(tsParticles);
@@ -100,9 +104,22 @@ onMounted(async () => {
   container = await tsParticles.load({
     id: props.id,
     options:
-      Object.keys(customOptions).length > 0 ? customOptions : defaultOptions,
+      Object.keys(customOptions).length > 0 ? customOptions : getOptions(),
   });
 });
+
+watch(
+  () => props.color,
+  async () => {
+    const customOptions = props.options;
+
+    container = await tsParticles.load({
+      id: props.id,
+      options:
+        Object.keys(customOptions).length > 0 ? customOptions : getOptions(),
+    });
+  }
+);
 
 onUnmounted(() => {
   if (!container) {
