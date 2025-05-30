@@ -3,9 +3,7 @@
     <TyndallEffect
       class="min-h-screen bg-gradient-to-br dark:from-black/50 dark:to-white/30 from-white to-orange-300/50"
     >
-      <div
-        class="absolute flex flex-col items-center w-full px-5 transform -translate-x-1/2 top-48 left-1/2"
-      >
+      <div class="flex flex-col items-center w-full px-5 transform">
         <!-- <Badge>Stay informed</Badge> -->
 
         <h1
