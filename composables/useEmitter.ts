@@ -75,6 +75,8 @@ export type Events = {
   error: { title: string; options?: ExternalToast };
   // events to open modal
   "open:join": boolean;
+  // scroll to waiting list section
+  "scroll:to:join": void;
 };
 
 const emitter = mitt<Events>();

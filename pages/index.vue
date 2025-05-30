@@ -15,7 +15,7 @@
     <MoonSection />
 
     <!-- Final CTA Section -->
-    <TynDall />
+    <TynDall ref="tyndallRef" />
 
     <!-- Footer -->
     <GlobalFooter />
@@ -23,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import TynDall from "~/components/cta/TynDall.vue";
+
 definePageMeta({
   layout: "default",
 });
@@ -46,5 +48,24 @@ useHead({
       href: "/favicon.png",
     },
   ],
+});
+
+const tyndallRef = ref<InstanceType<typeof TynDall> | null>(null);
+
+const emitter = useEmitter();
+
+onMounted(() => {
+  emitter.on("scroll:to:join", () => {
+    console.log(
+      "scrollToTyndall",
+      tyndallRef.value,
+      tyndallRef.value?.emailInput
+    );
+
+    const el = (tyndallRef.value as any)?.$el ?? tyndallRef.value;
+    if (el && "scrollIntoView" in el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
 });
 </script>

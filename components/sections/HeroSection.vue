@@ -3,13 +3,16 @@
     <div
       class="relative z-10 flex flex-col items-center justify-center w-screen gap-6 mx-auto mt-6"
     >
-      <div ref="heroTitle" class="max-w-3xl font-bold text-center text-7xl">
+      <div
+        ref="heroTitle"
+        class="~max-w-sm/3xl font-bold text-center ~text-3xl/7xl ~mx-3/0"
+      >
         <h2>{{ $t("waiting.manage") }}</h2>
       </div>
 
       <p
         ref="heroSubtitle"
-        class="max-w-3xl text-2xl text-center text-muted-foreground"
+        class="~max-w-sm/3xl ~text-base/2xl text-center text-muted-foreground ~mx-3/0"
       >
         Manage your
         <span class="font-bold">deen, schedule, habits</span>, and
@@ -23,7 +26,10 @@
           class="flex items-center justify-center max-w-sm gap-2 mx-auto mb-12"
         >
           <!-- <Input id="email" type="email" placeholder="Email" /> -->
-          <Button class="text-lg font-medium">
+          <Button
+            class="text-lg font-medium"
+            @click="emitter.emit('scroll:to:join')"
+          >
             {{ $t("waiting.waitingExpand") }}
           </Button>
         </div>
@@ -54,8 +60,10 @@
       />
     </div>
     <div ref="heroBottomText" class="absolute inset-x-0 bottom-24">
-      <p class="max-w-xl mx-auto text-4xl font-bold text-center">
-        You deserver a space that keeps your faith at the center - not an
+      <p
+        class="~max-w-sm/xl ~text-base/4xl text-center mx-auto ~px-6/0 font-bold md:font-normal"
+      >
+        You deserve a space that keeps your faith at the center - not an
         afterthought
       </p>
     </div>
@@ -72,6 +80,8 @@ const heroSubtitle = templateRef<HTMLElement>("heroSubtitle");
 const heroButton = templateRef<HTMLElement>("heroButton");
 const heroBackground = templateRef<HTMLElement>("heroBackground");
 const heroBottomText = templateRef<HTMLElement>("heroBottomText");
+
+const emitter = useEmitter();
 
 onMounted(() => {
   // Set initial states for all elements

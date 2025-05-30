@@ -1,23 +1,32 @@
 <template>
   <main class="w-full h-full">
     <TyndallEffect
-      class="min-h-screen bg-gradient-to-br dark:from-black/50 dark:to-white/30 from-white/50 to-orange-300/30"
+      class="min-h-screen bg-gradient-to-br dark:from-black/50 dark:to-white/30 from-orange-200/50 to-white"
     >
       <div
         class="absolute flex flex-col items-center w-full px-5 transform -translate-x-1/2 top-48 left-1/2"
       >
-        <Badge>Stay informed</Badge>
+        <!-- <Badge>Stay informed</Badge> -->
 
         <h1
-          class="mt-8 text-4xl font-bold tracking-tight text-center text-transparent bg-gradient-to-br dark:from-slate-200/90 dark:via-slate-50 dark:to-white from-slate-950/90 via-slate-950 to-black bg-clip-text md:text-6xl"
+          class="text-4xl ~max-w-sm/3xl font-bold tracking-tight text-center bg-gradient-to-br dark:from-slate-200/90 dark:via-slate-50 dark:to-white from-slate-950/90 via-slate-950 to-black bg-clip-text md:text-6xl"
         >
-          Stunning UI is a better way <br />
-          to build websites
+          This is your sign. It's time to get back on track.
         </h1>
 
-        <Button class="z-10 mt-12 text-lg font-medium">
-          {{ $t("waiting.waitingExpand") }}
-        </Button>
+        <div
+          class="flex w-full ~max-w-sm/2xl mx-auto flex-col items-center justify-center ~gap-2/4 align-middle md:flex-row ~mt-8/12"
+        >
+          <Input
+            ref="emailInput"
+            v-model="email"
+            :placeholder="$t('modal.placeholder')"
+            class="w-full"
+          />
+          <Button class="z-10 w-full text-lg font-medium">
+            {{ $t("waiting.waitingExpand") }}
+          </Button>
+        </div>
       </div>
       <template #particles>
         <ParticlesEffect
@@ -33,4 +42,12 @@
 
 <script lang="ts" setup>
 const isDark = useDark();
+
+const emailInput = ref<HTMLInputElement | null>(null);
+
+const email = ref("");
+
+defineExpose({
+  emailInput,
+});
 </script>

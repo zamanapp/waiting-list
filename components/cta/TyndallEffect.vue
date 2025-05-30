@@ -40,7 +40,7 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    streakColor: string;
+    streakColor?: string;
   }>(),
   {
     streakColor: "rgb(255, 255, 255)",
@@ -61,7 +61,7 @@ const wrapperStyle = computed(() => {
   --streak-color: rgb(0, 225, 255);
 }
 
-.sui-tyndall-effect .overlay {
+/* .sui-tyndall-effect .overlay {
   background: linear-gradient(
     180deg,
     #000000 0%,
@@ -69,7 +69,7 @@ const wrapperStyle = computed(() => {
     rgba(0, 0, 0, 0.12) 70%,
     rgba(0, 0, 0, 0) 100%
   );
-}
+} */
 
 .sui-tyndall-effect .streak {
   background: linear-gradient(

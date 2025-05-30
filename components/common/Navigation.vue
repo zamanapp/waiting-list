@@ -15,7 +15,7 @@
         class="inline-flex items-center justify-end gap-8"
         as="button"
       >
-        <LangSwitcher class="mx-auto my-3" />
+        <DarkmodeSwitcher />
         <Icon class="cursor-pointer w-7 h-7" icon="hugeicons:menu-05" />
       </DrawerTrigger>
       <DrawerContent>
@@ -29,7 +29,8 @@
           <NuxtLink>
             <DrawerTitle>{{ $t("header.changelog") }}</DrawerTitle>
           </NuxtLink>
-          <DarkmodeSwitcher />
+          <LangSwitcher fullname class="mx-auto my-3" />
+
           <SocialIcons class="mx-auto my-3" />
         </DrawerHeader>
       </DrawerContent>
