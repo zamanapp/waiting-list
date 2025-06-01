@@ -21,9 +21,15 @@
             :placeholder="$t('modal.placeholder')"
             class="w-full"
           />
-          <Button class="z-10 w-full text-lg font-medium">
+          <GlassButton
+            :color="isDark ? '#fff' : '#000'"
+            class="z-10 w-full text-lg font-medium"
+          >
             {{ $t("waiting.waitingExpand") }}
-          </Button>
+          </GlassButton>
+          <!-- <Button class="z-10 w-full text-lg font-medium">
+            {{ $t("waiting.waitingExpand") }}
+          </Button> -->
         </div>
       </div>
       <template #particles>

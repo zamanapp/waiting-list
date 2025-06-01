@@ -22,6 +22,12 @@ importers:
       '@tsparticles/engine':
         specifier: ^3.8.1
         version: 3.8.1
+      '@tsparticles/preset-stars':
+        specifier: ^3.2.0
+        version: 3.2.0
+      '@tsparticles/shape-star':
+        specifier: ^3.8.1
+        version: 3.8.1
       '@tsparticles/slim':
         specifier: ^3.8.1
         version: 3.8.1
@@ -43,6 +49,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      colord:
+        specifier: ^2.9.3
+        version: 2.9.3
       gsap:
         specifier: ^3.12.2
         version: 3.13.0
@@ -1454,6 +1463,9 @@ packages:
 
   '@tsparticles/plugin-rgb-color@3.8.1':
     resolution: {integrity: sha512-xNLqnaFUYjU+7dCHQXjZdM4UojUAVorPVmXlYmkh1xmujLljEaFTwCg1UJVlNq+fXENIFkeaf3/XT0U/q0ZBTA==}
+
+  '@tsparticles/preset-stars@3.2.0':
+    resolution: {integrity: sha512-sCqqRD0/wq8YAJf/izu4Bv2Ol5SRMZtK3SVzRjaxNdhW5Wf0iw2aCt81Ve8YklIii2I6vYAPWjGtTPGUiyZpwg==}
 
   '@tsparticles/shape-circle@3.8.1':
     resolution: {integrity: sha512-dM/f+qcpd8/KfviuVuKiTS8KLDE/T7xxHK7EI2S49yPW6yrJJBXdL7T4N9/n/6PF+Wslcl+kf/eTDjEAI3WjNQ==}
@@ -7864,6 +7876,11 @@ snapshots:
 
   '@tsparticles/plugin-rgb-color@3.8.1':
     dependencies:
+      '@tsparticles/engine': 3.8.1
+
+  '@tsparticles/preset-stars@3.2.0':
+    dependencies:
+      '@tsparticles/basic': 3.8.1
       '@tsparticles/engine': 3.8.1
 
   '@tsparticles/shape-circle@3.8.1':

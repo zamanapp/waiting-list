@@ -26,12 +26,20 @@
           class="flex items-center justify-center max-w-sm gap-2 mx-auto mb-12"
         >
           <!-- <Input id="email" type="email" placeholder="Email" /> -->
-          <Button
+          <!-- <Button
             class="text-lg font-medium"
             @click="emitter.emit('scroll:to:join')"
           >
             {{ $t("waiting.waitingExpand") }}
-          </Button>
+          </Button> -->
+
+          <GlassButton
+            :color="isDark ? '#fff' : '#000'"
+            class="text-lg font-medium"
+            @click="emitter.emit('scroll:to:join')"
+          >
+            {{ $t("waiting.waitingExpand") }}
+          </GlassButton>
         </div>
       </div>
     </div>

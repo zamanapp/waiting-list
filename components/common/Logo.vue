@@ -1,26 +1,56 @@
 <template>
-  <LogoSVG class="h-9 w-9 dark:fill-gray-200" />
+  <LogoSVG class="dark:fill-gray-200" :class="logoSize" />
   <div
     v-if="localeProperties.dir === 'ltr'"
-    class="pb-1 text-3xl leading-loose font-logo"
+    class="pb-1 leading-loose font-logo"
+    :class="textSize"
   >
     <span class="font-bold">{{ $t("header.logo")[0] }}</span>
     <span class="font-semibold">{{
-      localeProperties.dir === "rtl"
+      localeProperties.dir !== "ltr"
         ? $t("header.logo").substring(1, 3)
         : $t("header.logo")[1]
     }}</span>
     <span class="font-medium">{{ $t("header.logo")[2] }}</span>
-    <span v-if="localeProperties.dir !== 'rtl'">{{
+    <span v-if="localeProperties.dir === 'ltr'">{{
       $t("header.logo")[3]
     }}</span>
     <span class="font-light">{{ $t("header.logo")[4] }}</span>
   </div>
-  <div v-else class="pb-1 text-3xl leading-loose font-logoArabic">
+  <div v-else class="pb-1 leading-loose font-logoArabic" :class="textSize">
     {{ $t("header.logo") }}
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { localeProperties } = useI18n();
+
+const props = defineProps({
+  size: {
+    type: String as PropType<"sm" | "md" | "lg">,
+    default: "lg",
+  },
+});
+
+const textSize = computed(() => {
+  switch (props.size) {
+    case "sm":
+      return "text-lg";
+    case "md":
+      return "text-2xl";
+    case "lg":
+      return "text-3xl";
+  }
+});
+
+const logoSize = computed(() => {
+  switch (props.size) {
+    case "sm":
+      return "size-6";
+    case "md":
+      return "size-6";
+    case "lg":
+      return "size-9";
+  }
+});
 </script>

@@ -1,56 +1,37 @@
 <template>
-  <footer class="py-12 bg-black border-t border-slate-800">
+  <footer class="relative pb-12">
+    <GlowyDivider class="absolute pt-0 pb-32 bottom-[4.1rem]" />
     <div class="px-6 mx-auto max-w-7xl">
       <div class="flex flex-col items-center justify-between md:flex-row">
         <!-- Logo and Copyright -->
         <div class="flex items-center gap-4 mb-6 md:mb-0">
           <div class="flex items-center gap-2">
-            <Icon name="lucide:moon" class="w-6 h-6 text-slate-400" />
-            <span class="text-lg font-semibold text-white font-main"
-              >Zaman</span
-            >
+            <Logo size="sm" />
           </div>
-          <div class="text-sm text-white/60 font-main">
-            {{ new Date().getFullYear() }} © All rights reserved.
+          <div class="text-sm font-main">
+            © {{ new Date().getFullYear() }} All rights reserved.
           </div>
         </div>
 
         <!-- Navigation Links -->
         <div class="flex items-center gap-8">
-          <a
-            href="#"
-            class="text-sm transition-colors text-white/60 hover:text-white font-main"
+          <NuxtLink
+            v-for="link in links"
+            :to="link.to"
+            class="text-sm transition-colors font-main"
           >
-            Manifesto
-          </a>
-          <a
-            href="#"
-            class="text-sm transition-colors text-white/60 hover:text-white font-main"
-          >
-            Privacy
-          </a>
-          <a
-            href="#"
-            class="text-sm transition-colors text-white/60 hover:text-white font-main"
-          >
-            Terms
-          </a>
-          <a
-            href="#"
-            class="text-sm transition-colors text-white/60 hover:text-white font-main"
-          >
-            Contact
-          </a>
+            {{ link.label }}
+          </NuxtLink>
         </div>
       </div>
 
       <!-- Divider -->
       <div class="pt-8 mt-8 border-t border-slate-800">
         <div class="text-center">
-          <p class="text-sm text-white/50 font-main">
-            Built with ❤️ for the global Muslim community
+          <p class="text-sm font-main">
+            Built with 🤲 and Sabr for every Muslim
           </p>
-          <p class="mt-2 text-xs text-white/40 font-main">
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 font-main">
             "And whoever relies upon Allah - then He is sufficient for him.
             Indeed, Allah will accomplish His purpose." - Quran 65:3
           </p>
@@ -61,5 +42,22 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
+const links = [
+  {
+    label: "Manifesto",
+    to: "/manifesto",
+  },
+  {
+    label: "Privacy",
+    to: "/privacy",
+  },
+  {
+    label: "Terms",
+    to: "/terms",
+  },
+  {
+    label: "Contact",
+    to: "/contact",
+  },
+];
 </script>
