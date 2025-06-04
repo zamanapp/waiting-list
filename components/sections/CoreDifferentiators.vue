@@ -1,314 +1,289 @@
 <template>
-  <section class="px-6 py-24 bg-slate-50 dark:bg-slate-800">
-    <div class="max-w-6xl mx-auto">
-      <!-- Section Header -->
-      <div class="mb-16 text-center">
-        <h2
-          class="mb-6 text-4xl font-bold md:text-5xl text-slate-900 dark:text-white font-main"
-        >
-          What makes Zaman different
-        </h2>
-        <p
-          class="max-w-3xl mx-auto text-xl text-slate-600 dark:text-slate-300 font-main"
-        >
-          Four fundamental innovations that set us apart from every other
-          productivity app
-        </p>
-      </div>
-
-      <!-- Differentiators Grid -->
-      <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        <!-- 1. Native Hijri Support -->
-        <div
-          class="p-8 bg-white border dark:bg-slate-900 rounded-2xl border-slate-200 dark:border-slate-700"
-        >
-          <div class="flex items-start gap-4 mb-6">
-            <div
-              class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-slate-900 dark:bg-white rounded-xl"
-            >
-              <Icon
-                icon="lucide:calendar"
-                class="w-6 h-6 text-white dark:text-slate-900"
-              />
-            </div>
-            <div>
-              <h3
-                class="text-2xl font-bold text-slate-900 dark:text-white font-main"
-              >
-                World's First Hijri-Native Calendar
-              </h3>
-              <p class="mt-2 text-slate-600 dark:text-slate-300 font-main">
-                Built from the ground up with Islamic time. Not a Gregorian
-                calendar with Islamic dates slapped on.
-              </p>
-            </div>
-          </div>
-
-          <!-- Feature Demo -->
+  <div class="py-6 sm:py-6">
+    <div class="max-w-2xl px-6 mx-auto lg:max-w-7xl lg:px-8">
+      <div
+        class="grid grid-cols-1 gap-4 mt-10 sm:mt-16 lg:grid-cols-8 lg:grid-rows-3"
+      >
+        <GlareLineFrame class="flex p-px lg:col-span-5">
           <div
-            class="p-4 border bg-slate-50 dark:bg-slate-800 rounded-xl border-slate-200 dark:border-slate-700"
+            class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
           >
-            <div class="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <div
-                  class="text-sm text-slate-500 dark:text-slate-400 font-main"
-                >
-                  Recurrence Rules
+            <div class="flex flex-col w-full group">
+              <div class="flex justify-between w-full">
+                <div class="font-semibold sm:text-base md:text-lg lg:text-2xl">
+                  World's First Native Hijri Calendar
                 </div>
                 <div
-                  class="p-2 mt-1 font-mono text-xs rounded bg-slate-200 dark:bg-slate-700"
+                  class="transition-all ease-in-out will-change-auto group-hover:translate-x-1"
                 >
-                  FREQ=YEARLY;BYMONTH=9
+                  <Icon name="ri:arrow-right-line" class="w-6 h-6" />
                 </div>
               </div>
-              <div>
-                <div
-                  class="text-sm text-slate-500 dark:text-slate-400 font-main"
-                >
-                  Moon Sighting
-                </div>
-                <div class="text-2xl">🌙</div>
-                <div
-                  class="text-xs text-slate-600 dark:text-slate-300 font-main"
-                >
-                  Auto-adjust
-                </div>
-              </div>
-              <div>
-                <div
-                  class="text-sm text-slate-500 dark:text-slate-400 font-main"
-                >
-                  Precision
-                </div>
-                <div
-                  class="font-semibold text-slate-900 dark:text-white font-main"
-                >
-                  Minute-level
-                </div>
-                <div
-                  class="text-xs text-slate-600 dark:text-slate-300 font-main"
-                >
-                  accuracy
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Time-Aware Deeds -->
-        <div
-          class="p-8 bg-white border dark:bg-slate-900 rounded-2xl border-slate-200 dark:border-slate-700"
-        >
-          <div class="flex items-start gap-4 mb-6">
-            <div
-              class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-slate-900 dark:bg-white rounded-xl"
-            >
-              <Icon
-                icon="lucide:clock-3"
-                class="w-6 h-6 text-white dark:text-slate-900"
-              />
-            </div>
-            <div>
-              <h3
-                class="text-2xl font-bold text-slate-900 dark:text-white font-main"
-              >
-                Time-Aware Islamic Deeds
-              </h3>
-              <p class="mt-2 text-slate-600 dark:text-slate-300 font-main">
-                Discover what to do and when. Every deed comes with timing,
-                context, and authentic sources.
-              </p>
-            </div>
-          </div>
-
-          <!-- Feature Demo -->
-          <div
-            class="p-4 border bg-slate-50 dark:bg-slate-800 rounded-xl border-slate-200 dark:border-slate-700"
-          >
-            <div class="space-y-3">
               <div
-                class="p-3 bg-white border rounded-lg dark:bg-slate-700 border-slate-200 dark:border-slate-600"
+                class="text-neutral-100/80 sm:text-xs md:text-sm lg:text-base"
               >
-                <div class="flex items-center justify-between">
-                  <span
-                    class="font-medium text-slate-900 dark:text-white font-main"
-                    >Duha Prayer</span
-                  >
-                  <span
-                    class="text-xs text-slate-500 dark:text-slate-400 font-main"
-                    >Now</span
-                  >
-                </div>
-                <div
-                  class="mt-1 text-xs text-slate-600 dark:text-slate-300 font-main"
-                >
-                  ⏰ After sunrise • 📚 2-12 rakats • 🔗 Sources included
-                </div>
-              </div>
-              <div class="p-3 rounded-lg bg-slate-200 dark:bg-slate-600">
-                <div class="flex items-center justify-between">
-                  <span
-                    class="font-medium text-slate-900 dark:text-white font-main"
-                    >Friday Khutbah</span
-                  >
-                  <span
-                    class="text-xs text-slate-500 dark:text-slate-400 font-main"
-                    >2h 30m</span
-                  >
-                </div>
-                <div
-                  class="mt-1 text-xs text-slate-600 dark:text-slate-300 font-main"
-                >
-                  📅 Add to calendar • ✅ Track attendance • 📖 Learn etiquette
-                </div>
+                Create Stunning Websites That Stand Out
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- 3. Islamic Context Habits -->
-        <div
-          class="p-8 bg-white border dark:bg-slate-900 rounded-2xl border-slate-200 dark:border-slate-700"
-        >
-          <div class="flex items-start gap-4 mb-6">
             <div
-              class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-slate-900 dark:bg-white rounded-xl"
+              class="w-full h-full flex-1 bg-white/5 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear group-hover:-translate-y-4"
             >
-              <Icon
-                icon="lucide:target"
-                class="w-6 h-6 text-white dark:text-slate-900"
-              />
-            </div>
-            <div>
-              <h3
-                class="text-2xl font-bold text-slate-900 dark:text-white font-main"
+              <div
+                class="relative overflow-hidden border border-dashed rounded-md aspect-video border-white/10"
               >
-                Islamic-Contextualized Habit Tracking
-              </h3>
-              <p class="mt-2 text-slate-600 dark:text-slate-300 font-main">
-                Pre-built Islamic habit sets with intelligent insights that
-                understand your faith.
-              </p>
+                <svg
+                  class="absolute inset-0 w-full h-full stroke-white/10"
+                  fill="none"
+                >
+                  <defs>
+                    <pattern
+                      id="pattern-image-placeholder"
+                      x="0"
+                      y="0"
+                      width="10"
+                      height="10"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
+                    </pattern>
+                  </defs>
+                  <rect
+                    stroke="none"
+                    fill="url(#pattern-image-placeholder)"
+                    width="100%"
+                    height="100%"
+                  ></rect>
+                </svg>
+              </div>
             </div>
           </div>
-
-          <!-- Feature Demo -->
+        </GlareLineFrame>
+        <Deeds />
+        <GlareLineFrame class="flex p-px lg:col-span-3">
           <div
-            class="p-4 border bg-slate-50 dark:bg-slate-800 rounded-xl border-slate-200 dark:border-slate-700"
+            class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
           >
-            <div class="space-y-4">
-              <!-- Habit Views -->
-              <div class="flex gap-2">
-                <button
-                  class="px-3 py-1 text-xs text-white rounded bg-slate-900 dark:bg-white dark:text-slate-900 font-main"
+            <div class="flex flex-col w-full group">
+              <div class="flex justify-between w-full">
+                <div class="font-semibold sm:text-base md:text-lg lg:text-2xl">
+                  Wird System
+                </div>
+                <div
+                  class="transition-all ease-in-out will-change-auto group-hover:translate-x-1"
                 >
-                  Daily Prayers
-                </button>
-                <button
-                  class="px-3 py-1 text-xs rounded bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 font-main"
-                >
-                  Rawatib
-                </button>
-                <button
-                  class="px-3 py-1 text-xs rounded bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 font-main"
-                >
-                  Athkar
-                </button>
+                  <Icon name="ri:arrow-right-line" class="w-6 h-6" />
+                </div>
               </div>
-
-              <!-- Insight -->
-              <div class="p-3 rounded-lg bg-slate-200 dark:bg-slate-700">
-                <div
-                  class="mb-1 text-sm font-medium text-slate-900 dark:text-white font-main"
-                >
-                  💡 Pattern Detected
-                </div>
-                <div
-                  class="text-xs text-slate-600 dark:text-slate-300 font-main"
-                >
-                  You read Quran 40% more on days when you wake up for Fajr
-                </div>
+              <div
+                class="text-neutral-100/80 sm:text-xs md:text-sm lg:text-base"
+              >
+                Create Stunning Websites That Stand Out
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- 4. Dunya-Akhirah Integration -->
-        <div
-          class="p-8 bg-white border dark:bg-slate-900 rounded-2xl border-slate-200 dark:border-slate-700"
-        >
-          <div class="flex items-start gap-4 mb-6">
             <div
-              class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-slate-900 dark:bg-white rounded-xl"
+              class="w-full h-full flex-1 bg-white/5 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear group-hover:-translate-y-4"
             >
-              <Icon
-                icon="lucide:shuffle"
-                class="w-6 h-6 text-white dark:text-slate-900"
-              />
-            </div>
-            <div>
-              <h3
-                class="text-2xl font-bold text-slate-900 dark:text-white font-main"
+              <div
+                class="relative overflow-hidden border border-dashed rounded-md aspect-video border-white/10"
               >
-                Seamless Dunya-Akhirah Planning
-              </h3>
-              <p class="mt-2 text-slate-600 dark:text-slate-300 font-main">
-                Every widget talks to each other. Complete a deed, it
-                auto-tracks in habits. Schedule Quran, it syncs everywhere.
-              </p>
+                <svg
+                  class="absolute inset-0 w-full h-full stroke-white/10"
+                  fill="none"
+                >
+                  <defs>
+                    <pattern
+                      id="pattern-image-placeholder"
+                      x="0"
+                      y="0"
+                      width="10"
+                      height="10"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
+                    </pattern>
+                  </defs>
+                  <rect
+                    stroke="none"
+                    fill="url(#pattern-image-placeholder)"
+                    width="100%"
+                    height="100%"
+                  ></rect>
+                </svg>
+              </div>
             </div>
           </div>
-
-          <!-- Feature Demo -->
+        </GlareLineFrame>
+        <GlareLineFrame class="flex p-px lg:col-span-5">
           <div
-            class="p-4 border bg-slate-50 dark:bg-slate-800 rounded-xl border-slate-200 dark:border-slate-700"
+            class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
           >
-            <div class="space-y-3">
-              <!-- Connection Flow -->
-              <div class="flex items-center gap-2 text-sm font-main">
-                <span class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-600"
-                  >Read Surah Al-Kahf</span
+            <div class="flex flex-col w-full group">
+              <div class="flex justify-between w-full">
+                <div class="font-semibold sm:text-base md:text-lg lg:text-2xl">
+                  Kenz AI
+                </div>
+                <div
+                  class="transition-all ease-in-out will-change-auto group-hover:translate-x-1"
                 >
-                <Icon
-                  icon="lucide:arrow-right"
-                  class="w-4 h-4 text-slate-500"
-                />
-                <span class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-600"
-                  >Opens Wird</span
-                >
+                  <Icon name="ri:arrow-right-line" class="w-6 h-6" />
+                </div>
               </div>
-              <div class="flex items-center gap-2 text-sm font-main">
-                <span class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-600"
-                  >Complete Prayer</span
-                >
-                <Icon
-                  icon="lucide:arrow-right"
-                  class="w-4 h-4 text-slate-500"
-                />
-                <span class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-600"
-                  >Auto-tracked</span
-                >
+              <div
+                class="text-neutral-100/80 sm:text-xs md:text-sm lg:text-base"
+              >
+                Create Stunning Websites That Stand Out
               </div>
-              <div class="flex items-center gap-2 text-sm font-main">
-                <span class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-600"
-                  >Schedule Quran</span
+            </div>
+            <div
+              class="w-full h-full flex-1 bg-white/5 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear group-hover:-translate-y-4"
+            >
+              <div
+                class="relative overflow-hidden border border-dashed rounded-md aspect-video border-white/10"
+              >
+                <svg
+                  class="absolute inset-0 w-full h-full stroke-white/10"
+                  fill="none"
                 >
-                <Icon
-                  icon="lucide:arrow-right"
-                  class="w-4 h-4 text-slate-500"
-                />
-                <span class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-600"
-                  >Syncs Calendar</span
-                >
+                  <defs>
+                    <pattern
+                      id="pattern-image-placeholder"
+                      x="0"
+                      y="0"
+                      width="10"
+                      height="10"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
+                    </pattern>
+                  </defs>
+                  <rect
+                    stroke="none"
+                    fill="url(#pattern-image-placeholder)"
+                    width="100%"
+                    height="100%"
+                  ></rect>
+                </svg>
               </div>
             </div>
           </div>
+        </GlareLineFrame>
+        <GlareLineFrame class="flex p-px lg:col-span-5">
+          <div
+            class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
+          >
+            <div class="flex flex-col w-full group">
+              <div class="flex justify-between w-full">
+                <div class="font-semibold sm:text-base md:text-lg lg:text-2xl">
+                  Habit Tracker
+                </div>
+                <div
+                  class="transition-all ease-in-out will-change-auto group-hover:translate-x-1"
+                >
+                  <Icon name="ri:arrow-right-line" class="w-6 h-6" />
+                </div>
+              </div>
+              <div
+                class="text-neutral-100/80 sm:text-xs md:text-sm lg:text-base"
+              >
+                Create Stunning Websites That Stand Out
+              </div>
+            </div>
+            <div
+              class="w-full h-full flex-1 bg-white/5 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear group-hover:-translate-y-4"
+            >
+              <div
+                class="relative overflow-hidden border border-dashed rounded-md aspect-video border-white/10"
+              >
+                <svg
+                  class="absolute inset-0 w-full h-full stroke-white/10"
+                  fill="none"
+                >
+                  <defs>
+                    <pattern
+                      id="pattern-image-placeholder"
+                      x="0"
+                      y="0"
+                      width="10"
+                      height="10"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
+                    </pattern>
+                  </defs>
+                  <rect
+                    stroke="none"
+                    fill="url(#pattern-image-placeholder)"
+                    width="100%"
+                    height="100%"
+                  ></rect>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </GlareLineFrame>
+        <div class="flex flex-col gap-4 p-px grid-rows-subgrid lg:col-span-3">
+          <GlareLineFrame class="flex p-px">
+            <div
+              class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
+            >
+              <div class="flex flex-col w-full group">
+                <div class="flex justify-between w-full">
+                  <div
+                    class="font-semibold sm:text-base md:text-lg lg:text-2xl"
+                  >
+                    Anchored in Prayer Times
+                  </div>
+                  <div
+                    class="transition-all ease-in-out will-change-auto group-hover:translate-x-1"
+                  >
+                    <Icon name="ri:arrow-right-line" class="w-6 h-6" />
+                  </div>
+                </div>
+                <div
+                  class="text-neutral-100/80 sm:text-xs md:text-sm lg:text-base"
+                >
+                  Create Stunning Websites That Stand Out
+                </div>
+              </div>
+              <div
+                class="w-full h-full flex-1 bg-white/5 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear group-hover:-translate-y-4"
+              >
+                <!-- TODO: prayerMeter -->
+              </div>
+            </div>
+          </GlareLineFrame>
+          <GlareLineFrame class="flex p-px">
+            <div
+              class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
+            >
+              <div class="flex flex-col w-full group">
+                <div class="flex justify-between w-full">
+                  <div
+                    class="font-semibold sm:text-base md:text-lg lg:text-2xl"
+                  >
+                    Anchored in Prayer Times
+                  </div>
+                  <div
+                    class="transition-all ease-in-out will-change-auto group-hover:translate-x-1"
+                  >
+                    <Icon name="ri:arrow-right-line" class="w-6 h-6" />
+                  </div>
+                </div>
+                <div
+                  class="text-neutral-100/80 sm:text-xs md:text-sm lg:text-base"
+                >
+                  Create Stunning Websites That Stand Out
+                </div>
+              </div>
+              <div
+                class="w-full h-full flex-1 bg-white/5 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear group-hover:-translate-y-4"
+              >
+                <!-- TODO: prayerMeter -->
+              </div>
+            </div>
+          </GlareLineFrame>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
-
-<script setup lang="ts">
-import { Icon } from "@iconify/vue";
-</script>

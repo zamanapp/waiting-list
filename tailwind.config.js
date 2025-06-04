@@ -96,6 +96,15 @@ module.exports = {
             transform: "translateY(-3840px)",
           },
         },
+        "skew-scroll": {
+          "0%": {
+            transform: "rotateX(20deg) rotateZ(-20deg) skewX(20deg)",
+          },
+          "100%": {
+            transform:
+              "rotateX(20deg) rotateZ(-20deg) skewX(20deg) translateY(-220%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -103,6 +112,7 @@ module.exports = {
         "collapsible-down": "collapsible-down 0.2s ease-in-out",
         "collapsible-up": "collapsible-up 0.2s ease-in-out",
         risingstar: "risingstar 1000s linear infinite",
+        "skew-scroll": "skew-scroll 17s linear infinite",
       },
     },
   },

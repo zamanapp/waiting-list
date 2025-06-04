@@ -27,6 +27,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@formatjs/intl-durationformat": "^0.7.4",
     "@formkit/auto-animate": "^0.8.2",
     "@js-temporal/polyfill": "^0.4.3",
     "@tsparticles/engine": "^3.8.1",
