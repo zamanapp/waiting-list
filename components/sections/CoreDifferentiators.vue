@@ -252,36 +252,7 @@
               </div>
             </div>
           </GlareLineFrame>
-          <GlareLineFrame class="flex p-px">
-            <div
-              class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
-            >
-              <div class="flex flex-col w-full group">
-                <div class="flex justify-between w-full">
-                  <div
-                    class="font-semibold sm:text-base md:text-lg lg:text-2xl"
-                  >
-                    Anchored in Prayer Times
-                  </div>
-                  <div
-                    class="transition-all ease-in-out will-change-auto group-hover:translate-x-1"
-                  >
-                    <Icon name="ri:arrow-right-line" class="w-6 h-6" />
-                  </div>
-                </div>
-                <div
-                  class="text-neutral-100/80 sm:text-xs md:text-sm lg:text-base"
-                >
-                  Create Stunning Websites That Stand Out
-                </div>
-              </div>
-              <div
-                class="w-full h-full flex-1 bg-white/5 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear group-hover:-translate-y-4"
-              >
-                <!-- TODO: prayerMeter -->
-              </div>
-            </div>
-          </GlareLineFrame>
+          <Spaces />
         </div>
       </div>
     </div>
