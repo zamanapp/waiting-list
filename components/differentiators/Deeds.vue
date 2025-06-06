@@ -1,46 +1,23 @@
 <template>
-  <GlareLineFrame class="flex p-px lg:col-span-3">
-    <div
-      class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
-    >
-      <div class="flex flex-col w-full group">
-        <div class="flex justify-between w-full">
-          <div class="font-semibold sm:text-base md:text-lg lg:text-2xl">
-            Time-aware Deeds
-          </div>
-          <div
-            class="transition-all ease-in-out will-change-auto group-hover:translate-x-1"
-          >
-            <Icon name="ri:arrow-right-line" class="w-6 h-6" />
-          </div>
-        </div>
-        <div
-          class="text-slate-800 dark:text-slate-300 sm:text-xs md:text-sm lg:text-base"
-        >
-          Discover and track daily, weekly, monthly, and yearly deeds from the
-          Kitab & Sunnah.
-        </div>
-      </div>
-
+  <GlareLineFrame
+    title="Time-aware Deeds"
+    description="Discover and track daily, weekly, monthly, and yearly deeds from the Kitab & Sunnah."
+    class="flex p-px lg:col-span-3"
+  >
+    <div class="flex items-center justify-center">
       <div
-        class="w-full h-full flex-1 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear"
+        class="relative overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent,black_5rem),linear-gradient(to_left,transparent,black_5rem),linear-gradient(to_bottom,transparent,black_2rem),linear-gradient(to_top,transparent,black_2rem)]"
       >
-        <div class="flex items-center justify-center">
-          <div
-            class="relative overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent,black_5rem),linear-gradient(to_left,transparent,black_5rem),linear-gradient(to_bottom,transparent,black_2rem),linear-gradient(to_top,transparent,black_2rem)]"
-          >
-            <div
-              class="grid h-[300px] w-[300px] gap-5 animate-skew-scroll hover-pause-scroll grid-cols-1"
-            >
-              <DeedsCard
-                class="transition-all duration-300 ease-in-out shadow-md cursor-pointer group hover:scale-105 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl"
-                v-for="(deed, index) in deeds"
-                :key="deed.uid"
-                :deed="deed"
-                :deed-index="index"
-              />
-            </div>
-          </div>
+        <div
+          class="grid h-[300px] w-[300px] gap-5 animate-skew-scroll hover-pause-scroll grid-cols-1"
+        >
+          <DeedsCard
+            class="transition-all duration-300 ease-in-out shadow-md cursor-pointer group hover:scale-105 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl"
+            v-for="(deed, index) in deeds"
+            :key="deed.uid"
+            :deed="deed"
+            :deed-index="index"
+          />
         </div>
       </div>
     </div>

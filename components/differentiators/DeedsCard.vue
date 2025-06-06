@@ -42,44 +42,52 @@
           >
         </div>
         <div v-if="showIcons || isCardHovered" class="flex items-center gap-3">
-          <Icon
-            :class="[
-              'p-1 rounded-full size-5 hover:text-slate-500 dark:hover:text-slate-700',
-              isChecked
-                ? 'text-emerald-500 dark:text-emerald-500'
-                : 'text-slate-400 dark:text-slate-800',
-            ]"
-            icon="hugeicons:notification-off-01"
-          />
-          <Icon
-            :class="[
-              'p-1 rounded-full size-5 hover:text-slate-500 dark:hover:text-slate-700',
-              isChecked
-                ? 'text-emerald-500 dark:text-emerald-500'
-                : 'text-slate-400 dark:text-slate-800',
-            ]"
-            icon="hugeicons:calendar-add-01"
-          />
-          <Icon
-            :class="[
-              'p-1 rounded-full size-5 hover:text-slate-500 dark:hover:text-slate-700',
-              isChecked
-                ? 'text-emerald-500 dark:text-emerald-500'
-                : 'text-slate-400 dark:text-slate-800',
-            ]"
-            icon="hugeicons:share-08"
-          />
-          <Icon
-            v-if="showAddDeedToTimeline"
-            @click="addDeedToTimeline(deed!)"
-            :class="[
-              'p-1 rounded-full size-5 hover:text-slate-500 dark:hover:text-slate-700',
-              isChecked
-                ? 'text-emerald-500 dark:text-emerald-500'
-                : 'text-slate-400 dark:text-slate-800',
-            ]"
-            icon="hugeicons:time-quarter-pass"
-          />
+          <ToolTipInfo :delay="300" side="top" content="Notification">
+            <Icon
+              :class="[
+                'p-1 rounded-full size-5 hover:text-slate-500 dark:hover:text-slate-300',
+                isChecked
+                  ? 'text-emerald-500 dark:text-emerald-500'
+                  : 'text-slate-400 dark:text-slate-300',
+              ]"
+              icon="hugeicons:notification-off-01"
+            />
+          </ToolTipInfo>
+          <ToolTipInfo :delay="300" side="top" content="Add to calendar">
+            <Icon
+              :class="[
+                'p-1 rounded-full size-5 hover:text-slate-500 dark:hover:text-slate-300',
+                isChecked
+                  ? 'text-emerald-500 dark:text-emerald-500'
+                  : 'text-slate-400 dark:text-slate-300',
+              ]"
+              icon="hugeicons:calendar-add-01"
+            />
+          </ToolTipInfo>
+          <ToolTipInfo :delay="300" side="top" content="Share">
+            <Icon
+              :class="[
+                'p-1 rounded-full size-5 hover:text-slate-500 dark:hover:text-slate-300',
+                isChecked
+                  ? 'text-emerald-500 dark:text-emerald-500'
+                  : 'text-slate-400 dark:text-slate-300',
+              ]"
+              icon="hugeicons:share-08"
+            />
+          </ToolTipInfo>
+          <ToolTipInfo :delay="300" side="top" content="Add to timeline">
+            <Icon
+              v-if="showAddDeedToTimeline"
+              @click="addDeedToTimeline(deed!)"
+              :class="[
+                'p-1 rounded-full size-5 hover:text-slate-500 dark:hover:text-slate-300',
+                isChecked
+                  ? 'text-emerald-500 dark:text-emerald-500'
+                  : 'text-slate-400 dark:text-slate-300',
+              ]"
+              icon="hugeicons:time-quarter-pass"
+            />
+          </ToolTipInfo>
         </div>
       </div>
       <div

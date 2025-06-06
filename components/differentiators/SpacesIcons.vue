@@ -7,7 +7,7 @@
       side="top"
       :content="space.name!"
     >
-      <div :class="['relative hover:z-10 group', index > 0 ? '-ms-2' : '']">
+      <div :class="['relative hover:z-10 group', index > 0 ? '-ms-4' : '']">
         <Avatar
           class="transition-all duration-300 border-4 cursor-pointer size-20 hover:scale-105 hover:-translate-y-1 hover:shadow-lg"
           :style="{ borderColor: space.color }"
@@ -33,7 +33,7 @@
     </ToolTipInfo>
 
     <ToolTipInfo :delay="300" side="top" content="Create new space">
-      <div :class="['relative hover:z-10 -ms-2']">
+      <div :class="['relative hover:z-10 -ms-4']">
         <Avatar
           class="transition-all duration-300 border-2 cursor-pointer size-20 hover:scale-105 hover:-translate-y-1 hover:shadow-lg border-slate-400"
         >

@@ -1,37 +1,35 @@
 <template>
-  <div class="relative flex flex-col justify-center overflow-hidden group">
+  <div
+    class="relative flex flex-col justify-center overflow-hidden border-2 shadow-sm rounded-2xl bg-slate-50/20 dark:bg-slate-900/20 group border-slate-200 dark:border-slate-800"
+  >
     <div
-      class="relative w-full h-full p-2 dark:bg-neutral-50/5 outline outline-1 -outline-offset-1 dark:outline-neutral-50/5 outline-slate-300 sm:mx-auto sm:rounded-lg lg:rounded-3xl"
+      class="relative z-10 flex flex-col items-start w-full gap-8 p-6 cursor-pointer"
     >
+      <div class="flex flex-col w-full gap-3 group">
+        <div class="flex justify-between w-full">
+          <div class="font-semibold ~text-base/3xl">{{ title }}</div>
+        </div>
+        <div
+          class="text-slate-500 dark:text-slate-300 sm:text-xs md:text-sm lg:text-base"
+        >
+          {{ description }}
+        </div>
+      </div>
       <div
-        class="absolute bottom-auto left-0 right-0 top-0 z-10 -mb-[1px] h-[1px] bg-gradient-to-r dark:from-neutral-950 from-5% dark:via-white/60 dark:group-hover:via-white via-50% dark:to-neutral-950 to-95%"
-      />
-      <div
-        class="relative flex h-full px-8 overflow-hidden transition-all ease-linear border rounded-2xl dark:border-neutral-700 pt-9 hover:border-neutral-500/80"
+        class="w-full h-full flex-1 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear"
       >
-        <div
-          class="absolute bottom-auto left-0 right-0 top-0 z-10 -mb-[1px] h-[1px]"
-        />
         <slot />
-        <div
-          class="dark:bg-[radial-gradient(circle_at_50%_0,_rgba(128,128,128,_.2),_rgba(0,_0,_0,_0)_80%),_radial-gradient(circle_at_50%_0,_#181818,_rgba(0,_0,_0,_0))] absolute bottom-0 left-0 right-0 top-0 z-0 opacity-0 transition-all ease-linear group-hover:opacity-100"
-        />
       </div>
     </div>
+    <div
+      class="dark:bg-[radial-gradient(circle_at_50%_0,_rgba(128,128,128,_.2),_rgba(0,_0,_0,_0)_80%),_radial-gradient(circle_at_50%_0,_#181818,_rgba(0,_0,_0,_0))] absolute bottom-0 left-0 right-0 top-0 z-0 opacity-0 transition-all ease-linear group-hover:opacity-100"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { cn } from "~/lib/utils";
-
-withDefaults(
-  defineProps<{
-    showBuckle?: boolean;
-    direction?: "top" | "bottom";
-  }>(),
-  {
-    showBuckle: false,
-    direction: "bottom",
-  }
-);
+defineProps<{
+  title: string;
+  description: string;
+}>();
 </script>
