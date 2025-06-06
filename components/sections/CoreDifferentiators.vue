@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import PrayerAnchor from "../differentiators/PrayerAnchor.vue";
+</script>
+
 <template>
   <div class="py-6 sm:py-6">
     <div class="max-w-2xl px-6 mx-auto lg:max-w-7xl lg:px-8">
@@ -30,12 +34,7 @@
         >
         </GlareLineFrame>
         <div class="flex flex-col gap-4 p-px grid-rows-subgrid lg:col-span-3">
-          <GlareLineFrame
-            title="Anchored in Prayer Times"
-            description="Create Stunning Websites That Stand Out"
-            class="flex p-px"
-          >
-          </GlareLineFrame>
+          <PrayerAnchor />
           <Spaces />
         </div>
       </div>

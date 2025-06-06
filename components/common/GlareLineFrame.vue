@@ -16,7 +16,9 @@
         </div>
       </div>
       <div
-        class="w-full h-full flex-1 ring-1 ring-inset ring-white/10 rounded-[8px] p-3 transition-all ease-linear"
+        :class="`w-full h-full flex-1 ring-1 ring-inset dark:ring-white/10 ring-slate-200 rounded-[8px] p-3 transition-all ease-linear ${
+          hideOverflow ? 'overflow-hidden' : ''
+        }`"
       >
         <slot />
       </div>
@@ -31,5 +33,6 @@
 defineProps<{
   title: string;
   description: string;
+  hideOverflow?: boolean;
 }>();
 </script>
