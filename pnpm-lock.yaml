@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@js-temporal/polyfill@0.4.4':
-    hash: c0bdf39ca7cc01fbb62bb7a2107adab4a96a5a8b980cf12febb08282658e1524
+    hash: u6fwwmnp6pguey5ldw2t7kvdty
     path: patches/@js-temporal__polyfill@0.4.4.patch
 
 importers:
@@ -21,7 +21,7 @@ importers:
         version: 0.8.2
       '@js-temporal/polyfill':
         specifier: ^0.4.3
-        version: 0.4.4(patch_hash=c0bdf39ca7cc01fbb62bb7a2107adab4a96a5a8b980cf12febb08282658e1524)
+        version: 0.4.4(patch_hash=u6fwwmnp6pguey5ldw2t7kvdty)
       '@observablehq/plot':
         specifier: ^0.6.17
         version: 0.6.17
@@ -6885,7 +6885,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@js-temporal/polyfill@0.4.4(patch_hash=c0bdf39ca7cc01fbb62bb7a2107adab4a96a5a8b980cf12febb08282658e1524)':
+  '@js-temporal/polyfill@0.4.4(patch_hash=u6fwwmnp6pguey5ldw2t7kvdty)':
     dependencies:
       jsbi: 4.3.2
       tslib: 2.8.1
