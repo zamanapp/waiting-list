@@ -30,6 +30,7 @@
     "@formatjs/intl-durationformat": "^0.7.4",
     "@formkit/auto-animate": "^0.8.2",
     "@js-temporal/polyfill": "^0.4.3",
+    "@observablehq/plot": "^0.6.17",
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/preset-stars": "^3.2.0",
     "@tsparticles/shape-star": "^3.8.1",

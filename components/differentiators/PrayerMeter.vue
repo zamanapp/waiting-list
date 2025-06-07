@@ -242,9 +242,9 @@ interface TimeObject {
 }
 
 const locale = computed(() => "en-US");
-const showPrayerTimeLabel = ref<"none" | "all" | PrayerNamesType>("none");
-const now = ref(new Date("2025-06-05T21:36:00.000Z"));
-const hoveredElement = ref<string | null>(null);
+const showPrayerTimeLabel = ref<"none" | "all" | PrayerNamesType>("fajr");
+const now = ref(new Date("2025-06-05T20:36:00.000Z"));
+const hoveredElement = ref<string | null>("prayer-fajr");
 
 const timeFormatter = new Intl.DateTimeFormat(locale.value, {
   hour: "numeric",
@@ -260,11 +260,11 @@ const HIGHT_RATIO = 0.7;
 const prayers: TimeObject[] = [
   {
     name: "fajr",
-    time: new Date("2025-06-05T21:45:00.000Z"),
+    time: new Date("2025-06-05T20:45:00.000Z"),
   },
   {
     name: "sunrise",
-    time: new Date("2025-06-05T23:03:00.000Z"),
+    time: new Date("2025-06-05T22:20:00.000Z"),
   },
   {
     name: "dhuhr",

@@ -15,6 +15,9 @@
           <AvatarFallback class="text-2xl font-semibold">{{
             space.name!.slice(0, 2).toUpperCase()
           }}</AvatarFallback>
+          <!-- <AvatarFallback class="text-2xl font-semibold">{{
+            space.emoji
+          }}</AvatarFallback> -->
         </Avatar>
         <ToolTipInfo content="Default space">
           <div
@@ -60,18 +63,24 @@ const spaces = computed(() => {
     {
       id: 1,
       name: "Personal Space",
+      // moon
+      emoji: "🌙",
       color: isDark.value ? "#e2e8f0" : "#020617",
       default: true,
     },
     {
       id: 3,
       name: "Family Space",
+      // love?
+      emoji: "💖",
       color: isDark.value ? "#86efac" : "#22c55e",
       default: false,
     },
     {
       id: 2,
       name: "Work Space",
+      // bag
+      emoji: "💼",
       color: isDark.value ? "#a5b4fc" : "#6366f1",
       default: false,
     },

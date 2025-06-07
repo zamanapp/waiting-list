@@ -15,12 +15,7 @@ import PrayerAnchor from "../differentiators/PrayerAnchor.vue";
         >
         </GlareLineFrame>
         <Deeds />
-        <GlareLineFrame
-          title="Wird System"
-          description="Create Stunning Websites That Stand Out"
-          class="flex p-px lg:col-span-3"
-        >
-        </GlareLineFrame>
+        <Wird />
         <GlareLineFrame
           title="Kenz AI"
           description="Create Stunning Websites That Stand Out"
@@ -33,9 +28,11 @@ import PrayerAnchor from "../differentiators/PrayerAnchor.vue";
           class="flex p-px lg:col-span-5"
         >
         </GlareLineFrame>
-        <div class="flex flex-col gap-4 p-px grid-rows-subgrid lg:col-span-3">
-          <PrayerAnchor />
-          <Spaces />
+        <div
+          class="flex flex-col gap-4 p-px grow grid-rows-subgrid lg:col-span-3"
+        >
+          <PrayerAnchor class="grow" />
+          <Spaces class="grow" />
         </div>
       </div>
     </div>
