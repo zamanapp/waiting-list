@@ -19,13 +19,13 @@
             ref="emailInput"
             v-model="email"
             :placeholder="$t('modal.placeholder')"
-            class="w-full"
+            class="w-full h-12"
           />
           <GlassButton
             :color="isDark ? '#fff' : '#000'"
             class="z-10 w-full text-lg font-medium"
           >
-            {{ $t("waiting.waitingExpand") }}
+            {{ $t("waiting.earlyAccess") }}
           </GlassButton>
           <!-- <Button class="z-10 w-full text-lg font-medium">
             {{ $t("waiting.waitingExpand") }}
