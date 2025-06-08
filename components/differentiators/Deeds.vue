@@ -6,7 +6,7 @@
   >
     <div class="flex items-center justify-center">
       <div
-        class="relative overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent,black_5rem),linear-gradient(to_left,transparent,black_5rem),linear-gradient(to_bottom,transparent,black_2rem),linear-gradient(to_top,transparent,black_2rem)]"
+        class="relative overflow-hidden [mask-composite:intersect] rtl:[mask-image:linear-gradient(to_left,transparent,black_5rem),linear-gradient(to_right,transparent,black_5rem),linear-gradient(to_bottom,transparent,black_2rem),linear-gradient(to_top,transparent,black_2rem)] [mask-image:linear-gradient(to_right,transparent,black_5rem),linear-gradient(to_left,transparent,black_5rem),linear-gradient(to_bottom,transparent,black_2rem),linear-gradient(to_top,transparent,black_2rem)]"
       >
         <div
           class="grid h-[300px] w-[300px] gap-5 animate-skew-scroll hover-pause-scroll grid-cols-1"

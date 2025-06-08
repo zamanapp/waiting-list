@@ -15,7 +15,7 @@ const switchLocalePath = useSwitchLocalePath();
 defineProps({
   fullname: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 });
 
