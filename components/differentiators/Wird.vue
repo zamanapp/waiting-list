@@ -12,7 +12,8 @@
       <img
         :src="`/img/wird-${isDark ? 'dark' : 'light'}.png`"
         alt="Wird"
-        class="absolute bottom-12 left-16 rtl:left-24"
+        class="absolute transition-all duration-300 hover:shadow-xl bottom-12 left-16 rtl:left-24 md:left-36"
+        style="transform: scale(1.5)"
       />
     </div>
 

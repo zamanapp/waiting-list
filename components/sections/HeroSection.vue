@@ -69,10 +69,9 @@
     </div>
     <div ref="heroBottomText" class="absolute inset-x-0 bottom-24">
       <p
-        class="~max-w-sm/xl ~text-base/4xl text-center mx-auto ~px-6/0 font-bold md:font-normal"
+        class="~max-w-sm/xl ~text-xl/5xl text-center mx-auto ~px-6/0 font-bold md:font-medium"
       >
-        You deserve a space that keeps your faith at the center - not an
-        afterthought
+        You deserve a space that keeps your faith at the center
       </p>
     </div>
   </div>

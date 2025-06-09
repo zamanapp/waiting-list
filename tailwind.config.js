@@ -98,11 +98,11 @@ module.exports = {
         },
         "skew-scroll": {
           "0%": {
-            transform: "rotateX(20deg) rotateZ(-20deg) skewX(20deg)",
+            transform: "rotateX(20deg) rotateZ(-10deg) skewX(10deg)",
           },
           "100%": {
             transform:
-              "rotateX(20deg) rotateZ(-20deg) skewX(20deg) translateY(-220%)",
+              "rotateX(20deg) rotateZ(-10deg) skewX(10deg) translateY(-220%)",
           },
         },
       },

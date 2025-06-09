@@ -8,12 +8,7 @@ import PrayerAnchor from "../differentiators/PrayerAnchor.vue";
       <div
         class="grid grid-cols-1 gap-4 mt-10 sm:mt-16 lg:grid-cols-8 lg:grid-rows-3"
       >
-        <GlareLineFrame
-          title="World's First Native Hijri Calendar"
-          description="Create Stunning Websites That Stand Out"
-          class="flex p-px lg:col-span-5"
-        >
-        </GlareLineFrame>
+        <HijriCalendar />
         <Deeds />
         <Wird />
         <GlareLineFrame

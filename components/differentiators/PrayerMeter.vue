@@ -1,5 +1,8 @@
 <template>
-  <div ref="prayerMeterWrapper" class="w-screen h-12">
+  <div
+    ref="prayerMeterWrapper"
+    class="w-[67rem] md:w-[100rem] lg:w-[130rem] h-12"
+  >
     <div class="relative inline-flex items-center w-full align-middle">
       <svg
         id="prayer_meter"

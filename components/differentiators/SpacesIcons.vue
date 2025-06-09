@@ -9,15 +9,16 @@
     >
       <div :class="['relative hover:z-10 group', index > 0 ? '-ms-4' : '']">
         <Avatar
-          class="transition-all duration-300 border-4 cursor-pointer size-20 hover:scale-105 hover:-translate-y-1 hover:shadow-lg"
+          class="transition-all duration-300 border-4 cursor-pointer size-16 hover:scale-105 hover:-translate-y-1 hover:shadow-lg"
           :style="{ borderColor: space.color }"
         >
-          <AvatarFallback class="text-2xl font-semibold">{{
-            space.name!.slice(0, 2).toUpperCase()
-          }}</AvatarFallback>
           <!-- <AvatarFallback class="text-2xl font-semibold">{{
-            space.emoji
+            space.name!.slice(0, 2).toUpperCase()
           }}</AvatarFallback> -->
+          <AvatarFallback
+            class="text-3xl font-semibold grayscale brightness-0 dark:invert"
+            >{{ space.emoji }}</AvatarFallback
+          >
         </Avatar>
         <ToolTipInfo content="Default space">
           <div
@@ -28,7 +29,7 @@
               name="hugeicons:seal"
               mode="svg"
               :stroke-width="2.7"
-              class="text-white stroke-2 size-5"
+              class="text-white stroke-2 size-4"
             />
           </div>
         </ToolTipInfo>
@@ -36,9 +37,9 @@
     </ToolTipInfo>
 
     <ToolTipInfo :delay="300" side="top" content="Create new space">
-      <div :class="['relative hover:z-10 -ms-4']">
+      <div :class="['relative hover:z-10 -ms-2']">
         <Avatar
-          class="transition-all duration-300 border-2 cursor-pointer size-20 hover:scale-105 hover:-translate-y-1 hover:shadow-lg border-slate-400"
+          class="transition-all duration-300 border-2 cursor-pointer size-16 hover:scale-105 hover:-translate-y-1 hover:shadow-lg border-slate-400"
         >
           <Icon icon="hugeicons:plus-sign" class="text-slate-400 size-8" />
         </Avatar>
@@ -72,7 +73,7 @@ const spaces = computed(() => {
       id: 3,
       name: "Family Space",
       // love?
-      emoji: "💖",
+      emoji: "💕",
       color: isDark.value ? "#86efac" : "#22c55e",
       default: false,
     },

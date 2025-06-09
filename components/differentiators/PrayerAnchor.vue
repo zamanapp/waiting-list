@@ -5,6 +5,10 @@
     class="flex p-px"
     hideOverflow
   >
-    <PrayerMeter />
+    <div
+      class="py-6 [mask-image:linear-gradient(to_left,transparent,black_2rem)]"
+    >
+      <PrayerMeter />
+    </div>
   </GlareLineFrame>
 </template>
