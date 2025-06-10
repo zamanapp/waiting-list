@@ -15,7 +15,7 @@
       v-slot="{ weekDays, grid }"
       :model-value="value"
       :locale="locale"
-      class="p-4 mt-6 border shadow-md dark:shadow-slate-800/50 dark:bg-slate-900 dark:border-slate-800 rounded-xl"
+      class="p-4 mt-6 bg-white border shadow-md dark:shadow-slate-800/50 dark:bg-slate-900 dark:border-slate-800 rounded-xl"
       fixed-weeks
     >
       <CalendarHeader class="flex items-center justify-between">
