@@ -1,7 +1,7 @@
 <template>
   <GlareLineFrame
     title="Habit Tracker"
-    description="Create Stunning Websites That Stand Out"
+    description="Achieve your Dunia and Akhira goals with ease. Track your progress and stay on track."
     class="flex h-full p-px lg:col-span-5"
   >
     <!-- <HabitChart /> -->
@@ -12,7 +12,7 @@
       <FlickeringGrid class="absolute inset-0 z-0" :color="color" />
 
       <!-- Marquee should be in front of the grid -->
-      <div class="absolute z-10 flex flex-col justify-center h-full">
+      <div class="absolute z-10 flex flex-col justify-end h-full py-12">
         <Marquee pauseOnHover>
           <div class="flex gap-3">
             <HabitsList
