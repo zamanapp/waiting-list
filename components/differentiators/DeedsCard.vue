@@ -3,10 +3,10 @@
     ref="deedCardRef"
     :id="`deed-card-${deedIndex}`"
     :class="[
-      'relative flex flex-col font-sans transition-all ease-out border rounded-lg shadow-sm cursor-pointer group hover:shadow-md dark:shadow-inner-shadow-dark-md dark:hover:shadow-inner-shadow-dark-float',
+      'relative flex flex-col font-sans bg-white dark:bg-slate-900 transition-all ease-out border rounded-lg shadow-sm cursor-pointer group hover:shadow-md dark:shadow-inner-shadow-dark-md dark:hover:shadow-inner-shadow-dark-float',
       isChecked &&
         'border-emerald-500 dark:bg-emerald-950/20 bg-gradient-to-br from-emerald-50 to-background dark:from-emerald-900/20 dark:to-background',
-      !isChecked && 'dark:border-slate-500',
+      !isChecked && 'dark:border-slate-700',
     ]"
   >
     <!-- Pre-deeds -->

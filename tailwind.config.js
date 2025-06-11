@@ -105,6 +105,14 @@ module.exports = {
               "rotateX(20deg) rotateZ(-10deg) skewX(10deg) translateY(-220%)",
           },
         },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -113,6 +121,8 @@ module.exports = {
         "collapsible-up": "collapsible-up 0.2s ease-in-out",
         risingstar: "risingstar 1000s linear infinite",
         "skew-scroll": "skew-scroll 17s linear infinite",
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
     },
   },

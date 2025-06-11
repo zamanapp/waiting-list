@@ -17,12 +17,7 @@ import PrayerAnchor from "../differentiators/PrayerAnchor.vue";
           class="flex p-px lg:col-span-5"
         >
         </GlareLineFrame>
-        <GlareLineFrame
-          title="Habit Tracker"
-          description="Create Stunning Websites That Stand Out"
-          class="flex p-px lg:col-span-5"
-        >
-        </GlareLineFrame>
+        <HabitTracker />
         <div
           class="flex flex-col gap-4 p-px grow grid-rows-subgrid lg:col-span-3"
         >
