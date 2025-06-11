@@ -13,7 +13,7 @@ import PrayerAnchor from "../differentiators/PrayerAnchor.vue";
         <Wird />
         <GlareLineFrame
           title="Kenz AI"
-          description="Create Stunning Websites That Stand Out"
+          description="Capture thoughts, ideas, and inspirations with ease. Kenz AI remembers the details so you can resurface anything with cues."
           class="flex p-px lg:col-span-5"
         >
         </GlareLineFrame>

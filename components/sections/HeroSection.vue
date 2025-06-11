@@ -54,6 +54,8 @@
     >
       <ParticlesEffect
         :density="1200"
+        :size="1.5"
+        :minSize="0.5"
         :color="isDark ? '#fff' : '#f97316'"
         class="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
       />
@@ -61,13 +63,16 @@
         class="absolute inset-0 dark:bg-[radial-gradient(circle_at_bottom_center,#5eead42e,transparent_70%)] bg-[radial-gradient(circle_at_bottom_center,#fef3c7,transparent_70%)]"
       />
       <div
-        class="absolute inset-x-0 -bottom-[254px] h-full w-full rounded-[100%] bg-gradient-to-b dark:from-white dark:to-black from-amber-300 to-white"
+        class="absolute inset-x-0 -bottom-[254px] h-full w-full rounded-[100%] bg-gradient-to-b dark:from-white dark:to-black from-amber-500 to-sky-100"
       />
       <div
-        class="absolute inset-x-0 -bottom-[256px] h-full w-full rounded-[100%] bg-neutral-50 dark:bg-neutral-950 shadow-[inset_0_2px_20px_#fff7ed,0_-10px_50px_1px_#fed7aa] dark:shadow-[inset_0_2px_20px_#fff,0_-10px_50px_1px_#ffffff7d]"
+        class="absolute inset-x-0 -bottom-[256px] h-full w-full rounded-[100%] bg-orange-100 dark:bg-neutral-950 shadow-[inset_0_2px_20px_#fff7ed,0_-10px_50px_1px_#fed7aa] dark:shadow-[inset_0_2px_20px_#fff,0_-10px_50px_1px_#ffffff7d]"
       />
     </div>
-    <div ref="heroBottomText" class="absolute inset-x-0 bottom-36 lg:bottom-24">
+    <div
+      ref="heroBottomText"
+      class="absolute inset-x-0 bottom-12 md:bottom-36 lg:bottom-24"
+    >
       <p
         class="~max-w-sm/xl ~text-xl/5xl text-center mx-auto ~px-6/0 font-bold md:font-medium"
       >

@@ -11,11 +11,11 @@
     <!-- Technical Excellence Section -->
     <TechnicalExcellence />
 
-    <!-- Moon Section -->
-    <MoonSection />
-
     <!-- Final CTA Section -->
     <TynDall ref="tyndallRef" />
+
+    <!-- FAQ Section -->
+    <FAQ />
 
     <!-- Footer -->
     <GlobalFooter />

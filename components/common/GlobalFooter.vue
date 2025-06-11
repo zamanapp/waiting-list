@@ -3,8 +3,7 @@
     class="relative h-full overflow-hidden"
     :style="{ paddingTop: `${paddingTop}px` }"
   >
-    <!-- <GlowyDivider class="absolute pt-0 pb-32 bottom-[4.1rem]" /> -->
-
+    <GlowyDivider class="absolute z-20 p-0 translate-y-1/2" />
     <div class="absolute z-0 flex justify-center w-full">
       <Moon
         :moon-size="moonSize"
@@ -14,6 +13,7 @@
         show-guide
       />
     </div>
+
     <div
       ref="footerContent"
       class="relative z-10 w-full p-12 mx-auto bg-white dark:bg-slate-950"
