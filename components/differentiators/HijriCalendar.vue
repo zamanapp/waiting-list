@@ -14,7 +14,7 @@
       <!-- <CalendarSwitch
         class="self-end h-full scale-75 md:scale-100 bottom-6 ms-auto"
       /> -->
-      <CalendarSwitch class="h-full scale-[67%] md:scale-100 bottom-6" />
+      <CalendarSwitch class="h-full scale-75 md:scale-100 bottom-6" />
     </div>
     <!-- <CalendarGrid class="absolute bottom-6" /> -->
   </GlareLineFrame>
