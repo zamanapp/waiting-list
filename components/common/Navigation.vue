@@ -10,7 +10,7 @@
       <Logo />
     </NuxtLink>
 
-    <Drawer v-model:open="isOpen" class="col-span-1 md:invisible">
+    <Drawer v-if="mobile" v-model:open="isOpen" class="col-span-1 md:invisible">
       <div class="inline-flex items-center justify-end gap-8">
         <DarkmodeSwitcher />
         <DrawerTrigger as="button">
