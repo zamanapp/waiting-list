@@ -13,6 +13,30 @@ export default defineNuxtConfig({
     "@vueuse/motion/nuxt",
   ],
 
+  routeRules: {
+    "/manifesto": {
+      prerender: true,
+    },
+    "/": {
+      prerender: true,
+    },
+    "/ar": {
+      prerender: true,
+    },
+    "/privacy": {
+      prerender: true,
+    },
+    "/terms": {
+      prerender: true,
+    },
+    "/sharia": {
+      prerender: true,
+    },
+    "/restrictions": {
+      prerender: true,
+    },
+  },
+
   imports: {
     dirs: ["composables/**"],
   },

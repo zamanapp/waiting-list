@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center pt-24 pb-12">
-    <ContentDoc class="prose" :path="localePath('/sharia')" />
+    <ContentDoc class="prose dark:prose-invert" :path="localePath('/sharia')" />
   </div>
 </template>
 
