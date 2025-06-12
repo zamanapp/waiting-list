@@ -8,7 +8,7 @@
       <div
         class="relative h-full overflow-hidden [mask-composite:intersect] rtl:[mask-image:linear-gradient(to_left,transparent,black_2rem),linear-gradient(to_right,transparent,black_2rem),linear-gradient(to_bottom,transparent,black_2rem),linear-gradient(to_top,transparent,black_2rem)] [mask-image:linear-gradient(to_right,transparent,black_2rem),linear-gradient(to_left,transparent,black_2rem),linear-gradient(to_bottom,transparent,black_2rem),linear-gradient(to_top,transparent,black_2rem)]"
       >
-        <div
+        <!-- <div
           class="grid h-[300px] w-[300px] gap-5 animate-skew-scroll hover-pause-scroll grid-cols-1"
         >
           <DeedsCard
@@ -18,7 +18,20 @@
             :deed="deed"
             :deed-index="index"
           />
-        </div>
+        </div> -->
+        <Marquee
+          vertical
+          class="h-[420px] w-full"
+          style="transform: rotateX(20deg) rotateZ(-20deg) skewX(10deg)"
+        >
+          <DeedsCard
+            class="transition-all duration-300 ease-in-out shadow-md cursor-pointer group hover:scale-105 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl"
+            v-for="(deed, index) in deeds"
+            :key="deed.uid"
+            :deed="deed"
+            :deed-index="index"
+          />
+        </Marquee>
       </div>
     </div>
   </GlareLineFrame>
