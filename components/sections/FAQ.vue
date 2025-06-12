@@ -1,7 +1,7 @@
 <template>
   <div>
     <GlowyDivider class="absolute pt-0 bottom-[4.1rem]" />
-    <div class="px-8 py-24 mx-auto max-w-7xl sm:py-32 lg:px-8 lg:py-32">
+    <div class="px-8 pt-24 mx-auto max-w-7xl sm:pt-32 lg:px-8 lg:pt-32">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-4xl font-semibold tracking-tight sm:text-6xl">
           Frequently Asked questions

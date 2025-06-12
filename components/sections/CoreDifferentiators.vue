@@ -11,12 +11,7 @@ import PrayerAnchor from "../differentiators/PrayerAnchor.vue";
         <HijriCalendar />
         <Deeds />
         <Wird />
-        <GlareLineFrame
-          title="Kenz AI"
-          description="Capture thoughts, ideas, and inspirations with ease. Kenz AI remembers the details so you can resurface anything with cues."
-          class="flex p-px lg:col-span-5"
-        >
-        </GlareLineFrame>
+        <Kenz />
         <HabitTracker />
         <div
           class="flex flex-col gap-4 p-px grow grid-rows-subgrid lg:col-span-3"

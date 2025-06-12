@@ -11,6 +11,9 @@
     <!-- Technical Excellence Section -->
     <TechnicalExcellence />
 
+    <!-- Alternative Tech Section -->
+    <!-- <AlternativeTech /> -->
+
     <!-- Final CTA Section -->
     <TynDall ref="tyndallRef" />
 

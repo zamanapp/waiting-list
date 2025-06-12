@@ -1,354 +1,119 @@
 <template>
-  <section class="py-24 px-6 bg-white dark:bg-slate-900">
-    <div class="max-w-6xl mx-auto">
-      <!-- Section Header -->
-      <div class="text-center mb-16">
-        <h2
-          class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 font-main"
-        >
-          Built for modern Muslims
-        </h2>
-        <p
-          class="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto font-main"
-        >
-          Your faith deserves technology that respects your privacy, works
-          everywhere, and performs flawlessly
-        </p>
-      </div>
-
-      <!-- Features Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Privacy First -->
-        <div
-          class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700"
-        >
-          <div
-            class="w-12 h-12 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-6 flex items-center justify-center"
-          >
-            <Icon
-              name="lucide:shield"
-              class="w-6 h-6 text-white dark:text-slate-900"
-            />
-          </div>
-          <h3
-            class="text-xl font-bold text-slate-900 dark:text-white text-center mb-4 font-main"
-          >
-            Privacy First
-          </h3>
-          <p
-            class="text-slate-600 dark:text-slate-300 text-center mb-6 font-main"
-          >
-            Your spiritual journey is between you and Allah. We never sell your
-            data or compromise your privacy.
-          </p>
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <div
-                class="w-2 h-2 bg-slate-900 dark:bg-white rounded-full"
-              ></div>
-              <span class="text-sm text-slate-700 dark:text-slate-300 font-main"
-                >End-to-end encryption</span
-              >
-            </div>
-            <div class="flex items-center gap-3">
-              <div
-                class="w-2 h-2 bg-slate-900 dark:bg-white rounded-full"
-              ></div>
-              <span class="text-sm text-slate-700 dark:text-slate-300 font-main"
-                >Zero data selling</span
-              >
-            </div>
-            <div class="flex items-center gap-3">
-              <div
-                class="w-2 h-2 bg-slate-900 dark:bg-white rounded-full"
-              ></div>
-              <span class="text-sm text-slate-700 dark:text-slate-300 font-main"
-                >GDPR compliant</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Local First -->
-        <div
-          class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700"
-        >
-          <div
-            class="w-12 h-12 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-6 flex items-center justify-center"
-          >
-            <Icon
-              name="lucide:hard-drive"
-              class="w-6 h-6 text-white dark:text-slate-900"
-            />
-          </div>
-          <h3
-            class="text-xl font-bold text-slate-900 dark:text-white text-center mb-4 font-main"
-          >
-            Local First
-          </h3>
-          <p
-            class="text-slate-600 dark:text-slate-300 text-center mb-6 font-main"
-          >
-            Your data lives on your device. Fast, reliable, and always
-            accessible—even without internet.
-          </p>
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <div
-                class="w-2 h-2 bg-slate-900 dark:bg-white rounded-full"
-              ></div>
-              <span class="text-sm text-slate-700 dark:text-slate-300 font-main"
-                >Works offline</span
-              >
-            </div>
-            <div class="flex items-center gap-3">
-              <div
-                class="w-2 h-2 bg-slate-900 dark:bg-white rounded-full"
-              ></div>
-              <span class="text-sm text-slate-700 dark:text-slate-300 font-main"
-                >Device-native storage</span
-              >
-            </div>
-            <div class="flex items-center gap-3">
-              <div
-                class="w-2 h-2 bg-slate-900 dark:bg-white rounded-full"
-              ></div>
-              <span class="text-sm text-slate-700 dark:text-slate-300 font-main"
-                >Lightning fast performance</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Performance -->
-        <div
-          class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700"
-        >
-          <div
-            class="w-12 h-12 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-6 flex items-center justify-center"
-          >
-            <Icon
-              name="lucide:zap"
-              class="w-6 h-6 text-white dark:text-slate-900"
-            />
-          </div>
-          <h3
-            class="text-xl font-bold text-slate-900 dark:text-white text-center mb-4 font-main"
-          >
-            Blazingly Fast
-          </h3>
-          <p
-            class="text-slate-600 dark:text-slate-300 text-center mb-6 font-main"
-          >
-            Built for speed and efficiency. Your worship shouldn't wait for slow
-            software.
-          </p>
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-sm text-slate-600 dark:text-slate-400 font-main"
-                >App startup</span
-              >
-              <span
-                class="text-sm font-semibold text-slate-900 dark:text-white font-main"
-                >&lt; 0.5s</span
-              >
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-sm text-slate-600 dark:text-slate-400 font-main"
-                >Prayer calculation</span
-              >
-              <span
-                class="text-sm font-semibold text-slate-900 dark:text-white font-main"
-                >Instant</span
-              >
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-sm text-slate-600 dark:text-slate-400 font-main"
-                >Widget switching</span
-              >
-              <span
-                class="text-sm font-semibold text-slate-900 dark:text-white font-main"
-                >Seamless</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modern Features Row -->
-      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- Dark Mode -->
-        <div
-          class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 text-center"
-        >
-          <div
-            class="w-10 h-10 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-4 flex items-center justify-center"
-          >
-            <Icon
-              name="lucide:moon"
-              class="w-5 h-5 text-white dark:text-slate-900"
-            />
-          </div>
-          <h4
-            class="font-semibold text-slate-900 dark:text-white mb-2 font-main"
-          >
-            Dark Mode
-          </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-400 font-main">
-            Easy on the eyes during night prayers
-          </p>
-        </div>
-
-        <!-- Multilingual -->
-        <div
-          class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 text-center"
-        >
-          <div
-            class="w-10 h-10 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-4 flex items-center justify-center"
-          >
-            <Icon
-              name="lucide:globe"
-              class="w-5 h-5 text-white dark:text-slate-900"
-            />
-          </div>
-          <h4
-            class="font-semibold text-slate-900 dark:text-white mb-2 font-main"
-          >
-            Multilingual
-          </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-400 font-main">
-            Arabic, English, and growing
-          </p>
-        </div>
-
-        <!-- Cross Platform -->
-        <div
-          class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 text-center"
-        >
-          <div
-            class="w-10 h-10 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-4 flex items-center justify-center"
-          >
-            <Icon
-              name="lucide:smartphone"
-              class="w-5 h-5 text-white dark:text-slate-900"
-            />
-          </div>
-          <h4
-            class="font-semibold text-slate-900 dark:text-white mb-2 font-main"
-          >
-            Cross Platform
-          </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-400 font-main">
-            Phone, tablet, and desktop
-          </p>
-        </div>
-
-        <!-- Sync Engine -->
-        <div
-          class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 text-center"
-        >
-          <div
-            class="w-10 h-10 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-4 flex items-center justify-center"
-          >
-            <Icon
-              name="lucide:refresh-cw"
-              class="w-5 h-5 text-white dark:text-slate-900"
-            />
-          </div>
-          <h4
-            class="font-semibold text-slate-900 dark:text-white mb-2 font-main"
-          >
-            Smart Sync
-          </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-400 font-main">
-            Sync when you want, how you want
-          </p>
-        </div>
-      </div>
-
-      <!-- Bottom Call-out -->
+  <div class="relative py-24">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div
-        class="mt-16 bg-slate-100 dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700"
+        class="relative px-6 py-20 overflow-hidden isolate sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-16 [mask-composite:intersect] rtl:[mask-image:linear-gradient(to_left,transparent,black_3rem),linear-gradient(to_right,transparent,black_7rem),linear-gradient(to_bottom,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)] [mask-image:linear-gradient(to_right,transparent,black_3rem),linear-gradient(to_left,transparent,black_7rem),linear-gradient(to_bottom,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)]"
       >
-        <div class="text-center">
-          <h3
-            class="text-2xl font-bold text-slate-900 dark:text-white mb-4 font-main"
-          >
-            Technology with Islamic values
-          </h3>
-          <p
-            class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-main"
-          >
-            Every line of code is written with Islamic principles in mind—from
-            data handling to user experience design.
-          </p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            <!-- Amanah -->
-            <div class="text-center">
-              <div
-                class="w-12 h-12 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-3 flex items-center justify-center"
-              >
-                <Icon
-                  name="lucide:handshake"
-                  class="w-6 h-6 text-white dark:text-slate-900"
-                />
-              </div>
-              <h4
-                class="font-semibold text-slate-900 dark:text-white mb-2 font-main"
-              >
-                Amanah (Trust)
-              </h4>
-              <p class="text-sm text-slate-600 dark:text-slate-400 font-main">
-                Your data is a sacred trust we're accountable for protecting
-              </p>
-            </div>
-
-            <!-- Ihsan -->
-            <div class="text-center">
-              <div
-                class="w-12 h-12 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-3 flex items-center justify-center"
-              >
-                <Icon
-                  name="lucide:star"
-                  class="w-6 h-6 text-white dark:text-slate-900"
-                />
-              </div>
-              <h4
-                class="font-semibold text-slate-900 dark:text-white mb-2 font-main"
-              >
-                Ihsan (Excellence)
-              </h4>
-              <p class="text-sm text-slate-600 dark:text-slate-400 font-main">
-                Crafted with the excellence that Islam teaches
-              </p>
-            </div>
-
-            <!-- Maslaha -->
-            <div class="text-center">
-              <div
-                class="w-12 h-12 bg-slate-900 dark:bg-white rounded-xl mx-auto mb-3 flex items-center justify-center"
-              >
-                <Icon
-                  name="lucide:users"
-                  class="w-6 h-6 text-white dark:text-slate-900"
-                />
-              </div>
-              <h4
-                class="font-semibold text-slate-900 dark:text-white mb-2 font-main"
-              >
-                Maslaha (Benefit)
-              </h4>
-              <p class="text-sm text-slate-600 dark:text-slate-400 font-main">
-                Built to bring genuine benefit to the ummah
-              </p>
-            </div>
+        <div
+          class="grid max-w-2xl grid-cols-1 mx-auto gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0"
+        >
+          <div class="lg:row-start-2 lg:max-w-xl">
+            <h2
+              class="text-3xl font-semibold tracking-tight text-balance sm:text-5xl"
+            >
+              Built with Itqan for Muslims by Muslims.
+            </h2>
+            <p class="mt-6 dark:text-slate-300 text-slate-700 text-lg/8">
+              Zaman strives to deliver the best experience deserving of Muslims
+              - a platform that respects your privacy, works everywhere, and
+              maintains the highest standards of quality in everything we do.
+            </p>
           </div>
+          <img
+            :src="
+              isDark ? '/img/remaining-dark.png' : '/img/remaining-light.png'
+            "
+            alt="Product screenshot"
+            class="relative -z-20 min-w-full max-w-xl rounded-xl shadow-xl ring-1 dark:ring-white/10 ring-slate-900/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none"
+            width="2432"
+            height="1442"
+          />
+          <div
+            class="max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:border-t lg:border-white/10 lg:pt-10"
+          >
+            <dl
+              class="max-w-xl space-y-8 dark:text-slate-300 text-slate-700 text-base/7 lg:max-w-none"
+            >
+              <div
+                v-for="feature in features"
+                :key="feature.name"
+                class="relative"
+              >
+                <dt
+                  class="inline-block font-semibold text-black ms-12 dark:text-white"
+                >
+                  <Icon
+                    :icon="feature.icon"
+                    class="absolute -top-1 dark:text-emerald-600 text-emerald-400 left-1 size-8"
+                    aria-hidden="true"
+                  />
+                  {{ feature.name }}
+                </dt>
+                {{ " " }}
+                <dd class="inline text-slate-700 dark:text-slate-300">
+                  {{ feature.description }}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+        <div
+          class="absolute -translate-y-1/2 pointer-events-none left-12 top-1/2 -z-10 transform-gpu blur-3xl lg:-bottom-48 lg:top-auto lg:translate-y-0 lg:transform-gpu"
+          aria-hidden="true"
+        >
+          <div
+            class="aspect-[1155/678] w-[72.1873rem] bg-gradient-to-tr dark:from-white dark:to-slate-700 from-amber-500 to-white opacity-25"
+            style="
+              clip-path: polygon(
+                74.1% 44.1%,
+                100% 61.6%,
+                97.5% 26.9%,
+                85.5% 0.1%,
+                80.7% 2%,
+                72.5% 32.5%,
+                60.2% 62.4%,
+                52.4% 68.1%,
+                47.5% 58.3%,
+                45.2% 34.5%,
+                27.5% 76.7%,
+                0.1% 64.9%,
+                17.9% 100%,
+                27.6% 76.8%,
+                76.1% 97.7%,
+                74.1% 44.1%
+              );
+            "
+          />
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  <GlowyDivider class="absolute pt-0 -bottom-[3.9rem]" direction="top" />
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { Icon } from "@iconify/vue";
+
+const isDark = useDark();
+
+const features = [
+  {
+    name: "Privacy-first.",
+    description:
+      "Zaman is built with privacy in mind. We are not in the business of selling Muslims data.",
+    icon: "ic:baseline-shield-moon",
+  },
+  {
+    name: "Local-first.",
+    description:
+      "Zaman uses a sync engine to deliver locale first experience and offline support.",
+    icon: "ic:baseline-cloud-off",
+  },
+  {
+    name: "High-performance.",
+    description:
+      "Built for speed and real-time sync. Every interaction should feel instant.",
+    icon: "ic:baseline-flash-on",
+  },
+];
 </script>
