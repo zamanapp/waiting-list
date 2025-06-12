@@ -32,7 +32,7 @@
                 </template>
               </AccordionTrigger>
               <AccordionContent
-                class="dark:text-slate-700 text-state-300 text-lg/7"
+                class="dark:text-slate-300 text-state-700 text-lg/7"
               >
                 {{ faq.answer }}
               </AccordionContent>

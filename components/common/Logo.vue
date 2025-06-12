@@ -1,7 +1,7 @@
 <template>
   <LogoSVG class="dark:fill-gray-200" :class="logoSize" />
   <div
-    v-if="localeProperties.dir === 'ltr'"
+    v-if="localeProperties.dir === 'ltr' && !noText"
     class="pb-1 leading-loose font-logo"
     :class="textSize"
   >
@@ -17,7 +17,11 @@
     }}</span>
     <span class="font-light">{{ $t("header.logo")[4] }}</span>
   </div>
-  <div v-else class="pb-1 leading-loose font-logoArabic" :class="textSize">
+  <div
+    v-else-if="!noText"
+    class="pb-1 leading-loose font-logoArabic"
+    :class="textSize"
+  >
     {{ $t("header.logo") }}
   </div>
 </template>
@@ -27,8 +31,12 @@ const { localeProperties } = useI18n();
 
 const props = defineProps({
   size: {
-    type: String as PropType<"sm" | "md" | "lg">,
+    type: String as PropType<"sm" | "md" | "lg" | "xl">,
     default: "lg",
+  },
+  noText: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -51,6 +59,8 @@ const logoSize = computed(() => {
       return "size-6";
     case "lg":
       return "size-9";
+    case "xl":
+      return "size-28";
   }
 });
 </script>

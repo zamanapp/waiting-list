@@ -56,17 +56,17 @@
         :density="1200"
         :size="1.5"
         :minSize="0.5"
-        :color="isDark ? '#fff' : '#f97316'"
+        :color="isDark ? '#fff' : '#000'"
         class="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
       />
       <div
-        class="absolute inset-0 dark:bg-[radial-gradient(circle_at_bottom_center,#5eead42e,transparent_70%)] bg-[radial-gradient(circle_at_bottom_center,#fef3c7,transparent_70%)]"
+        class="absolute inset-0 dark:bg-[radial-gradient(circle_at_bottom_center,#5eead42e,transparent_70%)] bg-[radial-gradient(circle_at_bottom_center,theme(backgroundColor.slate[300]),transparent_70%)]"
       />
       <div
-        class="absolute inset-x-0 -bottom-[254px] h-full w-full rounded-[100%] bg-gradient-to-b dark:from-white dark:to-black from-amber-500 to-sky-100"
+        class="absolute inset-x-0 -bottom-[254px] h-full w-full rounded-[100%] bg-gradient-to-b dark:from-white dark:to-black from-slate-700 to-sky-100"
       />
       <div
-        class="absolute inset-x-0 -bottom-[256px] h-full w-full rounded-[100%] bg-orange-100 dark:bg-neutral-950 shadow-[inset_0_2px_20px_#fff7ed,0_-10px_50px_1px_#fed7aa] dark:shadow-[inset_0_2px_20px_#fff,0_-10px_50px_1px_#ffffff7d]"
+        class="absolute inset-x-0 -bottom-[256px] h-full w-full rounded-[100%] bg-slate-300 dark:bg-neutral-950 shadow-[inset_0_2px_20px_theme(backgroundColor.slate[700]),0_-10px_50px_1px_theme(backgroundColor.slate[500])] dark:shadow-[inset_0_2px_20px_#fff,0_-10px_50px_1px_#ffffff7d]"
       />
     </div>
     <div

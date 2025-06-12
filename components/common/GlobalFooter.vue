@@ -3,13 +3,15 @@
     class="relative h-full overflow-hidden"
     :style="{ paddingTop: `${paddingTop}px` }"
   >
-    <GlowyDivider class="absolute z-20 p-0 translate-y-1/2" />
+    <GlowyDivider
+      class="absolute z-20 p-0 translate-y-1/2 pointer-events-none"
+    />
     <div class="absolute z-0 flex justify-center w-full">
       <Moon
         :moon-size="moonSize"
         :line-weight="lineWeight"
         :calendar="Calendars.UMM_AL_QURA"
-        class="absolute mx-auto origin-center pointer-events-none"
+        class="absolute mx-auto origin-center"
         show-guide
       />
     </div>

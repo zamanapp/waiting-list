@@ -23,6 +23,10 @@ module.exports = {
     screens,
     fontSize,
     extend: {
+      backgroundImage: {
+        "gradient-conic":
+          "conic-gradient(var(--conic-position, from 45deg), var(--tw-gradient-stops))",
+      },
       fontFamily: {
         logo: ["'Space Grotesk'", ...defaultTheme.fontFamily.sans],
         logoArabic: ["'Cairo'", ...defaultTheme.fontFamily.sans],

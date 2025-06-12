@@ -1,5 +1,5 @@
 <template>
-  <div class="relative py-24">
+  <div class="relative pt-24 mb-96">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div
         class="relative px-6 py-20 overflow-hidden isolate sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-16 [mask-composite:intersect] rtl:[mask-image:linear-gradient(to_left,transparent,black_3rem),linear-gradient(to_right,transparent,black_7rem),linear-gradient(to_bottom,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)] [mask-image:linear-gradient(to_right,transparent,black_3rem),linear-gradient(to_left,transparent,black_7rem),linear-gradient(to_bottom,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)]"
@@ -62,7 +62,7 @@
           aria-hidden="true"
         >
           <div
-            class="aspect-[1155/678] w-[72.1873rem] bg-gradient-to-tr dark:from-white dark:to-slate-700 from-amber-500 to-white opacity-25"
+            class="aspect-[1155/678] w-[72.1873rem] bg-gradient-to-tr dark:from-white dark:to-slate-700 from-slate-700 to-white opacity-25"
             style="
               clip-path: polygon(
                 74.1% 44.1%,
@@ -88,7 +88,6 @@
       </div>
     </div>
   </div>
-  <GlowyDivider class="absolute pt-0 -bottom-[3.9rem]" direction="top" />
 </template>
 
 <script setup>
