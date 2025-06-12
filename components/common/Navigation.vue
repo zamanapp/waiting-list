@@ -10,23 +10,23 @@
       <Logo />
     </NuxtLink>
 
-    <Drawer v-if="mobile" class="col-span-1 md:invisible">
-      <DrawerTrigger
-        class="inline-flex items-center justify-end gap-8"
-        as="button"
-      >
+    <Drawer v-model:open="isOpen" class="col-span-1 md:invisible">
+      <div class="inline-flex items-center justify-end gap-8">
         <DarkmodeSwitcher />
-        <Icon class="cursor-pointer w-7 h-7" icon="hugeicons:menu-05" />
-      </DrawerTrigger>
+        <DrawerTrigger as="button">
+          <Icon class="cursor-pointer w-7 h-7" icon="hugeicons:menu-05" />
+        </DrawerTrigger>
+      </div>
+
       <DrawerContent>
         <DrawerHeader class="gap-6 my-12">
-          <NuxtLink :to="localePath('/manifesto')">
+          <NuxtLink @click="isOpen = false" :to="localePath('/manifesto')">
             <DrawerTitle>{{ $t("header.manifesto") }}</DrawerTitle>
           </NuxtLink>
-          <NuxtLink>
+          <NuxtLink @click="isOpen = false">
             <DrawerTitle>{{ $t("header.blog") }}</DrawerTitle>
           </NuxtLink>
-          <NuxtLink>
+          <NuxtLink @click="isOpen = false">
             <DrawerTitle>{{ $t("header.changelog") }}</DrawerTitle>
           </NuxtLink>
           <LangSwitcher fullname class="mx-auto my-3" />
@@ -73,4 +73,6 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 const { localeProperties } = useI18n();
 
 const mobile = breakpoints.smaller("md");
+
+const isOpen = ref(false);
 </script>
