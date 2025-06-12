@@ -39,7 +39,7 @@
     <div v-if="!mobile" class="flex justify-center invisible md:visible">
       <NuxtLink
         :to="localePath('/manifesto')"
-        class="px-3 py-2 text-lg font-medium cursor-pointer"
+        class="px-3 py-2 text-base font-medium cursor-pointer lg:text-lg"
       >
         {{ $t("header.manifesto") }}
       </NuxtLink>
@@ -47,16 +47,16 @@
 
     <div
       v-if="!mobile"
-      class="flex items-center justify-end invisible gap-3 cols-span-1 md:col-span-2 lg:col-span-2 md:visible"
+      class="flex items-center justify-end invisible gap-3 text-base lg:text-lg cols-span-1 md:col-span-2 lg:col-span-2 md:visible"
     >
       <DarkmodeSwitcher />
-      <NuxtLink class="px-3 py-2 text-lg font-medium cursor-pointer">
+      <NuxtLink class="py-2 font-medium cursor-pointer lg:px-3">
         {{ $t("header.blog") }}
       </NuxtLink>
-      <NuxtLink class="px-3 py-2 text-lg font-medium cursor-pointer">
+      <NuxtLink class="py-2 font-medium cursor-pointer lg:px-3">
         {{ $t("header.changelog") }}
       </NuxtLink>
-      <div class="px-3 py-2 text-lg font-medium">
+      <div class="py-2 font-medium lg:px-3">
         <LangSwitcher />
       </div>
       <SocialIcons />
