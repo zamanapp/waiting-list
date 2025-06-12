@@ -19,7 +19,7 @@
             ref="emailInput"
             v-model="email"
             :placeholder="$t('modal.placeholder')"
-            class="w-full h-12"
+            class="w-full h-12 ring ring-slate-300/20 dark:ring-slate-300/10"
           />
           <GlassButton
             :color="isDark ? '#fff' : '#000'"
