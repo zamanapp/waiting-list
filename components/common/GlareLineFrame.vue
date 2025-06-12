@@ -24,7 +24,7 @@
       </div>
     </div>
     <div
-      class="dark:bg-[radial-gradient(circle_at_50%_0,_rgba(128,128,128,_.2),_rgba(0,_0,_0,_0)_80%),_radial-gradient(circle_at_50%_0,_#181818,_rgba(0,_0,_0,_0))] absolute bottom-0 left-0 right-0 top-0 z-0 opacity-0 transition-all ease-linear group-hover:opacity-100"
+      class="dark:bg-[radial-gradient(circle_at_50%_0,_theme(backgroundColor.slate[900]),_rgba(0,_0,_0,_0)_80%),_radial-gradient(circle_at_50%_0,_theme(backgroundColor.slate[900]/50%),_theme(backgroundColor.slate[950]))] bg-[radial-gradient(circle_at_50%_0,_theme(backgroundColor.slate[50]),_rgba(0,_0,_0,_0)_80%),_radial-gradient(circle_at_50%_0,_theme(backgroundColor.slate[50]/20%),_theme(backgroundColor.white))] absolute bottom-0 left-0 right-0 top-0 z-0 opacity-0 transition-all ease-linear group-hover:opacity-100"
     />
   </div>
 </template>
