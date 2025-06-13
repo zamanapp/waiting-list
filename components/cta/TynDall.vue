@@ -13,7 +13,7 @@
         </h1>
 
         <div
-          class="flex w-full ~max-w-sm/2xl mx-auto flex-col items-center justify-center ~gap-2/4 align-middle md:flex-row ~mt-8/12"
+          class="flex w-full ~max-w-sm/2xl mx-auto flex-col items-center justify-center gap-4 align-middle md:flex-row ~mt-8/12"
         >
           <Form
             id="sabrListForm"
@@ -53,23 +53,21 @@
               </FormItem>
             </FormField>
           </Form>
-          <!-- <Input
-            ref="emailInput"
-            v-model="email"
-            :placeholder="$t('modal.placeholder')"
-            class="w-full h-12 ring ring-slate-300/20 dark:ring-slate-300/10"
-          /> -->
+
           <GlassButton
             :color="isDark ? '#fff' : '#000'"
-            class="z-10 w-full text-lg font-medium"
+            class="z-10 w-full mt-4 text-lg font-medium md:mt-0"
             form="sabrListForm"
             type="submit"
           >
-            {{ $t("waiting.earlyAccess") }}
+            <span
+              class="mx-2 transition-all duration-300 transform invert"
+              v-show="loading"
+            >
+              <MoonLoading class="mx-auto" />
+            </span>
+            {{ " " }} {{ $t("waiting.earlyAccess") }}
           </GlassButton>
-          <!-- <Button class="z-10 w-full text-lg font-medium">
-            {{ $t("waiting.waitingExpand") }}
-          </Button> -->
         </div>
       </div>
       <template #particles>
@@ -93,7 +91,6 @@ const isDark = useDark();
 const emailInput = ref<HTMLInputElement | null>(null);
 
 const loading = ref(false);
-const email = ref("");
 
 defineExpose({
   emailInput,
