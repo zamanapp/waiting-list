@@ -23,16 +23,9 @@
 </template>
 
 <script setup>
-const route = useRoute();
-const appConfig = useAppConfig();
-// const { t } = useI18n();
 const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: "id",
   addSeoAttributes: true,
 });
-
-const title = computed(
-  () => route.meta.title ?? `${appConfig.appName} - Join the Sabr list`
-);
 </script>

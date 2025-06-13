@@ -32,25 +32,23 @@ definePageMeta({
   layout: "default",
 });
 
-useSeoMeta({
-  description: "[description]",
-  ogTitle: "[og:title]",
-  ogDescription: "[og:description]",
-  ogImage: "[og:image]",
-  twitterTitle: "[twitter:title]",
-  twitterDescription: "[twitter:description]",
-  twitterImage: "[twitter:image]",
-  twitterCard: "summary",
-});
+const { t } = useI18n();
 
-useHead({
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favicon.png",
-    },
-  ],
+useSeoMeta({
+  title: t("seo.index.title"),
+  description: t("seo.index.description"),
+  keywords: t("seo.index.keywords"),
+  ogTitle: t("seo.index.ogTitle"),
+  ogDescription: t("seo.index.ogDescription"),
+  ogImage: "https://zaman.app/img/og-index.png",
+  ogType: "website",
+  ogUrl: "https://zaman.app",
+  ogSiteName: "Zaman",
+  twitterTitle: t("seo.index.twitterTitle"),
+  twitterDescription: t("seo.index.twitterDescription"),
+  twitterSite: "@zaman_hq",
+  twitterImage: "https://zaman.app/img/og-index.png",
+  twitterCard: "summary_large_image",
 });
 
 const tyndallRef = ref<InstanceType<typeof TynDall> | null>(null);
