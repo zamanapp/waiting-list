@@ -78,6 +78,8 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    loopsApiKey: "",
+    telegramBotToken: "",
     // Keys within public are also exposed client-side
     public: {
       backEndpoint:

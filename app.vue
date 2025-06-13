@@ -10,9 +10,7 @@
 // turn on dark mode as default since the webste is optimized for dark mode
 
 const darkMode = useDark();
-console.log(darkMode.value);
 if (!darkMode.value) {
-  console.log("dark mode is off");
   darkMode.value = true;
 }
 </script>

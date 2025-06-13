@@ -15,15 +15,55 @@
         <div
           class="flex w-full ~max-w-sm/2xl mx-auto flex-col items-center justify-center ~gap-2/4 align-middle md:flex-row ~mt-8/12"
         >
-          <Input
+          <Form
+            id="sabrListForm"
+            class="w-full space-y-6"
+            :validation-schema="schema"
+            @submit="submitHandler"
+          >
+            <FormField name="email" v-slot="{ componentField }">
+              <FormItem>
+                <FormControl>
+                  <Input
+                    type="email"
+                    ref="emailInput"
+                    :placeholder="$t('modal.placeholder')"
+                    class="w-full h-12 ring ring-slate-300/20 dark:ring-slate-300/10"
+                    v-bind="componentField"
+                  />
+                </FormControl>
+                <FormMessage class="absolute px-2 dark:text-red-300" />
+              </FormItem>
+            </FormField>
+
+            <FormField name="username" v-slot="{ componentField }">
+              <FormItem v-auto-animate class="username">
+                <FormLabel class="username"> Username </FormLabel>
+                <FormControl>
+                  <Input
+                    class="username"
+                    type="text"
+                    placeholder="Username"
+                    v-bind="componentField"
+                    tabindex="-1"
+                    autocomplete="new-password"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+          </Form>
+          <!-- <Input
             ref="emailInput"
             v-model="email"
             :placeholder="$t('modal.placeholder')"
             class="w-full h-12 ring ring-slate-300/20 dark:ring-slate-300/10"
-          />
+          /> -->
           <GlassButton
             :color="isDark ? '#fff' : '#000'"
             class="z-10 w-full text-lg font-medium"
+            form="sabrListForm"
+            type="submit"
           >
             {{ $t("waiting.earlyAccess") }}
           </GlassButton>
@@ -45,13 +85,77 @@
 </template>
 
 <script lang="ts" setup>
+import { vAutoAnimate } from "@formkit/auto-animate/vue";
+import * as z from "zod";
+import { toTypedSchema } from "@vee-validate/zod";
 const isDark = useDark();
 
 const emailInput = ref<HTMLInputElement | null>(null);
 
+const loading = ref(false);
 const email = ref("");
 
 defineExpose({
   emailInput,
 });
+
+const { $posthog } = useNuxtApp();
+const { localeProperties, t } = useI18n();
+const emitter = useEmitter();
+
+const schema = toTypedSchema(
+  z.object({
+    email: z
+      .string({
+        required_error: t("modal.required"),
+      })
+      .email(t("modal.error")),
+    username: z.string().optional(),
+  })
+);
+
+const submitHandler = async (values: any) => {
+  loading.value = true;
+  if (values.username) {
+    $posthog()?.capture("waitlist-suspect", { values });
+    emitter.emit("error", {
+      title: t("modal.suspicious"),
+    });
+    return;
+  }
+  const { success, message } = await $fetch("/api/sabirin", {
+    method: "POST",
+    body: JSON.stringify({
+      email: values?.email,
+      locale: localeProperties.value.code,
+    }),
+  });
+
+  if (success) {
+    $posthog()?.capture("waitlist-success", { email: values.email });
+    emitter.emit("success", {
+      title: t("modal.success"),
+    });
+
+    // TODO: add a message that confirms the user has been added to the waitlist when they are already on it
+  } else {
+    $posthog()?.capture("waitlist-failure", {
+      email: values.email,
+      error: message,
+    });
+    emitter.emit("error", {
+      title: t("modal.somethingWentWrong"),
+    });
+  }
+  loading.value = false;
+};
 </script>
+
+<style>
+.username {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: -999999999px;
+}
+</style>

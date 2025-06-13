@@ -144,8 +144,6 @@ onMounted(() => {
 
 function handleResize() {
   if (moon.value) {
-    console.log(moon.value);
-    console.log(moon.value.style);
     moon.value.style.transform = `translate(0px, -${desiredY.value}px)`;
   }
 }

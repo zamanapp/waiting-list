@@ -27,7 +27,8 @@
     "error": "Invalid email address",
     "required": "Email is required",
     "suspicious": "Unusual activity detected",
-    "success": "You have been added to the patently waiting!"
+    "success": "You have been added to the patently waiting!",
+    "somethingWentWrong": "Something went wrong"
   },
   "manifesto": {
     "title": "The Zaman Way",

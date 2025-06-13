@@ -59,12 +59,6 @@ const emitter = useEmitter();
 
 onMounted(() => {
   emitter.on("scroll:to:join", () => {
-    console.log(
-      "scrollToTyndall",
-      tyndallRef.value,
-      tyndallRef.value?.emailInput
-    );
-
     const el = (tyndallRef.value as any)?.$el ?? tyndallRef.value;
     if (el && "scrollIntoView" in el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
