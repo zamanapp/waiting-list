@@ -1,6 +1,5 @@
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
-  console.log("config", config);
   const body = await readBody(event);
   const chatID = "-1001598248299";
   const threadID = "1471";
@@ -20,8 +19,6 @@ export default defineEventHandler(async (event) => {
       }),
     });
 
-    console.log("loopsResponse", loopsResponse);
-
     if (!loopsResponse.ok) {
       const errorData = await loopsResponse.json().catch(() => ({}));
       throw new Error(
@@ -29,7 +26,6 @@ export default defineEventHandler(async (event) => {
       );
     }
   } catch (error) {
-    console.log("loops failed", error);
     const errorMessage = `
 ❌ Failed to register in Sabirin list\!
 Email: ${body.email}
@@ -76,7 +72,7 @@ Error: ${(error instanceof Error ? error.message : "Unknown error").replace(
     text: message,
   });
 
-  const telegramResponse = await fetch(
+  await fetch(
     `https://api.telegram.org/bot${config.telegramBotToken}/sendMessage?${params}`,
     {
       method: "POST",
@@ -85,8 +81,6 @@ Error: ${(error instanceof Error ? error.message : "Unknown error").replace(
       },
     }
   );
-
-  console.log("telegramResponse", telegramResponse);
 
   return {
     success: true,
