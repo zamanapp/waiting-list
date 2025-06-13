@@ -2,7 +2,7 @@
   <div class="relative pt-24 mb-96">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div
-        class="relative px-6 py-20 overflow-hidden isolate sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-16 [mask-composite:intersect] rtl:[mask-image:linear-gradient(to_left,transparent,black_3rem),linear-gradient(to_right,transparent,black_7rem),linear-gradient(to_bottom,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)] [mask-image:linear-gradient(to_right,transparent,black_3rem),linear-gradient(to_left,transparent,black_7rem),linear-gradient(to_bottom,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)]"
+        class="relative px-6 py-20 overflow-hidden isolate sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-16 [mask-composite:intersect] md:rtl:[mask-image:linear-gradient(to_left,transparent,black_3rem),linear-gradient(to_right,transparent,black_7rem),linear-gradient(to_bottom,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)] md:[mask-image:linear-gradient(to_right,transparent,black_3rem),linear-gradient(to_left,transparent,black_7rem),linear-gradient(to_bottom,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)]"
       >
         <div
           class="grid max-w-2xl grid-cols-1 mx-auto gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0"

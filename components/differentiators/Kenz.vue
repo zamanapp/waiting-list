@@ -6,8 +6,18 @@
   >
     <div class="relative w-full h-full min-h-80">
       <BlackHole
+        :strokeColor="strokeColor"
         class="absolute inset-0 flex items-center justify-center rounded-xl"
       />
     </div>
   </GlareLineFrame>
 </template>
+
+<script setup lang="ts">
+import { formatThemeColors, type ColorType } from "~/lib/tailwind-theme";
+
+const isDark = useDark();
+const strokeColor = computed(() => {
+  return formatThemeColors("slate")[isDark.value ? 300 : 700];
+});
+</script>

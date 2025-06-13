@@ -17,6 +17,9 @@ export default defineNuxtConfig({
     "/manifesto": {
       prerender: true,
     },
+    "/ar/manifesto": {
+      prerender: true,
+    },
     "/": {
       prerender: true,
     },
