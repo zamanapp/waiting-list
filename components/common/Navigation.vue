@@ -23,10 +23,10 @@
           <NuxtLink @click="isOpen = false" :to="localePath('/manifesto')">
             <DrawerTitle>{{ $t("header.manifesto") }}</DrawerTitle>
           </NuxtLink>
-          <NuxtLink @click="isOpen = false">
+          <NuxtLink v-if="config.launched" @click="isOpen = false">
             <DrawerTitle>{{ $t("header.blog") }}</DrawerTitle>
           </NuxtLink>
-          <NuxtLink @click="isOpen = false">
+          <NuxtLink v-if="config.launched" @click="isOpen = false">
             <DrawerTitle>{{ $t("header.changelog") }}</DrawerTitle>
           </NuxtLink>
           <LangSwitcher fullname class="mx-auto my-3" />
@@ -50,10 +50,16 @@
       class="flex items-center justify-end invisible gap-3 text-base lg:text-lg cols-span-1 md:col-span-2 lg:col-span-2 md:visible"
     >
       <DarkmodeSwitcher />
-      <NuxtLink class="py-2 font-medium cursor-pointer lg:px-3">
+      <NuxtLink
+        v-if="config.launched"
+        class="py-2 font-medium cursor-pointer lg:px-3"
+      >
         {{ $t("header.blog") }}
       </NuxtLink>
-      <NuxtLink class="py-2 font-medium cursor-pointer lg:px-3">
+      <NuxtLink
+        v-if="config.launched"
+        class="py-2 font-medium cursor-pointer lg:px-3"
+      >
         {{ $t("header.changelog") }}
       </NuxtLink>
       <div class="py-2 font-medium lg:px-3">
@@ -75,4 +81,6 @@ const { localeProperties } = useI18n();
 const mobile = breakpoints.smaller("md");
 
 const isOpen = ref(false);
+
+const config = useAppConfig();
 </script>
