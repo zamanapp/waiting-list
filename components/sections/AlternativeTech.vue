@@ -19,7 +19,7 @@
         >
           <Icon icon="cib:apple" class="-translate-y-12 md:size-12 size-8" />
           <Icon icon="cib:google" class="md:size-18 size-12" />
-          <Logo no-text size="xl" />
+          <Logo no-text size="2xl" />
           <Icon icon="cib:microsoft" class="md:size-18 size-12" />
           <Icon icon="cib:notion" class="-translate-y-12 md:size-12 size-8" />
         </p>

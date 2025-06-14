@@ -8,13 +8,24 @@
       <BlackHole
         :strokeColor="strokeColor"
         class="absolute inset-0 flex items-center justify-center rounded-xl"
-      />
+      >
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="rounded-full bg-emerald-700">
+            <Logo no-text :size="mobile ? 'xl' : '2xl'" />
+          </div>
+        </div>
+      </BlackHole>
     </div>
   </GlareLineFrame>
 </template>
 
 <script setup lang="ts">
-import { formatThemeColors, type ColorType } from "~/lib/tailwind-theme";
+import { formatThemeColors } from "~/lib/tailwind-theme";
+import { breakpointsTailwind } from "@vueuse/core";
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+
+const mobile = breakpoints.smaller("md");
 
 const isDark = useDark();
 const strokeColor = computed(() => {

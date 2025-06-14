@@ -31,7 +31,7 @@ const { localeProperties } = useI18n();
 
 const props = defineProps({
   size: {
-    type: String as PropType<"sm" | "md" | "lg" | "xl">,
+    type: String as PropType<"sm" | "md" | "lg" | "xl" | "2xl">,
     default: "lg",
   },
   noText: {
@@ -60,6 +60,8 @@ const logoSize = computed(() => {
     case "lg":
       return "size-9";
     case "xl":
+      return "size-16";
+    case "2xl":
       return "size-28";
   }
 });
