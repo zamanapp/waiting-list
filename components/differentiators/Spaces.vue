@@ -1,7 +1,7 @@
 <template>
   <GlareLineFrame
-    title="Dynamic Spaces"
-    description="Cater for different aspects of your life"
+    :title="$t('features.spaces.title')"
+    :description="$t('features.spaces.description')"
     class="flex p-px"
   >
     <SpacesIcons />

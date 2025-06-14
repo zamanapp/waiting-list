@@ -1,7 +1,7 @@
 <template>
   <GlareLineFrame
-    title="Anchored in Prayer Times"
-    description="Your day anchored in prayer times at a glance"
+    :title="$t('features.prayerAnchor.title')"
+    :description="$t('features.prayerAnchor.description')"
     class="flex p-px"
     hideOverflow
   >

@@ -4,19 +4,19 @@
     <div class="px-8 pt-24 mx-auto max-w-7xl sm:pt-32 lg:px-8 lg:pt-32">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-4xl font-semibold tracking-tight sm:text-6xl">
-          Frequently Asked questions
+          {{ $t("faq.title") }}
         </h2>
         <dl class="mt-16 divide-y dark:divide-slate-300 divide-slate-700">
           <Accordion type="single" collapsible>
             <AccordionItem
-              v-for="faq in faqs"
-              :key="faq.question"
-              :value="faq.question"
+              v-for="(faq, index) in faqs"
+              :key="index"
+              :value="index"
               class="py-2 first:pt-0 last:pb-0 border-white/10"
             >
               <AccordionTrigger>
                 <span class="font-semibold text-xl/7 text-start">{{
-                  faq.question
+                  $rt(faq.question)
                 }}</span>
                 <template #icon>
                   <div class="relative size-8">
@@ -34,7 +34,7 @@
               <AccordionContent
                 class="dark:text-slate-300 text-state-700 text-lg/7"
               >
-                {{ faq.answer }}
+                {{ $rt(faq.answer) }}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -47,43 +47,9 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 
-const faqs = [
-  {
-    question: "What is Zaman?",
-    answer: "Zaman is a productivity platform",
-  },
-  {
-    question: "Is Zaman just another prayer reminder app?",
-    answer:
-      "Although the core of Zaman is built around our prayer times library, Zaman is a productivity platform built from the perspective of a Muslim. It will eventually be a drop in replacement for your current productivity tools while keeping your faith at the center.",
-  },
-  {
-    question: "When will Zaman be available?",
-    answer:
-      "We don't have a specific date yet, however,  our private beta program will be available soon. You can always register your interest by joining the Sabirin list. In the meantime know that we're working hard to bring you the best experience possible.",
-  },
-  {
-    question: "What is the Sabirin list?",
-    answer:
-      "The Sabirin list is what is also known as a whaitlist or a waitinglist by registering your interest you will be up to date with our launch programs and progress.",
-  },
-  {
-    question: "How much will Zaman cost?",
-    answer:
-      "Zaman will be a freemium product. We will offer a free tier with limited features and a paid tier with more features.",
-  },
-  {
-    question: "What platforms/devices will Zaman be available on?",
-    answer:
-      "Zaman will be initially available on all platforms/devices that support the web. We will also be available on iOS and Android in the future.",
-  },
-  {
-    question: "How can I contact you?",
-    answer:
-      "You can contact us by email at salam@zaman.com we are always eager to hear from people who are interested in Zaman.",
-  },
-  // More questions...
-];
+const { tm } = useI18n();
+
+const faqs = tm("faq.questions");
 </script>
 
 <style scoped>

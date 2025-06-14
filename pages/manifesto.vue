@@ -6,7 +6,9 @@
       <h1 class="text-4xl font-bold md:text-5xl">
         {{ $t("manifesto.title") }}
       </h1>
-      <h2 class="italic font-medium text-gray-600 md:text-lg">
+      <h2
+        class="italic font-medium text-gray-600 dark:text-gray-400 md:text-lg"
+      >
         {{ $t("manifesto.subtitle") }}
       </h2>
     </div>

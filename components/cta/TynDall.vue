@@ -9,7 +9,7 @@
         <h1
           class="text-4xl ~max-w-sm/3xl font-bold tracking-tight text-center bg-gradient-to-br dark:from-slate-200/90 dark:via-slate-50 dark:to-white from-slate-950/90 via-slate-950 to-black bg-clip-text md:text-6xl"
         >
-          This is your sign. It's time to get back on track.
+          {{ $t("cta.title") }}
         </h1>
 
         <div

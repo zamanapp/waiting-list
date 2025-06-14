@@ -1,7 +1,7 @@
 <template>
   <GlareLineFrame
-    title="Time-aware Deeds"
-    description="Discover and track daily, weekly, monthly, and yearly deeds from the Kitab & Sunnah."
+    :title="$t('features.deeds.title')"
+    :description="$t('features.deeds.description')"
     class="flex p-px lg:col-span-3"
   >
     <div class="flex items-center justify-center h-full">
@@ -87,7 +87,7 @@ const deeds = ref<Deed[]>([
     uid: "01960164-64c8-735d-94be-857a2c90bebd",
     start: Temporal.PlainDateTime.from("2025-06-09T07:03:00"),
     end: Temporal.PlainDateTime.from("2025-06-09T19:22:00"),
-    summary: "Ayam al-beed",
+    summary: "Ayyam al-beed",
     duration: Temporal.Duration.from("PT12H19M"),
     specificity: SpecificityEnum.MONTH,
   },

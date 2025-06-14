@@ -73,6 +73,7 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       useCookie: true,
     },
+    compilation: { strictMessage: false, escapeHtml: false },
   },
 
   content: {

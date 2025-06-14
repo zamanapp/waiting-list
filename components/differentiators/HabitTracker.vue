@@ -1,7 +1,7 @@
 <template>
   <GlareLineFrame
-    title="Habit Tracker"
-    description="Achieve your Dunia and Akhira goals with ease. Track your progress and stay on track."
+    :title="$t('features.habitTracker.title')"
+    :description="$t('features.habitTracker.description')"
     class="flex h-full p-px lg:col-span-5"
   >
     <!-- <HabitChart /> -->

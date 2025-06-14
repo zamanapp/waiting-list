@@ -13,12 +13,8 @@
       <p
         ref="heroSubtitle"
         class="~max-w-sm/3xl ~text-base/2xl text-center text-muted-foreground ~mx-3/0"
-      >
-        Manage your
-        <span class="font-bold">deen, schedule, habits</span>, and
-        <span class="font-bold">life</span> — in one place built for the
-        <span class="font-bold">everyday Muslim</span>.
-      </p>
+        v-html="$t('waiting.tagline')"
+      ></p>
 
       <div class="flex flex-col items-center justify-center w-full gap-8">
         <div
@@ -76,7 +72,7 @@
       <p
         class="~max-w-sm/xl ~text-xl/5xl text-center mx-auto ~px-6/0 font-bold md:font-medium"
       >
-        You deserve a space that keeps your faith at the center
+        {{ $t("waiting.catchline") }}
       </p>
     </div>
   </div>

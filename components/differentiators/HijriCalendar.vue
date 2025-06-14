@@ -1,7 +1,7 @@
 <template>
   <GlareLineFrame
-    title="Faith-Centric Native Hijri Calendar"
-    description="Zaman makes it easy to switch between Hijri and Gregorian calendars and supports both one-time and recurring Hijri events, making it perfect for Hijri-based scheduling and planning."
+    :title="$t('features.hijriCalendar.title')"
+    :description="$t('features.hijriCalendar.description')"
     class="flex p-px lg:col-span-5"
     hide-overflow
   >
@@ -22,4 +22,6 @@
 
 <script setup lang="ts">
 const isDark = useDark();
+
+const { t } = useI18n();
 </script>

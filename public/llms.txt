@@ -4,7 +4,7 @@
 
 ## What is Zaman?
 
-Zaman is a faith-centered productivity suite that helps Muslims balance their dunya (worldly life) and akhirah (afterlife) by placing their Islamic faith at the center of their productivity workflow. Unlike generic productivity tools, Zaman integrates Islamic principles, practices, and values into every aspect of time management and life organization.
+Zaman is a faith-centered productivity platform that helps Muslims balance their dunya (worldly life) and akhirah (afterlife). It features a native Hijri calendar with prayer time integration, Islamic habit and deed tracking, Quran study tools, and Kenz AI - a personal knowledge assistant that helps organize thoughts, ideas, and content.
 
 ## Core Mission
 

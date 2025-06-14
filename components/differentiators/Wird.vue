@@ -1,12 +1,12 @@
 <template>
   <GlareLineFrame
-    title="Your Wird"
-    description="Schedule and track your memorization, revision, and recitation of the Quran"
+    :title="$t('features.wird.title')"
+    :description="$t('features.wird.description')"
     class="relative flex p-px lg:col-span-3"
     hide-overflow
   >
     <div
-      class="relative overflow-hidden [mask-composite:intersect] rtl:[mask-image:linear-gradient(to_right,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)] [mask-image:linear-gradient(to_left,transparent,black_7rem),linear-gradient(to_top,transparent,black_7rem)]"
+      class="relative overflow-hidden [mask-composite:intersect] rtl:[mask-image:linear-gradient(to_right,transparent,black_5rem),linear-gradient(to_top,transparent,black_5rem)] [mask-image:linear-gradient(to_left,transparent,black_5rem),linear-gradient(to_top,transparent,black_5rem)]"
     >
       <QuranLogo class="fill-emerald-600" :width="100" :height="100" />
       <img
