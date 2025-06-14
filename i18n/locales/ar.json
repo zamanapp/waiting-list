@@ -15,7 +15,100 @@
     "waiting": "قائمة الصابرين",
     "body": "يا ابن آدم إنما أنت أيام إذا ذهب يومك ذهب بعضك",
     "author": "الحسن البصري",
-    "manage": "نظم حياتك حول الأهم."
+    "manage": "نظم حياتك حول الأهم.",
+    "tagline": "رتب جدولك، عادتك، و حياتك حول دينك - في مكان واحد مصمم لجميع المسلمين",
+    "catchline": "تستحق مكانًا يجعل إيمانك محوراً"
+  },
+  "features": {
+    "hijriCalendar": {
+      "title": "Faith-Centric Native Hijri Calendar",
+      "description": "Zaman makes it easy to switch between Hijri and Gregorian calendars and supports both one-time and recurring Hijri events, making it perfect for Hijri-based scheduling and planning."
+    },
+    "deeds": {
+      "title": "Time-aware Deeds",
+      "description": "Discover and track daily, weekly, monthly, and yearly deeds from the Kitab & Sunnah."
+    },
+    "wird": {
+      "title": "Your Wird",
+      "description": "Schedule and track your memorization, revision, and recitation of the Quran"
+    },
+    "kenz": {
+      "title": "Kenz AI",
+      "description": "Capture thoughts, ideas, and inspirations with ease. Let AI organize and remember the details so you can resurface anything with cues."
+    },
+    "habitTracker": {
+      "title": "Habit Tracker",
+      "description": "Achieve your Dunia and Akhira goals with ease. Track your progress and build lasting habits."
+    },
+    "prayerAnchor": {
+      "title": "Anchored in Prayer Times",
+      "description": "Prayer-centered time awareness made simple"
+    },
+    "spaces": {
+      "title": "Dynamic Spaces",
+      "description": "Manage every part of your life with clarity"
+    }
+  },
+  "technicalExcellence": {
+    "title": "Built with Itqan by Muslims for Muslims",
+    "description": "Zaman is built to honor Muslims with excellence - a platform that respects your privacy, works everywhere, and a promise to maintain the highest standards of quality in everything we do.",
+    "features": [
+      {
+        "name": "Privacy-first.",
+        "description": "Zaman is built with privacy in mind. We are not in the business of selling Muslims data.",
+        "icon": "ic:baseline-shield-moon"
+      },
+      {
+        "name": "Local-first.",
+        "description": "Zaman uses a sync engine to deliver local first experience and offline support.",
+        "icon": "ic:baseline-cloud-off"
+      },
+      {
+        "name": "High-performance.",
+        "description": "Built for speed and real-time sync. Every interaction should feel instant.",
+        "icon": "ic:baseline-flash-on"
+      }
+    ]
+  },
+  "alternativeTech": {
+    "title": "A Muslim alternative is here",
+    "description": "Our Calendar and Kenz AI mark the beginning of something bigger—a complete, faith-centered alternative to the platforms that dominate our digital lives."
+  },
+  "cta": {
+    "title": "This is your sign. It's time to get back on track."
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "questions": [
+      {
+        "question": "What is Zaman?",
+        "answer": "Zaman is a faith-centered productivity platform that helps Muslims balance their dunya (worldly life) and akhirah (afterlife). It features a native Hijri calendar with prayer time integration, Islamic habit and deed tracking, Quran study tools, and Kenz AI - a personal knowledge assistant that helps organize thoughts, ideas, and content."
+      },
+      {
+        "question": "Is Zaman just another prayer reminder app?",
+        "answer": "Although the core of Zaman is built around our prayer times library, Zaman is a productivity platform built from the perspective of a Muslim. It will eventually be a drop in replacement for your current productivity tools while keeping your faith at the center."
+      },
+      {
+        "question": "When will Zaman be available?",
+        "answer": "We don't have a specific date yet, however,  our private beta program will be available soon. You can always register your interest by joining the Sabirin list. In the meantime know that we're working hard to bring you the best experience possible."
+      },
+      {
+        "question": "What is the Sabirin list?",
+        "answer": "The Sabirin list is what is also known as a waitlist by registering your interest you will be up to date with our launch programs and progress."
+      },
+      {
+        "question": "How much will Zaman cost?",
+        "answer": "Zaman will be a freemium product. We will offer a free tier with limited features and a paid tier with more features."
+      },
+      {
+        "question": "What platforms/devices will Zaman be available on?",
+        "answer": "Zaman will be available on all platforms/devices that support the web. We will also be available on iOS and Android."
+      },
+      {
+        "question": "How can I contact you?",
+        "answer": "Write to us at salam{'@'}zaman.com - we genuinely value every message."
+      }
+    ]
   },
   "modal": {
     "join": "إنظم",
@@ -27,7 +120,9 @@
     "error": "البريد الإلكتروني غير صالح",
     "required": "البريد الالكتروني ضروري",
     "suspicious": "تم اكتشاف نشاط غير عادي",
-    "success": "تم تسجيلك في قائمة الصابرين!"
+    "success": "تم تسجيلك في قائمة الصابرين!",
+    "alreadyOnList": "أنت بالفعل من ضمن قائمة الصابرين!",
+    "somethingWentWrong": "يبدو أنه لدينا مشكلة"
   },
   "manifesto": {
     "title": "على طريقة زمــن",
@@ -48,5 +143,25 @@
     "occured": "حدث خلل",
     "encounter": "يبدو أنك واجهت خطأ. \nالرجاء معاودة المحاولة في وقت لاحق.",
     "home": "عد إلى الصفحة الرئيسية"
+  },
+  "seo": {
+    "manifesto": {
+      "title": "زمــن - طريق الإيمان المثمر",
+      "description": "زمــن هو منصة الإنتاجية للمسلمين. وهذا هو بياننا.",
+      "keywords": "تطبيق الإنتاجية الإسلامية، تطبيق التقويم الإسلامي، متتبع أوقات الصلاة، تطبيق حفظ القرآن، متتبع العادات الإسلامية، التقويم الهجري، مجموعة الإنتاجية الإسلامية، إدارة الوقت الإسلامية، متتبع الدين، تطبيق نمط الحياة الإسلامي",
+      "ogTitle": "زمــن - طريق الإيمان المثمر",
+      "ogDescription": "زمــن هو منصة الإنتاجية للمسلمين. وهذا هو بياننا.",
+      "twitterTitle": "زمــن - طريق الإيمان المثمر",
+      "twitterDescription": "زمــن هو منصة الإنتاجية للمسلمين. وهذا هو بياننا."
+    },
+    "index": {
+      "title": "زمــن - منصة الإنتاجية للمسلمين",
+      "description": "وازن بين دينك ودنياك مع منصة زمن للإنتاجية. تقويم هجري مع تتبع للأفعال الإسلامية، عادات اليومية، وورد القرآن. بني من طرف المسلمين للمسلمين.",
+      "keywords": "تطبيق الإنتاجية الإسلامية، تطبيق التقويم الإسلامي، متتبع أوقات الصلاة، تطبيق حفظ القرآن، متتبع العادات الإسلامية، التقويم الهجري، مجموعة الإنتاجية الإسلامية، إدارة الوقت الإسلامية، متتبع الدين، تطبيق نمط الحياة الإسلامي",
+      "ogTitle": "زمــن - منصة الإنتاجية للمسلمين",
+      "ogDescription": "وازن بين دينك ودنياك مع منصة زمن للإنتاجية. تقويم هجري مع تتبع للأفعال الإسلامية، عادات اليومية، وورد القرآن. بني من طرف المسلمين للمسلمين.",
+      "twitterTitle": "زمــن - منصة الإنتاجية للمسلمين",
+      "twitterDescription": "وازن بين دينك ودنياك مع منصة زمن للإنتاجية. تقويم هجري مع تتبع للأفعال الإسلامية، عادات اليومية، وورد القرآن. بني من طرف المسلمين للمسلمين."
+    }
   }
 }
