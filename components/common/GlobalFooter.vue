@@ -6,7 +6,7 @@
     <GlowyDivider
       class="absolute z-20 p-0 translate-y-1/2 pointer-events-none"
     />
-    <div class="absolute z-0 flex justify-center w-full">
+    <div dir="ltr" class="absolute z-0 flex justify-center w-full">
       <Moon
         :moon-size="moonSize"
         :line-weight="lineWeight"
@@ -27,19 +27,27 @@
             <Logo size="sm" />
           </div>
           <div class="text-sm font-main">
-            © {{ new Date().getFullYear() }} All rights reserved.
+            {{ $t("footer.copyright") }} {{ new Date().getFullYear() }}
           </div>
         </div>
 
         <!-- Navigation Links -->
         <div class="flex items-center gap-8">
-          <NuxtLink
-            v-for="link in links"
-            :to="link.to"
+          <NuxtLink to="/manifesto" class="text-sm transition-colors font-main">
+            {{ $t("footer.manifesto") }}
+          </NuxtLink>
+          <NuxtLink to="/privacy" class="text-sm transition-colors font-main">
+            {{ $t("footer.privacy") }}
+          </NuxtLink>
+          <NuxtLink to="/terms" class="text-sm transition-colors font-main">
+            {{ $t("footer.terms") }}
+          </NuxtLink>
+          <a
+            href="mailto:salam@zaman.com"
             class="text-sm transition-colors font-main"
           >
-            {{ link.label }}
-          </NuxtLink>
+            {{ $t("footer.contact") }}
+          </a>
         </div>
       </div>
 
@@ -57,7 +65,7 @@
           </p>
 
           <p class="mt-2 text-sm font-main">
-            Built with 🤲 and Sabr for every Muslim
+            {{ $t("footer.end") }}
           </p>
         </div>
       </div>
@@ -68,25 +76,6 @@
 <script setup lang="ts">
 import { Calendars } from "~/types/Calendars";
 import { breakpointsTailwind } from "@vueuse/core";
-
-const links = [
-  {
-    label: "Manifesto",
-    to: "/manifesto",
-  },
-  {
-    label: "Privacy",
-    to: "/privacy",
-  },
-  {
-    label: "Terms",
-    to: "/terms",
-  },
-  {
-    label: "Contact",
-    to: "/contact",
-  },
-];
 
 let moon = ref<SVGSVGElement | null>(null);
 let footerContent = ref<HTMLElement | null>(null);

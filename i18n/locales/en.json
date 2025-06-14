@@ -7,7 +7,12 @@
   },
   "footer": {
     "name": "Zaman",
-    "copyright": "Copyright ©"
+    "copyright": "Copyright ©",
+    "contact": "Contact",
+    "manifesto": "Manifesto",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "end": "Built with 🤲 and Sabr for every Muslim"
   },
   "waiting": {
     "waitingExpand": "Join the Ṣābirīn List",

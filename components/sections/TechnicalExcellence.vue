@@ -42,7 +42,7 @@
                 >
                   <Icon
                     :icon="$rt(feature.icon)"
-                    class="absolute -top-1 dark:text-emerald-600 text-emerald-400 left-1 size-8"
+                    class="absolute -top-1 dark:text-emerald-600 text-emerald-400 start-1 size-8"
                     aria-hidden="true"
                   />
                   {{ $rt(feature.name) }}
@@ -56,11 +56,11 @@
           </div>
         </div>
         <div
-          class="absolute -translate-y-1/2 pointer-events-none left-12 top-1/2 -z-10 transform-gpu blur-3xl lg:-bottom-48 lg:top-auto lg:translate-y-0 lg:transform-gpu"
+          class="absolute -translate-y-1/2 pointer-events-none start-12 top-1/2 -z-10 transform-gpu blur-3xl lg:-bottom-48 lg:top-auto lg:translate-y-0 lg:transform-gpu"
           aria-hidden="true"
         >
           <div
-            class="aspect-[1155/678] w-[72.1873rem] bg-gradient-to-tr dark:from-white dark:to-slate-700 from-slate-700 to-white opacity-25"
+            class="aspect-[1155/678] w-[72.1873rem] bg-gradient-to-tr rtl:bg-gradient-to-tl dark:from-white dark:to-slate-700 from-slate-700 to-white opacity-25"
             style="
               clip-path: polygon(
                 74.1% 44.1%,

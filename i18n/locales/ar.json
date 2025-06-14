@@ -7,7 +7,12 @@
   },
   "footer": {
     "name": "زمــن",
-    "copyright": "جميع الحقوق محفوظة ©"
+    "copyright": "جميع الحقوق محفوظة ©",
+    "contact": "التواصل",
+    "manifesto": "بيان",
+    "privacy": "سياسة الخصوصية",
+    "terms": "الشروط والأحكام",
+    "end": "مبني ب🤲 والصبر لأجل المسلمين"
   },
   "waiting": {
     "waitingExpand": "إنظم لقائمة الصابرين",
@@ -15,98 +20,98 @@
     "waiting": "قائمة الصابرين",
     "body": "يا ابن آدم إنما أنت أيام إذا ذهب يومك ذهب بعضك",
     "author": "الحسن البصري",
-    "manage": "نظم حياتك حول الأهم.",
+    "manage": "نظم حياتك حول الأهم",
     "tagline": "رتب جدولك، عادتك، و حياتك حول دينك - في مكان واحد مصمم لجميع المسلمين",
     "catchline": "تستحق مكانًا يجعل إيمانك محوراً"
   },
   "features": {
     "hijriCalendar": {
-      "title": "Faith-Centric Native Hijri Calendar",
-      "description": "Zaman makes it easy to switch between Hijri and Gregorian calendars and supports both one-time and recurring Hijri events, making it perfect for Hijri-based scheduling and planning."
+      "title": "تقويم هجري أصلي",
+      "description": "زمــن يجعل التنقل بين التقويم الهجري والميلادي أمراً سهلاً ويدعم الأحداث الهجرية الثابتة أو المتكررة، مما يجعله مثالياً للجدولة والتخطيط المبني على التقويم الهجري."
     },
     "deeds": {
-      "title": "Time-aware Deeds",
-      "description": "Discover and track daily, weekly, monthly, and yearly deeds from the Kitab & Sunnah."
+      "title": "السنن و الواجبات المرتبطة بالوقت",
+      "description": "اكتشف وتابع السنن و الواجبات اليومية والأسبوعية والشهرية والسنوية من الكتاب والسنة."
     },
     "wird": {
-      "title": "Your Wird",
-      "description": "Schedule and track your memorization, revision, and recitation of the Quran"
+      "title": "وردك",
+      "description": "جدول وتابع حفظك ومراجعتك وتلاوتك للقرآن الكريم"
     },
     "kenz": {
-      "title": "Kenz AI",
-      "description": "Capture thoughts, ideas, and inspirations with ease. Let AI organize and remember the details so you can resurface anything with cues."
+      "title": "الكنز الذكي",
+      "description": "احتفظ بأفكارك وخواطرك وإلهاماتك بسهولة. دع الذكاء الاصطناعي ينظم ويتذكر التفاصيل حتى تتمكن من استرجاع أي شيء بالالفاض البسيطة."
     },
     "habitTracker": {
-      "title": "Habit Tracker",
-      "description": "Achieve your Dunia and Akhira goals with ease. Track your progress and build lasting habits."
+      "title": "متتبع العادات",
+      "description": "حقق اهدافك الدينية و الدنيوية بسهولة. تابع تقدمك وابني عادات دائمة مستمرة."
     },
     "prayerAnchor": {
-      "title": "Anchored in Prayer Times",
-      "description": "Prayer-centered time awareness made simple"
+      "title": "متمحور حول أوقات الصلاة",
+      "description": "قدر وقت يومك حول اوقات الصلاة بسهولة"
     },
     "spaces": {
-      "title": "Dynamic Spaces",
-      "description": "Manage every part of your life with clarity"
+      "title": "فضاءات ديناميكية",
+      "description": "نظم كل جانب من جوانب حياتك بوضوح"
     }
   },
   "technicalExcellence": {
-    "title": "Built with Itqan by Muslims for Muslims",
-    "description": "Zaman is built to honor Muslims with excellence - a platform that respects your privacy, works everywhere, and a promise to maintain the highest standards of quality in everything we do.",
+    "title": "بني بإتقان من المسلمين للمسلمين",
+    "description": "زمــن بني لتكريم المسلمين بالتميز - منصة تحترم خصوصيتك، تعمل في كل مكان، ووعد بالحفاظ على أعلى معايير الجودة في كل ما نقوم به.",
     "features": [
       {
-        "name": "Privacy-first.",
-        "description": "Zaman is built with privacy in mind. We are not in the business of selling Muslims data.",
+        "name": "الخصوصية أولاً.",
+        "description": "زمــن بني مع وضع الخصوصية في الاعتبار. نحن لن نتاجر بيانات المسلمين.",
         "icon": "ic:baseline-shield-moon"
       },
       {
-        "name": "Local-first.",
-        "description": "Zaman uses a sync engine to deliver local first experience and offline support.",
+        "name": "محلي أولاً.",
+        "description": "زمــن يستخدم محرك مزامنة لتقديم تجربة محلية أولاً ودعم العمل دون اتصال.",
         "icon": "ic:baseline-cloud-off"
       },
       {
-        "name": "High-performance.",
-        "description": "Built for speed and real-time sync. Every interaction should feel instant.",
+        "name": "أداء عالي.",
+        "description": "بني للسرعة والمزامنة الفورية. كل تفاعل يجب أن يشعر بأنه فوري.",
         "icon": "ic:baseline-flash-on"
       }
     ]
   },
   "alternativeTech": {
-    "title": "A Muslim alternative is here",
-    "description": "Our Calendar and Kenz AI mark the beginning of something bigger—a complete, faith-centered alternative to the platforms that dominate our digital lives."
+    "title": "البديل الإسلامي هنا",
+    "description": "تقويمنا والكنز الذكي يمثلان بداية شيء أكبر—بديل كامل للمنصات التي تهيمن على حياتنا الرقمية متمحور حول نمط المسلم."
   },
   "cta": {
-    "title": "This is your sign. It's time to get back on track."
+    "title": "هذه بشارة. حان الوقت للعودة إلى المسار الصحيح."
   },
   "faq": {
-    "title": "Frequently asked questions",
+    "title": "الأسئلة الشائعة",
     "questions": [
       {
-        "question": "What is Zaman?",
-        "answer": "Zaman is a faith-centered productivity platform that helps Muslims balance their dunya (worldly life) and akhirah (afterlife). It features a native Hijri calendar with prayer time integration, Islamic habit and deed tracking, Quran study tools, and Kenz AI - a personal knowledge assistant that helps organize thoughts, ideas, and content."
+        "question": "ما هو زمــن؟",
+        "answer": "زمــن هو منصة إنتاجية تتمحور حول دين الاسلام تساعد المسلمين على الموازنة بين دينهم و دنياهم. يتميز بتقويم هجري أصيل مع تكامل أوقات الصلاة، وتتبع العادات والأعمال الإسلامية، وأدوات مدارسة القرآن، والكنز الذكي - مساعد معرفي شخصي يساعد في تنظيم الأفكار والخواطر والمحتوى."
       },
       {
-        "question": "Is Zaman just another prayer reminder app?",
-        "answer": "Although the core of Zaman is built around our prayer times library, Zaman is a productivity platform built from the perspective of a Muslim. It will eventually be a drop in replacement for your current productivity tools while keeping your faith at the center."
+        "question": "هل زمــن مجرد تطبيق تذكير صلاة آخر؟",
+        "answer": "على الرغم من أن جوهر زمــن مبني حول مكتبة أوقات الصلاة الخاصة بنا، إلا أن زمــن هو منصة إنتاجية مبنية من منظور المسلم. سيكون في النهاية بديلاً كاملاً لأدوات الإنتاجية الحالية مع الحفاظ على إيمانك في المركز."
       },
       {
-        "question": "When will Zaman be available?",
-        "answer": "We don't have a specific date yet, however,  our private beta program will be available soon. You can always register your interest by joining the Sabirin list. In the meantime know that we're working hard to bring you the best experience possible."
+        "question": "متى سيكون زمــن متاحاً؟",
+        "answer": "ليس لدينا تاريخ محدد بعد، ومع ذلك، سيكون برنامج البيتا الخاص متاحاً قريباً. يمكنك دائماً تسجيل اهتمامك من خلال الانضمام إلى قائمة الصابرين. في غضون ذلك، اعلم أننا نعمل بجد لنقدم لك أفضل تجربة ممكنة."
       },
       {
-        "question": "What is the Sabirin list?",
-        "answer": "The Sabirin list is what is also known as a waitlist by registering your interest you will be up to date with our launch programs and progress."
+        "question": "ما هي قائمة الصابرين؟",
+        "answer": "قائمة الصابرين هي ما يُعرف أيضاً بقائمة الانتظار، وبتسجيل اهتمامك ستكون على اطلاع دائم ببرامج الإطلاق والتقدم الذي نحرزه."
       },
       {
-        "question": "How much will Zaman cost?",
-        "answer": "Zaman will be a freemium product. We will offer a free tier with limited features and a paid tier with more features."
+        "question": "كم سيتكلف زمــن؟",
+        "answer": "زمــن سيكون منتجاً مجانياً مع خدمات مدفوعة. سنقدم طبقة مجانية بميزات محدودة وطبقة مدفوعة بميزات أكثر."
       },
       {
-        "question": "What platforms/devices will Zaman be available on?",
-        "answer": "Zaman will be available on all platforms/devices that support the web. We will also be available on iOS and Android."
+        "question": "على أي منصات/أجهزة سيكون زمــن متاحاً؟",
+        "answer": "زمــن سيكون متاحاً على جميع المنصات/الأجهزة التي تدعم الويب. كما سيكون متاحاً على iOS وAndroid."
       },
       {
-        "question": "How can I contact you?",
-        "answer": "Write to us at salam{'@'}zaman.com - we genuinely value every message."
+        "question": "كيف يمكنني التواصل معكم؟",
+        "answer": "اكتبوا لنا على salam{'@'}zaman.com - نحن نقدر حقاً كل رسالة."
       }
     ]
   },

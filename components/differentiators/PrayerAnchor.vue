@@ -6,7 +6,7 @@
     hideOverflow
   >
     <div
-      class="py-6 [mask-image:linear-gradient(to_left,transparent,black_2rem)]"
+      class="py-6 [mask-image:linear-gradient(to_left,transparent,black_2rem)] rtl:[mask-image:linear-gradient(to_right,transparent,black_2rem)]"
     >
       <PrayerMeter />
     </div>
