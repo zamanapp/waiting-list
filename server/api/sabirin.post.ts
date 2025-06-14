@@ -21,6 +21,35 @@ export default defineEventHandler(async (event) => {
 
     if (!loopsResponse.ok) {
       const errorData = await loopsResponse.json().catch(() => ({}));
+      console.log(errorData);
+      if (errorData.message === "Email already on list.") {
+        const message = `
+      <b>🎉 User trying to register again\!</b>
+      Email: <tg-spoiler>${body.email}</tg-spoiler>
+      `;
+
+        const params = new URLSearchParams({
+          chat_id: chatID,
+          message_thread_id: threadID,
+          parse_mode: "HTML",
+          text: message,
+        });
+
+        await fetch(
+          `https://api.telegram.org/bot${config.telegramBotToken}/sendMessage?${params}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "text/text",
+            },
+          }
+        );
+
+        return {
+          success: true,
+          message: "You are already in the waiting list",
+        };
+      }
       throw new Error(
         errorData.message || `Loops API error: ${loopsResponse.statusText}`
       );
@@ -28,7 +57,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     const errorMessage = `
 ❌ Failed to register in Sabirin list\!
-Email: ${body.email}
+Email: <tg-spoiler>${body.email}</tg-spoiler>
 Error: ${(error instanceof Error ? error.message : "Unknown error").replace(
       /[_*[\]()~`>#+\-=|{}.!]/g,
       "\\$&"

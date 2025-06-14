@@ -130,9 +130,15 @@ const submitHandler = async (values: any) => {
 
   if (success) {
     $posthog()?.capture("waitlist-success", { email: values.email });
-    emitter.emit("success", {
-      title: t("modal.success"),
-    });
+    if (message === "You are already in the waiting list") {
+      emitter.emit("success", {
+        title: t("modal.alreadyOnList"),
+      });
+    } else {
+      emitter.emit("success", {
+        title: t("modal.success"),
+      });
+    }
 
     // TODO: add a message that confirms the user has been added to the waitlist when they are already on it
   } else {
