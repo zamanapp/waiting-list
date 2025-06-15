@@ -1,12 +1,16 @@
 const animate = require("tailwindcss-animate");
 const typography = require("@tailwindcss/typography");
 const defaultTheme = require("tailwindcss/defaultTheme");
+import fluid, { extract, screens, fontSize } from "fluid-tailwind";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
   prefix: "",
+  content: {
+    extract,
+  },
 
   theme: {
     container: {
@@ -16,7 +20,13 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    screens,
+    fontSize,
     extend: {
+      backgroundImage: {
+        "gradient-conic":
+          "conic-gradient(var(--conic-position, from 45deg), var(--tw-gradient-stops))",
+      },
       fontFamily: {
         logo: ["'Space Grotesk'", ...defaultTheme.fontFamily.sans],
         logoArabic: ["'Cairo'", ...defaultTheme.fontFamily.sans],
@@ -82,14 +92,43 @@ module.exports = {
           from: { height: "var(--radix-collapsible-content-height)" },
           to: { height: 0 },
         },
+        risingstar: {
+          from: {
+            transform: "translateY(0px)",
+          },
+          to: {
+            transform: "translateY(-3840px)",
+          },
+        },
+        "skew-scroll": {
+          "0%": {
+            transform: "rotateX(20deg) rotateZ(-10deg) skewX(10deg)",
+          },
+          "100%": {
+            transform:
+              "rotateX(20deg) rotateZ(-10deg) skewX(10deg) translateY(-220%)",
+          },
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-in-out",
         "collapsible-up": "collapsible-up 0.2s ease-in-out",
+        risingstar: "risingstar 1000s linear infinite",
+        "skew-scroll": "skew-scroll 17s linear infinite",
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
     },
   },
-  plugins: [animate, typography],
+  plugins: [animate, typography, fluid],
 };

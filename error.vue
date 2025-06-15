@@ -22,7 +22,7 @@ const props = defineProps({
       <h1 class="inline-flex items-center leading-none error">
         4<MoonLoading :line-weight="14" :size="size" :speed="1" />4
       </h1>
-      <p class="text-xl italic text-gray-600">
+      <p class="text-xl italic text-gray-700 dark:text-gray-300">
         {{ $t("error.glitch") }}
       </p>
       <NuxtLink

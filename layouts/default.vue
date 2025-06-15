@@ -15,24 +15,17 @@
       </template>
     </Head>
     <Body>
-      <Navigation class="fixed backdrop-blur-xl" />
+      <Navigation class="fixed z-10 backdrop-blur-xl" />
       <slot />
-      <DefaultFooter />
+      <!-- <DefaultFooter /> -->
     </Body>
   </Html>
 </template>
 
 <script setup>
-const route = useRoute();
-const appConfig = useAppConfig();
-// const { t } = useI18n();
 const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: "id",
   addSeoAttributes: true,
 });
-
-const title = computed(
-  () => route.meta.title ?? `${appConfig.appName} - Join the Sabr list`
-);
 </script>

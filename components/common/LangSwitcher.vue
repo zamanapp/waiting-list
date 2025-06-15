@@ -4,13 +4,20 @@
     :key="locale.code"
     :to="switchLocalePath(locale.code)"
   >
-    {{ locale.code }}
+    {{ fullname ? locale.name : locale.code }}
   </NuxtLink>
 </template>
 
 <script setup>
 const { locale, locales } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
+
+defineProps({
+  fullname: {
+    type: Boolean,
+    default: true,
+  },
+});
 
 const availableLocales = computed(() => {
   return locales.value.filter((i) => i.code !== locale.value);

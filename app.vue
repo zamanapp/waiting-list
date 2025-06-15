@@ -6,11 +6,30 @@
   </NuxtLayout>
 </template>
 
+<script setup lang="ts">
+// turn on dark mode as default since the webste is optimized for dark mode
+
+const darkMode = useDark();
+if (!darkMode.value) {
+  darkMode.value = true;
+}
+
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+});
+</script>
+
 <style>
 html,
 body,
 #__nuxt {
-  @apply h-full dark:bg-slate-800 dark:text-slate-400;
+  @apply h-full;
 }
 html[dir="rtl"] {
   font-size: 18px;

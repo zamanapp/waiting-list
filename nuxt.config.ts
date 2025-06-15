@@ -10,7 +10,35 @@ export default defineNuxtConfig({
     "@vee-validate/nuxt",
     "@nuxt/content",
     "@nuxt/image",
+    "@vueuse/motion/nuxt",
   ],
+
+  routeRules: {
+    "/manifesto": {
+      prerender: true,
+    },
+    "/ar/manifesto": {
+      prerender: true,
+    },
+    "/": {
+      prerender: true,
+    },
+    "/ar": {
+      prerender: true,
+    },
+    "/privacy": {
+      prerender: true,
+    },
+    "/terms": {
+      prerender: true,
+    },
+    "/sharia": {
+      prerender: true,
+    },
+    "/restrictions": {
+      prerender: true,
+    },
+  },
 
   imports: {
     dirs: ["composables/**"],
@@ -21,14 +49,14 @@ export default defineNuxtConfig({
       {
         name: "English",
         code: "en",
-        iso: "en-US",
+        language: "en-US",
         dir: "ltr",
         file: "en.json",
       },
       {
         name: "العربية",
         code: "ar",
-        iso: "ar-SA",
+        language: "ar-SA",
         dir: "rtl",
         file: "ar.json",
       },
@@ -45,6 +73,7 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       useCookie: true,
     },
+    compilation: { strictMessage: false, escapeHtml: false },
   },
 
   content: {
@@ -53,6 +82,8 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    loopsApiKey: "",
+    telegramBotToken: "",
     // Keys within public are also exposed client-side
     public: {
       backEndpoint:
