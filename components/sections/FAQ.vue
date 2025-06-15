@@ -34,7 +34,7 @@
               <AccordionContent
                 class="dark:text-slate-300 text-state-700 text-lg/7"
               >
-                {{ $rt(faq.answer) }}
+                <div v-html="$rt(faq.answer)"></div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>

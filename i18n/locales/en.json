@@ -91,7 +91,7 @@
       },
       {
         "question": "Is Zaman just another prayer reminder app?",
-        "answer": "Although the core of Zaman is built around our prayer times library, Zaman is a productivity platform built from the perspective of a Muslim. It will eventually be a drop in replacement for your current productivity tools while keeping your faith at the center."
+        "answer": "Although the core of Zaman is built around our <a class=\"underline font-medium dark:text-white text-black\" href=\"https://prayers-call.netlify.app/\" target=\"_blank\">prayer times library</a>, Zaman is a productivity platform built from the perspective of a Muslim. It will eventually be a drop in replacement for your current productivity tools while keeping your faith at the center."
       },
       {
         "question": "When will Zaman be available?",
@@ -111,7 +111,7 @@
       },
       {
         "question": "How can I contact you?",
-        "answer": "Write to us at salam{'@'}zaman.com - we genuinely value every message."
+        "answer": "Write to us at <a class=\"underline font-medium dark:text-white text-black\" href=\"mailto:salam{'@'}zaman.com\">salam{'@'}zaman.com</a> - we genuinely value every message."
       }
     ]
   },
