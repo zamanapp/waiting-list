@@ -24,13 +24,15 @@
           class="h-[420px] w-full"
           style="transform: rotateX(20deg) rotateZ(-20deg) skewX(10deg)"
         >
-          <DeedsCard
-            class="transition-all duration-300 ease-in-out shadow-md cursor-pointer group hover:scale-105 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl"
-            v-for="(deed, index) in deeds"
-            :key="deed.uid"
-            :deed="deed"
-            :deed-index="index"
-          />
+          <ClientOnly>
+            <DeedsCard
+              class="transition-all duration-300 ease-in-out shadow-md cursor-pointer group hover:scale-105 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl"
+              v-for="(deed, index) in deeds"
+              :key="deed.uid"
+              :deed="deed"
+              :deed-index="index"
+            />
+          </ClientOnly>
         </Marquee>
       </div>
     </div>

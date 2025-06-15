@@ -96,7 +96,15 @@ defineExpose({
   emailInput,
 });
 
-const { $posthog } = useNuxtApp();
+const { $clientPosthog, $serverPosthog } = useNuxtApp();
+let posthogClient = null;
+
+if (import.meta.server) {
+  posthogClient = $serverPosthog;
+} else {
+  posthogClient = $clientPosthog;
+}
+
 const { localeProperties, t } = useI18n();
 const emitter = useEmitter();
 
@@ -114,7 +122,7 @@ const schema = toTypedSchema(
 const submitHandler = async (values: any) => {
   loading.value = true;
   if (values.username) {
-    $posthog()?.capture("waitlist-suspect", { values });
+    posthogClient?.capture("waitlist-suspect", { values });
     emitter.emit("error", {
       title: t("modal.suspicious"),
     });
@@ -129,7 +137,7 @@ const submitHandler = async (values: any) => {
   });
 
   if (success) {
-    $posthog()?.capture("waitlist-success", { email: values.email });
+    posthogClient?.capture("waitlist-success", { email: values.email });
     if (message === "You are already in the waiting list") {
       emitter.emit("success", {
         title: t("modal.alreadyOnList"),
@@ -142,7 +150,7 @@ const submitHandler = async (values: any) => {
 
     // TODO: add a message that confirms the user has been added to the waitlist when they are already on it
   } else {
-    $posthog()?.capture("waitlist-failure", {
+    posthogClient?.capture("waitlist-failure", {
       email: values.email,
       error: message,
     });
