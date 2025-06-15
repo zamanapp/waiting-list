@@ -9,7 +9,7 @@ const props = defineProps<
   CalendarHeadingProps & { class?: HTMLAttributes["class"] }
 >();
 
-defineSlots<{
+const slots = defineSlots<{
   default: (props: { headingValue: string }) => any;
 }>();
 
@@ -20,6 +20,8 @@ const delegatedProps = computed(() => {
 });
 
 const forwardedProps = useForwardProps(delegatedProps);
+
+const { fixHijriCalendarHeading } = useHijriCalendarFix();
 </script>
 
 <template>
@@ -29,7 +31,7 @@ const forwardedProps = useForwardProps(delegatedProps);
     v-bind="forwardedProps"
   >
     <slot :heading-value>
-      {{ headingValue }}
+      {{ fixHijriCalendarHeading(headingValue) }}
     </slot>
   </CalendarHeading>
 </template>
