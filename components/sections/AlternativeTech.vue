@@ -42,6 +42,4 @@
 
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
-
-const isDark = useDark();
 </script>
