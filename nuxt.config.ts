@@ -13,47 +13,48 @@ export default defineNuxtConfig({
     "@vueuse/motion/nuxt",
   ],
 
-  nitro: {
-    prerender: {
-      routes: [
-        "/manifesto",
-        "/ar/manifesto",
-        "/",
-        "/ar",
-        "/privacy",
-        "/terms",
-        "/sharia",
-        "/restrictions",
-      ],
-    },
-  },
+  // nitro: {
+  //   debug: true,
+  //   prerender: {
+  //     routes: [
+  //       "/manifesto",
+  //       "/ar/manifesto",
+  //       "/",
+  //       "/ar",
+  //       "/privacy",
+  //       "/terms",
+  //       "/sharia",
+  //       "/restrictions",
+  //     ],
+  //   },
+  // },
 
-  routeRules: {
-    "/manifesto": {
-      prerender: true,
-    },
-    "/ar/manifesto": {
-      prerender: true,
-    },
-    "/": {
-      prerender: true,
-    },
-    "/ar": {
-      prerender: true,
-    },
-    "/privacy": {
-      prerender: true,
-    },
-    "/terms": {
-      prerender: true,
-    },
-    "/sharia": {
-      prerender: true,
-    },
-    "/restrictions": {
-      prerender: true,
-    },
-  },
+  // routeRules: {
+  //   "/manifesto": {
+  //     prerender: true,
+  //   },
+  //   "/ar/manifesto": {
+  //     prerender: true,
+  //   },
+  //   "/": {
+  //     prerender: true,
+  //   },
+  //   "/ar": {
+  //     prerender: true,
+  //   },
+  //   "/privacy": {
+  //     prerender: true,
+  //   },
+  //   "/terms": {
+  //     prerender: true,
+  //   },
+  //   "/sharia": {
+  //     prerender: true,
+  //   },
+  //   "/restrictions": {
+  //     prerender: true,
+  //   },
+  // },
 
   imports: {
     dirs: ["composables/**"],
@@ -83,7 +84,7 @@ export default defineNuxtConfig({
     // precompile: { strictMessage: false },
     baseUrl:
       process.env.NODE_ENV === "production"
-        ? process.env.BASE_URL
+        ? "https://zaman.app"
         : "http://localhost:3000",
     detectBrowserLanguage: {
       useCookie: true,
