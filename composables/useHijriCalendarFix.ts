@@ -23,18 +23,18 @@ const gregorianToHijriMonths: HijriMonthMapping = {
   December: "Dhu al-Hijjah",
 
   // Abbreviated versions (consistent with Moon component)
-  Jan: "Muh.",
-  Feb: "Saf.",
-  Mar: "Rab. I",
-  Apr: "Rab. II",
-  May: "Jum. I",
-  Jun: "Jum. II",
-  Jul: "Raj.",
-  Aug: "Sha.",
-  Sep: "Ram.",
-  Oct: "Shaw.",
-  Nov: "Dhuʻl-Q.",
-  Dec: "Dhuʻl-H.",
+  // Jan: "Muh.",
+  // Feb: "Saf.",
+  // Mar: "Rab. I",
+  // Apr: "Rab. II",
+  // May: "Jum. I",
+  // Jun: "Jum. II",
+  // Jul: "Raj.",
+  // Aug: "Sha.",
+  // Sep: "Ram.",
+  // Oct: "Shaw.",
+  // Nov: "Dhuʻl-Q.",
+  // Dec: "Dhuʻl-H.",
 };
 
 export function useHijriCalendarFix() {

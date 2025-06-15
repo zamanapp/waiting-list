@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
   modules: [
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
@@ -12,6 +12,21 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@vueuse/motion/nuxt",
   ],
+
+  nitro: {
+    prerender: {
+      routes: [
+        "/manifesto",
+        "/ar/manifesto",
+        "/",
+        "/ar",
+        "/privacy",
+        "/terms",
+        "/sharia",
+        "/restrictions",
+      ],
+    },
+  },
 
   routeRules: {
     "/manifesto": {
