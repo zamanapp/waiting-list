@@ -39,13 +39,25 @@ const gregorianToHijriMonths: HijriMonthMapping = {
 
 export function useHijriCalendarFix() {
   // Detect if we're on Chrome Android (where the bug occurs)
+  // Only check on client side to avoid SSR issues
   const isChromiumAndroid = computed(() => {
+    // Return false during SSR
+    if (import.meta.server) return false;
+
+    // Check if window exists (additional safety check)
     if (typeof window === "undefined") return false;
 
-    const browserInfo = Browser.parse(window.navigator.userAgent);
-    return (
-      browserInfo.browser.name === "Chrome" && browserInfo.os.name === "Android"
-    );
+    try {
+      const browserInfo = Browser.parse(window.navigator.userAgent);
+      return (
+        browserInfo.browser.name === "Chrome" &&
+        browserInfo.os.name === "Android"
+      );
+    } catch (error) {
+      // Fallback in case browser detection fails
+      console.warn("Browser detection failed:", error);
+      return false;
+    }
   });
 
   /**
@@ -57,6 +69,9 @@ export function useHijriCalendarFix() {
   const hasChromiumAndroidIslamicCalendarBug = (
     headingValue: string
   ): boolean => {
+    // During SSR, we can't detect the browser, so assume no bug
+    if (import.meta.server) return false;
+
     if (!isChromiumAndroid.value) return false;
 
     // The telltale sign of the bug is "BC" appearing in what should be an Islamic date

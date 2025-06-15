@@ -511,27 +511,43 @@ const sCircumference = computed(
   () => 2 * Math.PI * (props.moonSize + SECONDS_R_CONST.value)
 );
 
-const browserInfo = computed(() => Browser.parse(window.navigator.userAgent));
+const browserInfo = computed(() => {
+  // Return null during SSR to prevent window access errors
+  if (import.meta.server) return null;
+
+  // Check if window exists (additional safety check)
+  if (typeof window === "undefined") return null;
+
+  try {
+    return Browser.parse(window.navigator.userAgent);
+  } catch (error) {
+    // Fallback in case browser detection fails
+    console.warn("Browser detection failed:", error);
+    return null;
+  }
+});
+
+const isChromiumAndroid = computed(() => {
+  if (!browserInfo.value) return false;
+  return (
+    browserInfo.value.browser.name === "Chrome" &&
+    browserInfo.value.os.name === "Android"
+  );
+});
 
 const yearFontSize = computed(() => {
   const circumference =
     2 * Math.PI * (props.moonSize + orbsSurface.value * 1.3);
   // we take the size of the Hijri months as they are longer
   const size = circumference / encoder.encode(hijriMonths.value).length;
-  return browserInfo.value.browser.name === "Chrome" &&
-    browserInfo.value.os.name === "Android"
-    ? size * 0.85
-    : size * 1.3;
+  return isChromiumAndroid.value ? size * 0.85 : size * 1.3;
 });
 
 const monthsFontSize = computed(() => {
   const circumference = 2 * Math.PI * (props.moonSize + orbsSurface.value);
   // we take the size of the hijri months as they are longer
   const size = circumference / encoder.encode(hijriMonths.value).length;
-  return browserInfo.value.browser.name === "Chrome" &&
-    browserInfo.value.os.name === "Android"
-    ? size * 0.85
-    : size * 1.3;
+  return isChromiumAndroid.value ? size * 0.85 : size * 1.3;
 });
 const daysFontSize = computed(() => {
   const circumference =
