@@ -7,7 +7,7 @@
       class="inline-flex items-center gap-2 align-middle cols-span-1 lg:col-span-2"
       :to="localePath('/')"
     >
-      <Logo />
+      <Logo :size="mobile ? 'md' : 'lg'" />
     </NuxtLink>
 
     <Drawer v-if="mobile" v-model:open="isOpen" class="col-span-1 md:invisible">
