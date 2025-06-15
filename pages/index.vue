@@ -1,28 +1,30 @@
 <template>
-  <div
-    class="min-h-screen overflow-x-hidden bg-white dark:bg-slate-950 font-main dark:text-slate-50"
-  >
-    <!-- Hero Section -->
-    <HeroSection />
+  <ClientOnly>
+    <div
+      class="min-h-screen overflow-x-hidden bg-white dark:bg-slate-950 font-main dark:text-slate-50"
+    >
+      <!-- Hero Section -->
+      <HeroSection />
 
-    <!-- Core Differentiators Section -->
-    <CoreDifferentiators />
+      <!-- Core Differentiators Section -->
+      <CoreDifferentiators />
 
-    <!-- Technical Excellence Section -->
-    <TechnicalExcellence />
+      <!-- Technical Excellence Section -->
+      <TechnicalExcellence />
 
-    <!-- Alternative Tech Section -->
-    <AlternativeTech />
+      <!-- Alternative Tech Section -->
+      <AlternativeTech />
 
-    <!-- Final CTA Section -->
-    <TynDall ref="tyndallRef" />
+      <!-- Final CTA Section -->
+      <TynDall ref="tyndallRef" />
 
-    <!-- FAQ Section -->
-    <FAQ />
+      <!-- FAQ Section -->
+      <FAQ />
 
-    <!-- Footer -->
-    <GlobalFooter />
-  </div>
+      <!-- Footer -->
+      <GlobalFooter />
+    </div>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
