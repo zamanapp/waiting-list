@@ -13,7 +13,7 @@
 
       <!-- Marquee should be in front of the grid -->
       <div class="absolute z-10 flex flex-col justify-end h-full py-12">
-        <Marquee pauseOnHover>
+        <Marquee>
           <div class="flex gap-3">
             <HabitsList
               v-for="(habit, index) in habits"
@@ -24,7 +24,7 @@
             />
           </div>
         </Marquee>
-        <Marquee pauseOnHover reverse>
+        <Marquee reverse>
           <div class="flex gap-3">
             <HabitsList
               v-for="(habit, index) in secondHabits"
