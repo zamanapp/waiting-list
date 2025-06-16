@@ -113,6 +113,10 @@ module.exports = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(calc(-100% - var(--gap)))" },
         },
+        "marquee-rtl": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(100% + var(--gap)))" },
+        },
         "marquee-vertical": {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(calc(-100% - var(--gap)))" },
@@ -126,6 +130,7 @@ module.exports = {
         risingstar: "risingstar 1000s linear infinite",
         "skew-scroll": "skew-scroll 17s linear infinite",
         marquee: "marquee var(--duration) linear infinite",
+        "marquee-rtl": "marquee-rtl var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
     },
