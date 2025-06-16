@@ -18,24 +18,14 @@
             <rect
               v-for="(timeAnchor, index) in timeAnchors"
               :key="timeAnchor.name"
-              :x="
-                index === 0
-                  ? 0
-                  : prayerOffsets[index - 1] * offsetUnit + GAP_SIZE
-              "
+              :x="getRectX(index)"
               :y="
                 isPrayerMeterHovered || showPrayerTimeLabel !== 'none'
                   ? height - height * HIGHT_RATIO
                   : 0
               "
               rx="4"
-              :width="
-                index === 0
-                  ? prayerOffsets[index] * offsetUnit
-                  : (prayerOffsets[index] - prayerOffsets[index - 1]) *
-                      offsetUnit -
-                    GAP_SIZE
-              "
+              :width="getRectWidth(index)"
               :height="prayerMeterHeight"
             />
           </clipPath>
@@ -62,39 +52,20 @@
             @mouseleave="hoveredElement = null"
           >
             <rect
-              :x="
-                index === 0
-                  ? 0
-                  : prayerOffsets[index - 1] * offsetUnit + GAP_SIZE
-              "
+              :x="getRectX(index)"
               :y="
                 isPrayerMeterHovered || showPrayerTimeLabel !== 'none'
                   ? height - height * HIGHT_RATIO
                   : 0
               "
               rx="4"
-              :width="
-                index === 0
-                  ? prayerOffsets[index] * offsetUnit
-                  : (prayerOffsets[index] - prayerOffsets[index - 1]) *
-                      offsetUnit -
-                    GAP_SIZE
-              "
+              :width="getRectWidth(index)"
               :height="prayerMeterHeight"
               class="transition-all duration-200 fill-slate-200 dark:fill-slate-800"
             />
             <!-- Intervals between prayers labels -->
             <text
-              :x="
-                index === 0
-                  ? prayerOffsets[index] * offsetUnit -
-                    (prayerOffsets[index] * offsetUnit) / 2
-                  : prayerOffsets[index] * offsetUnit -
-                    ((prayerOffsets[index] - prayerOffsets[index - 1]) *
-                      offsetUnit -
-                      GAP_SIZE) /
-                      2
-              "
+              :x="getTextX(index)"
               :y="height - height * HIGHT_RATIO - 6"
               text-anchor="middle"
               class="text-sm capitalize transition-opacity duration-200 opacity-0 fill-foreground"
@@ -112,7 +83,7 @@
 
           <!-- Progress bar that gets clipped -->
           <rect
-            x="0"
+            :x="getProgressBarX()"
             :y="
               isPrayerMeterHovered || showPrayerTimeLabel !== 'none'
                 ? height - height * HIGHT_RATIO
@@ -135,7 +106,7 @@
           >
             <!-- solid rectangle to indicate the prayer time -->
             <rect
-              :x="prayerOffsets[i] * offsetUnit + (GAP_SIZE / 2 - 2)"
+              :x="getPrayerIndicatorX(i)"
               :y="
                 isPrayerMeterHovered || showPrayerTimeLabel !== 'none'
                   ? height - height * HIGHT_RATIO + 2
@@ -160,19 +131,14 @@
                   : 'fill-slate-200 dark:fill-slate-800'
               }`"
               :style="{
-                transform: `translateX(${
-                  showPrayerTimeLabel === 'all' ||
-                  showPrayerTimeLabel === prayer.name
-                    ? '-2px'
-                    : '0'
-                })`,
+                transform: `translateX(${getPrayerIndicatorTranslateX()})`,
               }"
             />
 
             <!-- Pulse animation -->
             <rect
               v-if="nextPrayerIsNear && prayer.name === prayers[0].name"
-              :x="prayerOffsets[i] * offsetUnit + (GAP_SIZE / 2 - 2)"
+              :x="getPrayerIndicatorX(i)"
               :y="
                 isPrayerMeterHovered || showPrayerTimeLabel !== 'none'
                   ? height - height * HIGHT_RATIO + 2
@@ -193,18 +159,13 @@
               "
               :class="`transition-all animate-close-time origin-center group-hover:fill-teal-500 group-hover:dark:fill-teal-300 fill-teal-500 dark:fill-teal-300`"
               :style="{
-                transform: `translateX(${
-                  showPrayerTimeLabel === 'all' ||
-                  showPrayerTimeLabel === prayer.name
-                    ? '-2px'
-                    : '0'
-                })`,
+                transform: `translateX(${getPrayerIndicatorTranslateX()})`,
               }"
             />
 
             <!-- Prayer name label -->
             <text
-              :x="prayerOffsets[i] * offsetUnit"
+              :x="getPrayerLabelX(i)"
               :y="height - height * HIGHT_RATIO - 6"
               text-anchor="middle"
               class="text-sm capitalize transition-opacity duration-200 fill-teal-500 dark:fill-teal-300"
@@ -244,6 +205,7 @@ interface TimeObject {
   time: Date;
 }
 
+const { localeProperties } = useI18n();
 const locale = computed(() => "en-US");
 const showPrayerTimeLabel = ref<"none" | "all" | PrayerNamesType>("fajr");
 const now = ref(new Date("2025-06-05T20:36:00.000Z"));
@@ -308,6 +270,82 @@ const prayerMeterHeight = computed(() => {
   }
   return BaseHeight;
 });
+
+// Computed property to check if the layout is RTL
+const isRTL = computed(() => localeProperties.value.dir === "rtl");
+
+// Get the total width of the SVG
+const totalWidth = computed(() => {
+  if (!prayerMeter.value) return 0;
+  const { width } = useElementBounding(prayerMeter);
+  return width.value;
+});
+
+// Helper function to convert LTR x-coordinate to RTL
+const convertToRTL = (x: number, elementWidth: number = 0) => {
+  if (!isRTL.value) return x;
+  return totalWidth.value - x - elementWidth;
+};
+
+// RTL-aware positioning functions
+const getRectX = (index: number) => {
+  const ltrX =
+    index === 0
+      ? 0
+      : prayerOffsets.value[index - 1] * offsetUnit.value + GAP_SIZE;
+  const width = getRectWidth(index);
+  return convertToRTL(ltrX, width);
+};
+
+const getRectWidth = (index: number) => {
+  return index === 0
+    ? prayerOffsets.value[index] * offsetUnit.value
+    : (prayerOffsets.value[index] - prayerOffsets.value[index - 1]) *
+        offsetUnit.value -
+        GAP_SIZE;
+};
+
+const getTextX = (index: number) => {
+  const ltrX =
+    index === 0
+      ? prayerOffsets.value[index] * offsetUnit.value -
+        (prayerOffsets.value[index] * offsetUnit.value) / 2
+      : prayerOffsets.value[index] * offsetUnit.value -
+        ((prayerOffsets.value[index] - prayerOffsets.value[index - 1]) *
+          offsetUnit.value -
+          GAP_SIZE) /
+          2;
+  return convertToRTL(ltrX);
+};
+
+const getProgressBarX = () => {
+  const ltrX = 0;
+  return convertToRTL(ltrX, dayProgressInPx.value);
+};
+
+const getPrayerIndicatorX = (i: number) => {
+  const ltrX = prayerOffsets.value[i] * offsetUnit.value + (GAP_SIZE / 2 - 2);
+  const width =
+    showPrayerTimeLabel.value === "all" ||
+    showPrayerTimeLabel.value === prayers[i].name
+      ? 8
+      : 4;
+  return convertToRTL(ltrX, width);
+};
+
+const getPrayerIndicatorTranslateX = () => {
+  const translateX =
+    showPrayerTimeLabel.value === "all" ||
+    prayers.some((prayer) => showPrayerTimeLabel.value === prayer.name)
+      ? "-2px"
+      : "0";
+  return isRTL.value && translateX === "-2px" ? "2px" : translateX;
+};
+
+const getPrayerLabelX = (i: number) => {
+  const ltrX = prayerOffsets.value[i] * offsetUnit.value;
+  return convertToRTL(ltrX);
+};
 
 watch(prayerMeter, () => {
   const { width } = useElementBounding(prayerMeter);
