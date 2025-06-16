@@ -24,6 +24,30 @@
     "tagline": "Manage your <span class=\"font-bold\">deen, schedule, habits</span>, and <span class=\"font-bold\">life</span> — in one place built for the <span class=\"font-bold\">everyday Muslim</span>.",
     "catchline": "You deserve a space that keeps your faith at the center"
   },
+  "deeds": {
+    "fajr": "Fajr",
+    "fajrRatiba": "Fajr Ratiba",
+    "eidAlFitr": "Eid al-Fitr",
+    "mondayFasting": "Monday Fasting",
+    "hijamah": "Hijamah",
+    "ayyamAlBeed": "Ayyam al-beed",
+    "fridayGhusl": "Friday Ghusl",
+    "yaumArafa": "Yaum 'Arafa",
+    "sixDaysOfShawwal": "6 Days of Shawwal",
+    "taraweeh": "Taraweeh"
+  },
+  "habits": {
+    "morningAthkar": "Morning Athkar",
+    "read10Pages": "Read 10 pages",
+    "duhaPrayer": "Duha Prayer",
+    "morningWalk": "Morning walk",
+    "frequencies": {
+      "morningAthkar": "Everyday {'@'} 06:00 AM",
+      "read10Pages": "Everyday {'@'} 09:00 PM",
+      "duhaPrayer": "Everyday {'@'} 10:00 AM",
+      "morningWalk": "Everyday {'@'} 07:00 AM"
+    }
+  },
   "features": {
     "hijriCalendar": {
       "title": "Faith-Centric Native Hijri Calendar",

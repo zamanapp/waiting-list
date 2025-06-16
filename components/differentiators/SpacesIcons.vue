@@ -12,13 +12,13 @@
         :class="['relative hover:z-10 group', index > 0 ? '-ms-4' : '']"
       >
         <Avatar
-          class="transition-all duration-200 border-4 border-white cursor-pointer size-16 hover:scale-105 hover:-translate-y-1 hover:shadow-lg dark:border-slate-950"
+          class="transition-all duration-200 border-4 border-white cursor-pointer size-14 md:size-16 hover:scale-105 hover:-translate-y-1 hover:shadow-lg dark:border-slate-950"
         >
           <!-- <AvatarFallback class="text-2xl font-semibold">{{
             space.name!.slice(0, 2).toUpperCase()
           }}</AvatarFallback> -->
           <AvatarFallback
-            class="text-3xl font-semibold grayscale brightness-0 dark:invert"
+            class="text-2xl font-semibold md:text-3xl grayscale brightness-0 dark:invert"
             >{{ space.emoji }}</AvatarFallback
           >
         </Avatar>
@@ -41,9 +41,12 @@
     <ToolTipInfo :delay="300" side="top" content="Create new space">
       <div :style="{ zIndex: 0 }" :class="['relative hover:z-10 -ms-4']">
         <Avatar
-          class="transition-all duration-300 border-2 cursor-pointer size-16 hover:scale-105 hover:-translate-y-1 hover:shadow-lg border-slate-400"
+          class="transition-all duration-300 border-2 cursor-pointer size-14 md:size-16 hover:scale-105 hover:-translate-y-1 hover:shadow-lg border-slate-400"
         >
-          <Icon icon="hugeicons:plus-sign" class="text-slate-400 size-6" />
+          <Icon
+            icon="hugeicons:plus-sign"
+            class="text-slate-400 size-5 md:size-6"
+          />
         </Avatar>
       </div>
     </ToolTipInfo>

@@ -24,6 +24,30 @@
     "tagline": "رتب <span class=\"font-bold\">جدولك، عادتك</span>، و <span class=\"font-bold\">حياتك</span> حول دينك - في مكان واحد مصمم <span class=\"font-bold\">لجميع المسلمين</span>",
     "catchline": "تستحق مكانًا يجعل إيمانك محوراً"
   },
+  "deeds": {
+    "fajr": "الفجر",
+    "fajrRatiba": "راتبة الفجر",
+    "eidAlFitr": "عيد الفطر",
+    "mondayFasting": "صيام الاثنين",
+    "hijamah": "الحجامة",
+    "ayyamAlBeed": "الأيام البيض",
+    "fridayGhusl": "غُسل الجمعة",
+    "yaumArafa": "يوم عرفة",
+    "sixDaysOfShawwal": "الأيام الستة من شوال",
+    "taraweeh": "التراويح"
+  },
+  "habits": {
+    "morningAthkar": "أذكار الصباح",
+    "read10Pages": "قراءة 10 صفحات",
+    "duhaPrayer": "صلاة الضحى",
+    "morningWalk": "التمشي في الصباح",
+    "frequencies": {
+      "morningAthkar": "يومياً {'@'} 06:00 ص",
+      "read10Pages": "يومياً {'@'} 09:00 م",
+      "duhaPrayer": "يومياً {'@'} 10:00 ص",
+      "morningWalk": "يومياً {'@'} 07:00 ص"
+    }
+  },
   "features": {
     "hijriCalendar": {
       "title": "تقويم هجري أصلي",

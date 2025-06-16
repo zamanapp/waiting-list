@@ -41,51 +41,53 @@
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
 const isDark = useDark();
 
 const color = computed(() => (isDark.value ? "#6ee7b7" : "#10b981"));
 
 const habits = [
   {
-    habit: "Morning Athkar",
-    frequency: "Everyday @ 06:00 AM",
+    habit: t("habits.morningAthkar"),
+    frequency: t("habits.frequencies.morningAthkar"),
     checked: true,
   },
   {
-    habit: "Read 10 pages",
-    frequency: "Everyday @ 09:00 PM",
+    habit: t("habits.read10Pages"),
+    frequency: t("habits.frequencies.read10Pages"),
     checked: false,
   },
   {
-    habit: "Duha Prayer",
-    frequency: "Everyday @ 10:00 AM",
+    habit: t("habits.duhaPrayer"),
+    frequency: t("habits.frequencies.duhaPrayer"),
     checked: true,
   },
   {
-    habit: "Morning walk",
-    frequency: "Everyday @ 07:00 AM",
+    habit: t("habits.morningWalk"),
+    frequency: t("habits.frequencies.morningWalk"),
     checked: false,
   },
 ];
+
 const secondHabits = [
   {
-    habit: "Morning Athkar",
-    frequency: "Everyday @ 06:00 AM",
+    habit: t("habits.morningAthkar"),
+    frequency: t("habits.frequencies.morningAthkar"),
     checked: false,
   },
   {
-    habit: "Read 10 pages",
-    frequency: "Everyday @ 09:00 PM",
+    habit: t("habits.read10Pages"),
+    frequency: t("habits.frequencies.read10Pages"),
     checked: true,
   },
   {
-    habit: "Duha Prayer",
-    frequency: "Everyday @ 10:00 AM",
+    habit: t("habits.duhaPrayer"),
+    frequency: t("habits.frequencies.duhaPrayer"),
     checked: false,
   },
   {
-    habit: "Morning walk",
-    frequency: "Everyday @ 07:00 AM",
+    habit: t("habits.morningWalk"),
+    frequency: t("habits.frequencies.morningWalk"),
     checked: true,
   },
 ];
