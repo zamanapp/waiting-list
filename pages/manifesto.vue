@@ -14,7 +14,7 @@
     </div>
     <RaisingStar />
     <div
-      :class="`flex flex-col gap-6 mx-1 mb-12 text-center font-mono rtl:font-regular rtl:leading-loose rtl:font-logoArabic`"
+      :class="`flex flex-col gap-6 mx-1 mb-12 text-center font-mono rtl:font-regular rtl:leading-loose rtl:font-monoArabic`"
     >
       <p v-for="(content, i) in $tm('manifesto.paragraphs')" :key="i">
         {{ $rt(content) }}
