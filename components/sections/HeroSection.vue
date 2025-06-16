@@ -32,7 +32,7 @@
           <GlassButton
             :color="isDark ? '#fff' : '#000'"
             class="text-lg font-medium"
-            @click="emitter.emit('scroll:to:join')"
+            @click="scrollToJoin"
           >
             {{ $t("waiting.waitingExpand") }}
           </GlassButton>
@@ -90,6 +90,20 @@ const heroBackground = templateRef<HTMLElement>("heroBackground");
 const heroBottomText = templateRef<HTMLElement>("heroBottomText");
 
 const emitter = useEmitter();
+
+const { $clientPosthog, $serverPosthog } = useNuxtApp();
+let posthogClient = null;
+
+if (import.meta.server) {
+  posthogClient = $serverPosthog;
+} else {
+  posthogClient = $clientPosthog;
+}
+
+function scrollToJoin() {
+  posthogClient?.capture("hero-join-waitlist-click");
+  emitter.emit("scroll:to:join");
+}
 
 onMounted(() => {
   // Set initial states for all elements

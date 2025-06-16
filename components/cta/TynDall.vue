@@ -142,9 +142,15 @@ const submitHandler = async (values: any) => {
       emitter.emit("success", {
         title: t("modal.alreadyOnList"),
       });
+      posthogClient?.capture("waitlist-success-repeat", {
+        email: values.email,
+      });
     } else {
       emitter.emit("success", {
         title: t("modal.success"),
+      });
+      posthogClient?.capture("waitlist-success-unique", {
+        email: values.email,
       });
     }
 
