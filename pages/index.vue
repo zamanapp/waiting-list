@@ -36,20 +36,30 @@ definePageMeta({
 
 const { t } = useI18n();
 
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+});
+
 useSeoMeta({
   title: t("seo.index.title"),
   description: t("seo.index.description"),
   keywords: t("seo.index.keywords"),
   ogTitle: t("seo.index.ogTitle"),
   ogDescription: t("seo.index.ogDescription"),
-  ogImage: "https://zaman.app/img/og-index.png",
+  ogImage: t("seo.index.ogImage"),
   ogType: "website",
   ogUrl: "https://zaman.app",
   ogSiteName: "Zaman",
   twitterTitle: t("seo.index.twitterTitle"),
   twitterDescription: t("seo.index.twitterDescription"),
   twitterSite: "@zaman_hq",
-  twitterImage: "https://zaman.app/img/og-index.png",
+  twitterImage: t("seo.index.twitterImage"),
   twitterCard: "summary_large_image",
 });
 

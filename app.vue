@@ -13,16 +13,6 @@ const darkMode = useDark();
 if (!darkMode.value) {
   darkMode.value = true;
 }
-
-useHead({
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favicon.png",
-    },
-  ],
-});
 </script>
 
 <style>

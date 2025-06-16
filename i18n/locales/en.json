@@ -188,17 +188,21 @@
       "keywords": "Islamic productivity app, Muslim calendar app, prayer times tracker, Quran memorization app, Islamic habits tracker, Hijri calendar, Muslim productivity suite, Islamic time management, deen tracker, Muslim lifestyle app",
       "ogTitle": "Zaman - The Path of Productive Faith",
       "ogDescription": "Zaman is a productivity platform for Muslims. And this is our manifesto.",
+      "ogImage": "https://zaman.app/img/og-manifesto.png",
       "twitterTitle": "Zaman - The Path of Productive Faith",
-      "twitterDescription": "Zaman is a productivity platform for Muslims. And this is our manifesto."
+      "twitterDescription": "Zaman is a productivity platform for Muslims. And this is our manifesto.",
+      "twitterImage": "https://zaman.app/img/og-manifesto.png"
     },
     "index": {
       "title": "Zaman - Productivity platform for Muslims",
       "description": "Balance your dunya and akhirah with Zaman's Islamic productivity platform. Native Hijri calendar with full Islamic deed tracking, faith-based habits, and Quran memorization. Built by Muslims, for Muslims.",
       "keywords": "Islamic productivity app, Muslim calendar app, prayer times tracker, Quran memorization app, Islamic habits tracker, Hijri calendar, Muslim productivity suite, Islamic time management, deen tracker, Muslim lifestyle app",
       "ogTitle": "Zaman - Productivity platform for Muslims",
+      "ogImage": "https://zaman.app/img/og-index.png",
       "ogDescription": "Balance your dunya and akhirah with Zaman's Islamic productivity platform. Native Hijri calendar with full Islamic deed tracking, faith-based habits, and Quran memorization. Built by Muslims, for Muslims.",
       "twitterTitle": "Zaman - Productivity platform for Muslims",
-      "twitterDescription": "Balance your dunya and akhirah with Zaman's Islamic productivity platform. Native Hijri calendar with full Islamic deed tracking, faith-based habits, and Quran memorization. Built by Muslims, for Muslims."
+      "twitterDescription": "Balance your dunya and akhirah with Zaman's Islamic productivity platform. Native Hijri calendar with full Islamic deed tracking, faith-based habits, and Quran memorization. Built by Muslims, for Muslims.",
+      "twitterImage": "https://zaman.app/img/og-index.png"
     }
   }
 }

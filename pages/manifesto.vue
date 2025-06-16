@@ -26,20 +26,30 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+});
+
 useSeoMeta({
   title: t("seo.manifesto.title"),
   description: t("seo.manifesto.description"),
   keywords: t("seo.manifesto.keywords"),
   ogTitle: t("seo.manifesto.ogTitle"),
   ogDescription: t("seo.manifesto.ogDescription"),
-  ogImage: "https://zaman.app/img/og-index.png",
+  ogImage: t("seo.manifesto.ogImage"),
   ogType: "website",
   ogUrl: "https://zaman.app",
   ogSiteName: "Zaman",
   twitterTitle: t("seo.manifesto.twitterTitle"),
   twitterDescription: t("seo.manifesto.twitterDescription"),
   twitterSite: "@zaman_hq",
-  twitterImage: "https://zaman.app/img/og-index.png",
+  twitterImage: t("seo.manifesto.twitterImage"),
   twitterCard: "summary_large_image",
 });
 </script>
