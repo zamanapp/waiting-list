@@ -36,6 +36,14 @@
     "sixDaysOfShawwal": "الأيام الستة من شوال",
     "taraweeh": "التراويح"
   },
+  "prayers": {
+    "fajr": "الفجر",
+    "sunrise": "الشروق",
+    "dhuhr": "الظهر",
+    "asr": "العصر",
+    "maghrib": "المغرب",
+    "isha": "العشاء"
+  },
   "habits": {
     "morningAthkar": "أذكار الصباح",
     "read10Pages": "قراءة 10 صفحات",

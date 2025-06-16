@@ -36,6 +36,14 @@
     "sixDaysOfShawwal": "6 Days of Shawwal",
     "taraweeh": "Taraweeh"
   },
+  "prayers": {
+    "fajr": "Fajr",
+    "sunrise": "Sunrise",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha"
+  },
   "habits": {
     "morningAthkar": "Morning Athkar",
     "read10Pages": "Read 10 pages",

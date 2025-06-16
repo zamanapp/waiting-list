@@ -215,7 +215,7 @@
                   : 'opacity-0'
               "
             >
-              <tspan>{{ prayer.name }}</tspan>
+              <tspan>{{ $t(`prayers.${prayer.name}`) }}</tspan>
               -
               <tspan class="font-semibold">
                 {{ formateTime(prayer.time) }}
