@@ -26,16 +26,6 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 
-useHead({
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favicon.png",
-    },
-  ],
-});
-
 useSeoMeta({
   title: t("seo.manifesto.title"),
   description: t("seo.manifesto.description"),

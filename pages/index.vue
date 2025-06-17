@@ -36,16 +36,6 @@ definePageMeta({
 
 const { t } = useI18n();
 
-useHead({
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favicon.png",
-    },
-  ],
-});
-
 useSeoMeta({
   title: t("seo.index.title"),
   description: t("seo.index.description"),

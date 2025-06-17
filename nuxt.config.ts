@@ -14,6 +14,18 @@ export default defineNuxtConfig({
     "nuxt-posthog",
   ],
 
+  app: {
+    head: {
+      link: [
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "/favicon.ico",
+        },
+      ],
+    },
+  },
+
   // nitro: {
   //   debug: true,
   //   prerender: {
