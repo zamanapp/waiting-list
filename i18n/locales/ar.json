@@ -109,7 +109,7 @@
   },
   "alternativeTech": {
     "title": "البديل الإسلامي هنا",
-    "description": "تقويمنا والكنز الذكي يمثلان بداية شيء أكبر—بديل كامل للمنصات التي تهيمن على حياتنا الرقمية متمحور حول نمط المسلم."
+    "description": "تقويمنا والكنز الذكي يمثلان بداية شيء أكبر—بديل كامل للمنصات التي تهيمن على حياتنا الرقمية متمحور حول نمط حياة الفرد المسلم."
   },
   "cta": {
     "title": "هذه بشارة. حان الوقت للعودة إلى المسار الصحيح."
@@ -143,7 +143,7 @@
       },
       {
         "question": "كيف يمكنني التواصل معكم؟",
-        "answer": "اكتبوا لنا على <a class=\"underline font-medium dark:text-white text-black\" href=\"mailto:salam{'@'}zaman.com\">salam{'@'}zaman.com</a> - نحن نقدر حقاً كل رسالة."
+        "answer": "راسلونا على <a class=\"underline font-medium dark:text-white text-black\" href=\"mailto:salam{'@'}zaman.com\">salam{'@'}zaman.com</a> - نحن نقدر كل رسالة تصلنا منكم."
       }
     ]
   },
