@@ -4,6 +4,14 @@ export default defineEventHandler(async (event) => {
   const chatID = "-1001598248299";
   const threadID = "1471";
 
+  const visitorLocation = {
+    country: getHeader(event, "cf-ipcountry"),
+    city: getHeader(event, "cf-ipcity"),
+    timezone: getHeader(event, "cf-timezone"),
+    region: getHeader(event, "cf-ipregion"),
+    ip: getHeader(event, "cf-connecting-ip") || getRequestIP(event),
+  };
+
   let loopsResponse;
   try {
     loopsResponse = await fetch("https://app.loops.so/api/v1/contacts/create", {
@@ -92,6 +100,10 @@ Error: ${(error instanceof Error ? error.message : "Unknown error").replace(
 
   const message = `
   <b>🎉 New Sabirin list Registration\!</b>
+  <b>Email:</b> <tg-spoiler>${body.email}</tg-spoiler>
+  <b>IP:</b> <tg-spoiler>${visitorLocation.ip}</tg-spoiler>
+  <b>Location:</b> <tg-spoiler>${visitorLocation.country}, ${visitorLocation.city}, ${visitorLocation.region}</tg-spoiler>
+  <b>Timezone:</b> <tg-spoiler>${visitorLocation.timezone}</tg-spoiler>
   `;
 
   const params = new URLSearchParams({
